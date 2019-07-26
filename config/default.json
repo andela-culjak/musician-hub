@@ -1,4 +1,6 @@
 {
   "mongoURI": "mongodb+srv://andela123:andela123@mern-app-3u3jc.mongodb.net/test?retryWrites=true&w=majority",
-  "jwtSecret": "mysecrettoken"
+  "jwtSecret": "mysecrettoken",
+  "githubClientId": "a7fb5d2990c77af20d9f",
+  "githubSecret": "4641056cdcc2c581ec3a7794b9e78e763ced9c94"
 }
