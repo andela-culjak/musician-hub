@@ -1,5 +1,5 @@
 {
-  "name": "master-app",
+  "name": "musician-hub",
   "version": "1.0.0",
   "description": "Social network for musicians",
   "main": "server.js",
