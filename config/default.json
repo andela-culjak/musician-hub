@@ -1,9 +1,12 @@
 {
-  "mongoURI": "mongodb://andela123:andela123@mern-app-shard-00-00-3u3jc.mongodb.net:27017,mern-app-shard-00-01-3u3jc.mongodb.net:27017,mern-app-shard-00-02-3u3jc.mongodb.net:27017/test?ssl=true&replicaSet=MERN-app-shard-0&authSource=admin&retryWrites=true&w=majority",
+  "mongoURI": "mongodb+srv://andela123:andela123@mern-app-3u3jc.mongodb.net/test?retryWrites=true&w=majority",
   "jwtSecret": "mysecrettoken",
   "githubClientId": "a7fb5d2990c77af20d9f",
   "githubSecret": "4641056cdcc2c581ec3a7794b9e78e763ced9c94"
 }
 
-//NEW URI
-//mongodb+srv://andela123:andela123@mern-app-3u3jc.mongodb.net/test?retryWrites=true&w=majority
+// NEW URI
+// mongodb+srv://andela123:andela123@mern-app-3u3jc.mongodb.net/test?retryWrites=true&w=majority
+
+// OLD URI
+// mongodb://andela123:andela123@mern-app-shard-00-00-3u3jc.mongodb.net:27017,mern-app-shard-00-01-3u3jc.mongodb.net:27017,mern-app-shard-00-02-3u3jc.mongodb.net:27017/test?ssl=true&replicaSet=MERN-app-shard-0&authSource=admin&retryWrites=true&w=majority
