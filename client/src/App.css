@@ -58,7 +58,7 @@ img {
 }
 
 .lead {
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   margin-bottom: 1rem;
 }
 
@@ -328,6 +328,13 @@ button {
 
 .navbar .welcome span {
   margin-right: 0.6rem;
+}
+
+.search-bar {
+  width: 100%;
+  height: 3rem;
+  font-size: 1.3rem;
+  padding: 0 0.8rem;
 }
 
 /* Landing Page */

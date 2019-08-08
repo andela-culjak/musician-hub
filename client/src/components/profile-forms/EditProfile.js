@@ -56,7 +56,7 @@ const EditProfile = ({
     profile.social,
     profile.githubusername,
     profile.location*/
-  ]); //to avoid warning
+  ]);
 
   const {
     company,
