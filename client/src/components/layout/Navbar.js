@@ -14,15 +14,10 @@ const Navbar = ({ auth: { user, isAuthenticated, loading }, logout }) => {
         <Link to="/posts">Posts</Link>
       </li>
       <li>
-        {user ? (
-          <Link to={"/me"}>
+        {user && (
+          <Link to={`/profile/${user._id}`}>
             <img src={user.avatar} alt="" className="round-img" />{" "}
             <span> {user.name.split(" ")[0]} </span>
-          </Link>
-        ) : (
-          <Link to={"/me"}>
-            <i className="fas fa-user" />{" "}
-            <span className="hide-sm">My Profile</span>
           </Link>
         )}
       </li>
