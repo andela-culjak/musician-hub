@@ -303,7 +303,7 @@ button {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0.7rem 2rem;
+  padding: 0.4rem 1.6rem;
   position: fixed;
   z-index: 1;
   width: 100%;
@@ -314,12 +314,26 @@ button {
 
 .navbar ul {
   display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .navbar a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   color: #fff;
   padding: 0.45rem;
-  margin: 0 0.25rem;
+  margin: 0 0.2rem;
+  width: 100%;
+}
+
+.navbar span {
+  margin-right: 0.4rem;
+}
+
+.navbar img {
+  width: 25px;
 }
 
 .navbar a:hover {
@@ -329,6 +343,8 @@ button {
 .navbar .welcome span {
   margin-right: 0.6rem;
 }
+
+/* Search bar */
 
 .search-bar {
   width: 100%;

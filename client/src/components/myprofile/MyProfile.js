@@ -3,22 +3,21 @@ import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import Spinner from "../layout/Spinner";
-import ProfileTop from "./ProfileTop";
-import ProfileAbout from "./ProfileAbout";
-import ProfileExperience from "./ProfileExperience";
-import ProfileEducation from "./ProfileEducation";
-import ProfileGithub from "./ProfileGithub";
-import { getProfileById } from "../../actions/profile";
+import ProfileTop from "../profile/ProfileTop";
+import ProfileAbout from "../profile/ProfileAbout";
+import ProfileExperience from "../profile/ProfileExperience";
+import ProfileEducation from "../profile/ProfileEducation";
+import ProfileGithub from "../profile/ProfileGithub";
+import { getCurrentProfile } from "../../actions/profile";
 
-const Profile = ({
-  getProfileById,
+const MyProfile = ({
+  getCurrentProfile,
   profile: { profile, loading },
-  auth,
-  match
+  auth
 }) => {
   useEffect(() => {
-    getProfileById(match.params.id);
-  }, [getProfileById, match.params.id]);
+    getCurrentProfile();
+  }, [getCurrentProfile]);
 
   return (
     <Fragment>
@@ -26,10 +25,6 @@ const Profile = ({
         <Spinner />
       ) : (
         <Fragment>
-          <Link to="/profiles" className="btn btn-white">
-            {" "}
-            Back to profiles{" "}
-          </Link>
           {auth.isAuthenticated &&
             auth.loading === false &&
             auth.user._id === profile.user._id && (
@@ -82,8 +77,8 @@ const Profile = ({
   );
 };
 
-Profile.propTypes = {
-  getProfileById: PropTypes.func.isRequired,
+MyProfile.propTypes = {
+  getCurrentProfile: PropTypes.func.isRequired,
   profile: PropTypes.object.isRequired,
   auth: PropTypes.object.isRequired
 };
@@ -95,5 +90,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { getProfileById }
-)(Profile);
+  { getCurrentProfile }
+)(MyProfile);

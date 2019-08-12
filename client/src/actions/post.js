@@ -101,6 +101,8 @@ export const addPost = formData => async dispatch => {
       type: POST_ERROR,
       payload: { msg: err.response.statusText, status: err.response.status }
     });
+
+    dispatch(setAlert("Post has to have at least 20 characters", "danger"));
   }
 };
 

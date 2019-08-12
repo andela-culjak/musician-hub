@@ -24,10 +24,10 @@ const PostForm = ({ addPost }) => {
           rows="5"
           placeholder="What's on your mind?"
           value={text}
+          required
           onChange={e => {
             setText(e.target.value);
           }}
-          required
         />
         <input type="submit" className="btn btn-dark my-1" value="Submit" />
       </form>

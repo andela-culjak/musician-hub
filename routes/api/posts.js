@@ -17,7 +17,10 @@ router.post(
     [
       check("text", "Text is required")
         .not()
-        .isEmpty()
+        .isEmpty(),
+      check("text", "Post has to have at least 20 characters").isLength({
+        min: 20
+      })
     ]
   ],
   async (req, res) => {
