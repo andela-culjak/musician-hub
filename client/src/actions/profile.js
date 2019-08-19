@@ -8,7 +8,8 @@ import {
   UPDATE_PROFILE,
   CLEAR_PROFILE,
   ACCOUNT_DELETED,
-  GET_REPOS
+  GET_REPOS,
+  UPDATE_USER
 } from "./types";
 
 //Get current user's profile
@@ -47,7 +48,7 @@ export const getProfiles = () => async dispatch => {
 };
 
 //Get profile by id
-export const getProfileById = userId => async dispatch => {
+export const getProfileById = (userId, history) => async dispatch => {
   try {
     const res = await axios.get(`/api/profile/user/${userId}`);
 
@@ -56,6 +57,7 @@ export const getProfileById = userId => async dispatch => {
       payload: res.data
     });
   } catch (err) {
+    history.push("/dashboard"); //not the best thing, works well tho
     dispatch({
       type: PROFILE_ERROR,
       payload: { msg: err.response.statusText, status: err.response.status }
@@ -136,7 +138,6 @@ export const addExperience = (formData, history) => async dispatch => {
 };
 
 //Add education
-
 export const addEducation = (formData, history) => async dispatch => {
   try {
     const config = {
@@ -161,6 +162,36 @@ export const addEducation = (formData, history) => async dispatch => {
       errors.forEach(error => dispatch(setAlert(error.msg, "danger")));
     }
 
+    dispatch({
+      type: PROFILE_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status }
+    });
+  }
+};
+
+//Upload new avatar
+export const uploadAvatar = (formData, history) => async dispatch => {
+  try {
+    const config = {
+      headers: {
+        "Content-Type": "multipart/form-data"
+      }
+    };
+
+    const res = await axios.post(
+      "/api/profile/upload-avatar",
+      formData,
+      config
+    );
+
+    dispatch({
+      type: UPDATE_USER, //CHANGE USER AVATAR
+      payload: res.data
+    });
+
+    dispatch(setAlert("Avatar updated", "success"));
+    history.push("/dashboard");
+  } catch (err) {
     dispatch({
       type: PROFILE_ERROR,
       payload: { msg: err.response.statusText, status: err.response.status }

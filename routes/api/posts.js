@@ -34,8 +34,6 @@ router.post(
 
       const newPost = new Post({
         text: req.body.text,
-        name: user.name,
-        avatar: user.avatar,
         user: req.user.id
       });
 
@@ -53,7 +51,9 @@ router.post(
 //@access   Private
 router.get("/", auth, async (req, res) => {
   try {
-    const posts = await Post.find().sort({ date: -1 });
+    const posts = await Post.find()
+      .populate("user comments.user", ["name", "avatar"])
+      .sort({ date: -1 });
     res.json(posts);
   } catch (err) {
     console.error(err.message);
@@ -66,7 +66,10 @@ router.get("/", auth, async (req, res) => {
 //@access   Private
 router.get("/:id", auth, async (req, res) => {
   try {
-    const post = await Post.findById(req.params.id);
+    const post = await Post.findById(req.params.id).populate(
+      "user comments.user",
+      ["name", "avatar"]
+    );
 
     if (!post) {
       return res.status(404).json({ msg: "Post not found" });
@@ -185,13 +188,14 @@ router.post(
 
     try {
       const user = await User.findById(req.user.id).select("-password");
-      const post = await Post.findById(req.params.id);
+      const post = await Post.findById(req.params.id).populate(
+        "user comments.user",
+        ["name", "avatar"]
+      );
 
       const newComment = {
         text: req.body.text,
-        name: user.name,
-        avatar: user.avatar,
-        user: req.user.id
+        user: user
       };
 
       post.comments.unshift(newComment);

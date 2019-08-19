@@ -4,24 +4,17 @@ const Schema = mongoose.Schema;
 const PostSchema = new Schema({
   user: {
     type: Schema.Types.ObjectId,
-    ref: "users"
+    ref: "user"
   },
   text: {
     type: String,
     required: true
   },
-  //user's name and avatar: in case we want to keep the posts when profile is deleted
-  name: {
-    type: String
-  },
-  avatar: {
-    type: String
-  },
   likes: [
     {
       user: {
         type: Schema.Types.ObjectId,
-        ref: "users"
+        ref: "user"
       }
     }
   ],
@@ -29,17 +22,11 @@ const PostSchema = new Schema({
     {
       user: {
         type: Schema.Types.ObjectId,
-        ref: "users"
+        ref: "user"
       },
       text: {
         type: String,
         required: true
-      },
-      name: {
-        type: String
-      },
-      avatar: {
-        type: String
       },
       date: {
         type: Date,

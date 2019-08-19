@@ -366,4 +366,32 @@ router.get("/github/:username", (req, res) => {
   }
 });
 
+//@route    POST api/profile/upload-avatar
+//@desc     Upload new avatar photo
+//@access   Private
+router.post("/upload-avatar", auth, async (req, res) => {
+  if (req.files === null) {
+    return res.status(400).json({ msg: "No file uploaded" });
+  }
+
+  const file = req.files.file;
+
+  file.mv(`${process.cwd()}/client/public/uploads/${file.name}`, async err => {
+    if (err) {
+      console.error(err);
+      return res.status(500).send(err);
+    }
+
+    const user = await User.findOne({ _id: req.user.id });
+
+    //Change the avatar path
+    user.avatar = `/uploads/${file.name}`;
+
+    await user.save();
+    res.json(user);
+
+    //res.json({ fileName: file.name, filePath: `/uploads/${file.name}` });
+  });
+});
+
 module.exports = router;

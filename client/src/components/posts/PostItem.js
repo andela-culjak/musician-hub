@@ -10,14 +10,14 @@ const PostItem = ({
   removeLike,
   deletePost,
   auth,
-  post: { _id, text, name, avatar, user, likes, comments, date },
+  post: { _id, text, user, likes, comments, date },
   showActions
 }) => (
   <div className="post bg-white p-1 my-1">
     <div>
-      <Link to={`/profile/${user}`}>
-        <img className="round-img" src={avatar} alt="" />
-        <h4>{name}</h4>
+      <Link to={`/profile/${user._id}`}>
+        <img className="round-img" src={user.avatar} alt="" />
+        <h4>{user.name}</h4>
       </Link>
     </div>
     <div>
@@ -51,7 +51,7 @@ const PostItem = ({
               <span className="comment-count"> {comments.length}</span>
             )}
           </Link>
-          {!auth.loading && user === auth.user._id && (
+          {!auth.loading && user._id === auth.user._id && (
             <button
               onClick={() => deletePost(_id)}
               type="button"

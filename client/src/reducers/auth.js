@@ -6,7 +6,8 @@ import {
   LOGIN_SUCCESS,
   LOGIN_FAIL,
   LOGOUT,
-  ACCOUNT_DELETED
+  ACCOUNT_DELETED,
+  UPDATE_USER
 } from "../actions/types";
 
 const initialState = {
@@ -26,6 +27,14 @@ export default function(state = initialState, action) {
         isAuthenticated: true,
         loading: false,
         user: payload
+      };
+    case UPDATE_USER:
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          avatar: payload
+        }
       };
     case REGISTER_SUCCESS:
     case LOGIN_SUCCESS:

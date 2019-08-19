@@ -258,6 +258,31 @@ img {
   border: 1px solid #ccc;
 }
 
+.form input[type="file"] {
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+}
+
+.form input[type="file"] + label {
+  padding: 0.5rem;
+  font-size: 1rem;
+  background: var(--dark-color);
+  color: #fff;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.form input[type="file"]:focus + label,
+.form input[type="file"] + label:hover {
+  opacity: 0.8;
+  outline: 1px dotted #000;
+  outline: -webkit-focus-ring-color auto 5px;
+}
+
 .form input[type="submit"],
 button {
   font: inherit;
