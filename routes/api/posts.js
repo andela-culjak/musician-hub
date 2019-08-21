@@ -18,8 +18,8 @@ router.post(
       check("text", "Text is required")
         .not()
         .isEmpty(),
-      check("text", "Post has to have at least 20 characters").isLength({
-        min: 20
+      check("text", "Post has to have at least 10 characters").isLength({
+        min: 10
       })
     ]
   ],
@@ -34,7 +34,7 @@ router.post(
 
       const newPost = new Post({
         text: req.body.text,
-        user: req.user.id
+        user: user
       });
 
       const post = await newPost.save();

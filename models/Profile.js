@@ -6,7 +6,7 @@ const ProfileSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: "user"
   },
-  company: {
+  band: {
     type: String
   },
   website: {
@@ -16,26 +16,25 @@ const ProfileSchema = new Schema({
     type: String
   },
   status: {
-    type: String,
-    required: true
+    type: String
   },
   skills: {
     type: [String],
     required: true
   },
-  bio: {
-    type: String
+  videos: {
+    type: [String]
   },
-  githubusername: {
+  bio: {
     type: String
   },
   experience: [
     {
-      title: {
+      position: {
         type: String,
         required: true
       },
-      company: {
+      band: {
         type: String,
         required: true
       },

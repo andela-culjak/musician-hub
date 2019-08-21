@@ -7,8 +7,8 @@ import { deleteExperience } from "../../actions/profile";
 const Experience = ({ experience, deleteExperience }) => {
   const experiences = experience.map(exp => (
     <tr key={exp._id}>
-      <td>{exp.company}</td>
-      <td className="hide-sm">{exp.title}</td>
+      <td>{exp.band}</td>
+      <td className="hide-sm">{exp.position}</td>
       <td>
         <Moment format="YYYY/MM/DD">{exp.from}</Moment> -{" "}
         {exp.to === null ? (
@@ -30,12 +30,12 @@ const Experience = ({ experience, deleteExperience }) => {
 
   return (
     <Fragment>
-      <h2 className="my2">Experience credentials</h2>
+      <h2 className="my2">Experience</h2>
       <table className="table">
         <thead>
           <tr>
-            <th>Company</th>
-            <th className="hide-sm">Title</th>
+            <th>Band</th>
+            <th className="hide-sm">Position</th>
             <th className="hide-sm">Years</th>
             <th />
           </tr>

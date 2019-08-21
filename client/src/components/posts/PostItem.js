@@ -15,10 +15,14 @@ const PostItem = ({
 }) => (
   <div className="post bg-white p-1 my-1">
     <div>
-      <Link to={`/profile/${user._id}`}>
-        <img className="round-img" src={user.avatar} alt="" />
-        <h4>{user.name}</h4>
-      </Link>
+      {user._id ? (
+        <Link to={`/profile/${user._id}`}>
+          <img className="round-img" src={user.avatar} alt="" />
+          <h4>{user.name}</h4>
+        </Link>
+      ) : (
+        <h4> Deleted user </h4>
+      )}
     </div>
     <div>
       <p className="my-1">{text}</p>

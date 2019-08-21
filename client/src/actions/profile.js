@@ -8,7 +8,6 @@ import {
   UPDATE_PROFILE,
   CLEAR_PROFILE,
   ACCOUNT_DELETED,
-  GET_REPOS,
   UPDATE_USER
 } from "./types";
 
@@ -48,9 +47,9 @@ export const getProfiles = () => async dispatch => {
 };
 
 //Get profile by id
-export const getProfileById = (userId, history) => async dispatch => {
+export const getProfileById = (user_id, history) => async dispatch => {
   try {
-    const res = await axios.get(`/api/profile/user/${userId}`);
+    const res = await axios.get(`/api/profile/user/${user_id}`);
 
     dispatch({
       type: GET_PROFILE,
@@ -264,7 +263,7 @@ export const deleteAccount = () => async dispatch => {
 };
 
 //Get github repo
-export const getGithubRepos = username => async dispatch => {
+/*export const getGithubRepos = username => async dispatch => {
   try {
     const res = await axios.get(`/api/profile/github/${username}`);
 
@@ -278,4 +277,4 @@ export const getGithubRepos = username => async dispatch => {
       payload: { msg: err.response.statusText, status: err.response.status }
     });
   }
-};
+};*/

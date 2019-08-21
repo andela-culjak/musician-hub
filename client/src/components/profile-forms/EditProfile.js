@@ -11,12 +11,12 @@ const EditProfile = ({
   history
 }) => {
   const [formData, setFormData] = useState({
-    company: "",
+    band: "",
     website: "",
     location: "",
     status: "",
     skills: "",
-    githubusername: "",
+    videos: "",
     bio: "",
     twitter: "",
     facebook: "",
@@ -31,13 +31,12 @@ const EditProfile = ({
     getCurrentProfile();
 
     setFormData({
-      company: loading || !profile.company ? "" : profile.company,
+      band: loading || !profile.band ? "" : profile.band,
       website: loading || !profile.website ? "" : profile.website,
       location: loading || !profile.location ? "" : profile.location,
       status: loading || !profile.status ? "" : profile.status,
       skills: loading || !profile.skills ? "" : profile.skills.join(","),
-      githubusername:
-        loading || !profile.githubusername ? "" : profile.githubusername,
+      videos: loading || !profile.videos ? "" : profile.videos.join(","),
       bio: loading || !profile.bio ? "" : profile.bio,
       twitter: loading || !profile.social ? "" : profile.social.twitter,
       facebook: loading || !profile.social ? "" : profile.social.facebook,
@@ -49,22 +48,22 @@ const EditProfile = ({
     loading,
     getCurrentProfile
     /*profile.bio,
-    profile.company,
+    profile.band,
     profile.website,
     profile.status,
     profile.skills,
+    profile.videos,
     profile.social,
-    profile.githubusername,
     profile.location*/
   ]);
 
   const {
-    company,
+    band,
     website,
     location,
     status,
     skills,
-    githubusername,
+    videos,
     bio,
     twitter,
     facebook,
@@ -91,31 +90,27 @@ const EditProfile = ({
       <small>* = required field</small>
       <form className="form" onSubmit={e => onSubmit(e)}>
         <div className="form-group">
-          <select name="status" value={status} onChange={e => onChange(e)}>
-            <option value="0">* Select Professional Status</option>
-            <option value="Developer">Developer</option>
-            <option value="Junior Developer">Junior Developer</option>
-            <option value="Senior Developer">Senior Developer</option>
-            <option value="Manager">Manager</option>
-            <option value="Student or Learning">Student or Learning</option>
-            <option value="Instructor">Instructor or Teacher</option>
-            <option value="Intern">Intern</option>
-            <option value="Other">Other</option>
-          </select>
+          <input
+            type="text"
+            placeholder="Position/role"
+            name="status"
+            value={status}
+            onChange={e => onChange(e)}
+          />
           <small className="form-text">
-            Give us an idea of where you are at in your career
+            Give us an idea of what you do at the moment
           </small>
         </div>
         <div className="form-group">
           <input
             type="text"
-            placeholder="Company"
-            name="company"
-            value={company}
+            placeholder="Band"
+            name="band"
+            value={band}
             onChange={e => onChange(e)}
           />
           <small className="form-text">
-            Could be your own company or one you work for
+            Could be your own band or one you work for
           </small>
         </div>
         <div className="form-group">
@@ -127,7 +122,7 @@ const EditProfile = ({
             onChange={e => onChange(e)}
           />
           <small className="form-text">
-            Could be your own or a company website
+            Could be your own or a band website
           </small>
         </div>
         <div className="form-group">
@@ -151,20 +146,7 @@ const EditProfile = ({
             onChange={e => onChange(e)}
           />
           <small className="form-text">
-            Please use comma separated values (eg. HTML,CSS,JavaScript,PHP)
-          </small>
-        </div>
-        <div className="form-group">
-          <input
-            type="text"
-            placeholder="Github Username"
-            name="githubusername"
-            value={githubusername}
-            onChange={e => onChange(e)}
-          />
-          <small className="form-text">
-            If you want your latest repos and a Github link, include your
-            username
+            Please use comma separated values (eg. guitar,piano,ukulele)
           </small>
         </div>
         <div className="form-group">
@@ -175,6 +157,20 @@ const EditProfile = ({
             onChange={e => onChange(e)}
           />
           <small className="form-text">Tell us a little about yourself</small>
+        </div>
+
+        <div className="form-group">
+          <input
+            type="text"
+            placeholder="Your music links"
+            name="videos"
+            value={videos}
+            onChange={e => onChange(e)}
+          />
+          <small className="form-text">
+            Paste in some links to your videos (Youtube, Vimeo, Twitch etc.) and
+            separate them by comma (eg. Link1, Link2,...)
+          </small>
         </div>
 
         <div className="my-2">

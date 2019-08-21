@@ -18,6 +18,10 @@ const Dashboard = ({
     getCurrentProfile();
   }, [getCurrentProfile]);
 
+  /*if (user) {
+    console.log(user);
+  }*/
+
   return loading && profile === null ? (
     <Spinner />
   ) : (

@@ -6,8 +6,8 @@ import { addExperience } from "../../actions/profile";
 
 const AddExperience = ({ addExperience, history }) => {
   const [formData, setFormData] = useState({
-    company: "",
-    title: "",
+    band: "",
+    position: "",
     location: "",
     from: "",
     to: "",
@@ -17,7 +17,7 @@ const AddExperience = ({ addExperience, history }) => {
 
   const [toDateDisabled, toggleDisabled] = useState(false);
 
-  const { company, title, location, from, to, current, description } = formData;
+  const { band, position, location, from, to, current, description } = formData;
 
   const onChange = e =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -26,8 +26,8 @@ const AddExperience = ({ addExperience, history }) => {
     <Fragment>
       <h1 className="large text-primary">Add An Experience</h1>
       <p className="lead">
-        <i className="fas fa-code-branch" /> Add any developer/programming
-        positions that you have had in the past
+        <i className="fas fa-code-branch" /> Add any musical experience that you
+        have had
       </p>
       <small>* = required field</small>
       <form
@@ -40,9 +40,9 @@ const AddExperience = ({ addExperience, history }) => {
         <div className="form-group">
           <input
             type="text"
-            placeholder="* Job Title"
-            name="title"
-            value={title}
+            placeholder="* Position"
+            name="position"
+            value={position}
             onChange={e => onChange(e)}
             required
           />
@@ -50,9 +50,9 @@ const AddExperience = ({ addExperience, history }) => {
         <div className="form-group">
           <input
             type="text"
-            placeholder="* Company"
-            name="company"
-            value={company}
+            placeholder="* Band"
+            name="band"
+            value={band}
             onChange={e => onChange(e)}
             required
           />
@@ -87,7 +87,7 @@ const AddExperience = ({ addExperience, history }) => {
                 toggleDisabled(!toDateDisabled);
               }}
             />{" "}
-            Current Job
+            Current Band
           </p>
         </div>
         <div className="form-group">
@@ -105,7 +105,7 @@ const AddExperience = ({ addExperience, history }) => {
             name="description"
             cols="30"
             rows="5"
-            placeholder="Job Description"
+            placeholder="Description"
             value={description}
             onChange={e => onChange(e)}
           />

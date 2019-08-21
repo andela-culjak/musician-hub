@@ -37,9 +37,6 @@ router.post(
   [
     auth,
     [
-      check("status", "Status is required")
-        .not()
-        .isEmpty(),
       check("skills", "Skills is required")
         .not()
         .isEmpty()
@@ -52,13 +49,13 @@ router.post(
     }
 
     const {
-      company,
+      band,
       website,
       location,
       bio,
       status,
-      githubusername,
       skills,
+      videos,
       youtube,
       facebook,
       twitter,
@@ -70,14 +67,16 @@ router.post(
     const profileFields = {};
 
     profileFields.user = req.user.id;
-    if (company) profileFields.company = company;
+    if (band) profileFields.band = band;
     if (website) profileFields.website = website;
     if (location) profileFields.location = location;
     if (bio) profileFields.bio = bio;
     if (status) profileFields.status = status;
-    if (githubusername) profileFields.githubusername = githubusername;
     if (skills) {
       profileFields.skills = skills.split(",").map(skill => skill.trim());
+    }
+    if (videos) {
+      profileFields.videos = videos.split(",").map(video => video.trim());
     }
 
     // Build social object
@@ -179,10 +178,10 @@ router.put(
   [
     auth,
     [
-      check("title", "Title is required")
+      check("position", "Position is required")
         .not()
         .isEmpty(),
-      check("company", "Company is required")
+      check("band", "Band is required")
         .not()
         .isEmpty(),
       check("from", "From date is required")
@@ -197,8 +196,8 @@ router.put(
     }
 
     const {
-      title,
-      company,
+      position,
+      band,
       location,
       from,
       to,
@@ -207,8 +206,8 @@ router.put(
     } = req.body;
 
     const newExp = {
-      title, //same as title: title
-      company,
+      position, //same as position: position
+      band,
       location,
       from,
       to,
@@ -339,7 +338,7 @@ router.delete("/education/:edu_id", auth, async (req, res) => {
 //@route    GET api/profile/github/:username
 //@desc     Get user repos from github
 //@access   Public
-router.get("/github/:username", (req, res) => {
+/*router.get("/github/:username", (req, res) => {
   try {
     const options = {
       uri: `https://api.github.com/users/${
@@ -364,7 +363,7 @@ router.get("/github/:username", (req, res) => {
     console.error(err.message);
     res.status(500).send("Server Error");
   }
-});
+});*/
 
 //@route    POST api/profile/upload-avatar
 //@desc     Upload new avatar photo
