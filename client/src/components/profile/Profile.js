@@ -7,6 +7,7 @@ import ProfileTop from "./ProfileTop";
 import ProfileAbout from "./ProfileAbout";
 import ProfileExperience from "./ProfileExperience";
 import ProfileEducation from "./ProfileEducation";
+import ProfileVideos from "./ProfileVideos";
 import { getProfileById } from "../../actions/profile";
 
 const Profile = ({
@@ -72,6 +73,7 @@ const Profile = ({
                 <h4>No education listed </h4>
               )}
             </div>
+            <ProfileVideos />
           </div>
         </Fragment>
       )}

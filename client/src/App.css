@@ -415,7 +415,7 @@ button {
     "top top"
     "about about"
     "exp edu"
-    "github github";
+    "videos videos";
   grid-gap: 1rem;
 }
 
@@ -483,22 +483,27 @@ button {
   margin: 0.5rem 0;
 }
 
-.profile-github {
-  grid-area: github;
+.profile-videos {
+  grid-area: videos;
+  padding: 10px;
 }
 
-.profile-github .repo {
+.profile-videos .videos-container {
   display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  padding: 10px;
 }
 
-.profile-github .repo > div:first-child {
-  flex: 7;
-  flex-basis: 70%;
+.player-wrapper {
+  margin: 3% 0.5%;
+  position: relative;
+  width: 26vw;
+  height: 14.625vw;
 }
 
-.profile-github > div:last-child {
-  flex: 3;
-  flex-basis: 20%;
+.react-player {
+  position: absolute;
 }
 
 /* Posts Page */
@@ -534,6 +539,22 @@ button {
   color: #aaa;
   font-size: 0.8rem;
   margin-bottom: 0.5rem;
+}
+
+/* Medium Screen Styles */
+@media (max-width: 1350px) {
+  .player-wrapper {
+    width: 28vw;
+    height: 15.75vw;
+  } /* h= w*0.5625  */
+}
+
+/* Medium Screen Styles */
+@media (max-width: 1150px) {
+  .player-wrapper {
+    width: 32vw;
+    height: 18vw;
+  } /* h= w*0.5625  */
 }
 
 /* Mobile Styles */
@@ -602,12 +623,21 @@ button {
       "about"
       "exp"
       "edu"
-      "github";
+      "videos";
   }
 
   .profile-about .skills {
     flex-direction: column;
   }
+
+  .profile-videos .videos-container {
+    padding: 6px;
+  }
+
+  .player-wrapper {
+    width: 56vw;
+    height: 31.5vw;
+  } /* h= w*0.5625  */
 
   .dash-buttons a {
     display: block;

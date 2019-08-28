@@ -50,6 +50,7 @@ const Login = ({ login, isAuthenticated }) => {
             value={password}
             onChange={e => onChange(e)}
             minLength="6"
+            autoComplete="current-password"
           />
         </div>
         <input type="submit" className="btn btn-primary" value="Login" />
