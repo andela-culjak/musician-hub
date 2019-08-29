@@ -7,7 +7,7 @@ import {
   LOGIN_FAIL,
   LOGOUT,
   ACCOUNT_DELETED,
-  UPDATE_USER
+  UPDATE_AVATAR
 } from "../actions/types";
 
 const initialState = {
@@ -28,7 +28,7 @@ export default function(state = initialState, action) {
         loading: false,
         user: payload
       };
-    case UPDATE_USER:
+    case UPDATE_AVATAR:
       return {
         ...state,
         user: {

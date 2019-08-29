@@ -26,7 +26,7 @@ const DashboardActions = user => {
         </Link>
       )}
     </div>
-  ); //ZAŠTO????? user.user._id
+  ); //ZAŠTO ovo radi?? user.user._id
 };
 
 DashboardActions.propTypes = {

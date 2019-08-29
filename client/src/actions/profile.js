@@ -8,7 +8,7 @@ import {
   UPDATE_PROFILE,
   CLEAR_PROFILE,
   ACCOUNT_DELETED,
-  UPDATE_USER
+  UPDATE_AVATAR
 } from "./types";
 
 //Get current user's profile
@@ -85,10 +85,7 @@ export const createProfile = (
     });
 
     dispatch(setAlert(edit ? "Profile updated" : "Profile created", "success"));
-
-    if (!edit) {
-      history.push("/dashboard"); //redirecting to dashboard if action is creating
-    }
+    history.push("/dashboard");
   } catch (err) {
     const errors = err.response.data.errors;
 
@@ -184,7 +181,7 @@ export const uploadAvatar = (formData, history) => async dispatch => {
     );
 
     dispatch({
-      type: UPDATE_USER, //CHANGE USER AVATAR
+      type: UPDATE_AVATAR,
       payload: res.data
     });
 
@@ -261,20 +258,3 @@ export const deleteAccount = () => async dispatch => {
     }
   }
 };
-
-//Get github repo
-/*export const getGithubRepos = username => async dispatch => {
-  try {
-    const res = await axios.get(`/api/profile/github/${username}`);
-
-    dispatch({
-      type: GET_REPOS,
-      payload: res.data
-    });
-  } catch (err) {
-    dispatch({
-      type: PROFILE_ERROR,
-      payload: { msg: err.response.statusText, status: err.response.status }
-    });
-  }
-};*/

@@ -30,8 +30,8 @@ const Profiles = ({ getProfiles, profile: { profiles, loading } }) => {
         <Spinner />
       ) : (
         <Fragment>
-          <h1 className="large text-primary">Developers</h1>
-          <p className="lead">Browse and connect with developers</p>
+          <h1 className="large text-primary">Members</h1>
+          <p className="lead">Browse and connect with other musicians</p>
           <input
             type="text"
             className="search-bar my-1"
