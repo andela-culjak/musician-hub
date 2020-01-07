@@ -567,11 +567,11 @@ button {
   margin-right: 1.5rem;
 }
 
-.like-track-button {
+.heart-button {
   color: var(--secondary-color);
   border-radius: 100%;
   background-color: var(--light-color);
-  padding: 0.3rem;
+  padding: 0.4rem;
   line-height: 50%;
   text-align: center;
   margin-right: 0.4rem;
@@ -586,7 +586,7 @@ button {
   border: 1px solid #ccc;
 }
 
-.play-btn:focus, .like-track-button:focus, .track-comment-input:focus {
+.play-btn:focus, .heart-button:focus, .track-comment-input:focus {
   outline: none;
 }
 
