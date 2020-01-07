@@ -452,7 +452,8 @@ button {
     "top top"
     "about about"
     "exp edu"
-    "videos videos";
+    "videos videos"
+    "tracks tracks";
   grid-gap: 1rem;
 }
 
@@ -542,6 +543,53 @@ button {
 .react-player {
   position: absolute;
 }
+
+.audio-tracks {
+  margin-top: 2rem;
+  grid-area: tracks;
+}
+
+.track-actions {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  margin-top: 1rem;
+}
+
+.play-btn {
+  font-size: 0.9rem;
+  padding: 0.9rem;
+  line-height: 50%;
+  text-align: center;
+  border-radius: 100%;
+  background-color: var(--secondary-color);
+  color: white;
+  margin-right: 1.5rem;
+}
+
+.like-track-button {
+  color: var(--secondary-color);
+  border-radius: 100%;
+  background-color: var(--light-color);
+  padding: 0.3rem;
+  line-height: 50%;
+  text-align: center;
+  margin-right: 0.4rem;
+}
+
+.track-comment-input{
+  max-height: 32px;
+  display: block;
+  width:85%;
+  padding: 0.2rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+}
+
+.play-btn:focus, .like-track-button:focus, .track-comment-input:focus {
+  outline: none;
+}
+
 
 /* Posts Page */
 .post-form .post-form-header {
@@ -686,7 +734,8 @@ button {
       "about"
       "exp"
       "edu"
-      "videos";
+      "videos"
+      "tracks";
   }
 
   .profile-about .skills {

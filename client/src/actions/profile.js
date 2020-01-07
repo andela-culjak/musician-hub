@@ -41,7 +41,8 @@ export const getProfiles = () => async dispatch => {
   } catch (err) {
     dispatch({
       type: PROFILE_ERROR,
-      payload: { msg: err.response.statusText, status: err.response.status }
+      payload: { //msg: err.response.statusText, status: err.response.status 
+      }
     });
   }
 };
@@ -59,7 +60,7 @@ export const getProfileById = (user_id, history) => async dispatch => {
     history.push("/dashboard"); //not the best thing, works well tho
     dispatch({
       type: PROFILE_ERROR,
-      payload: { msg: err.response.statusText, status: err.response.status }
+      payload: { /* msg: err.response.statusText, status: err.response.status */}
     });
   }
 };

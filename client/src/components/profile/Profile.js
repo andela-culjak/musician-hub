@@ -8,6 +8,7 @@ import ProfileAbout from "./ProfileAbout";
 import ProfileExperience from "./ProfileExperience";
 import ProfileEducation from "./ProfileEducation";
 import ProfileVideos from "./ProfileVideos";
+import AudioTracks from "./Audio"
 import { getProfileById } from "../../actions/profile";
 
 const Profile = ({
@@ -74,6 +75,7 @@ const Profile = ({
               )}
             </div>
             <ProfileVideos />
+            <AudioTracks/>
           </div>
         </Fragment>
       )}
