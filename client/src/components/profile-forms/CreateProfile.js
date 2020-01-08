@@ -9,7 +9,7 @@ const CreateProfile = ({ createProfile, history }) => {
     band: "",
     website: "",
     location: "",
-    status: "",
+    position: "",
     skills: "",
     videos: "",
     bio: "",
@@ -26,7 +26,7 @@ const CreateProfile = ({ createProfile, history }) => {
     band,
     website,
     location,
-    status,
+    position,
     skills,
     videos,
     bio,
@@ -58,8 +58,8 @@ const CreateProfile = ({ createProfile, history }) => {
           <input
             type="text"
             placeholder="Position/role"
-            name="status"
-            value={status}
+            name="position"
+            value={position}
             onChange={e => onChange(e)}
           />
           <small className="form-text">
@@ -220,7 +220,4 @@ CreateProfile.propTypes = {
   createProfile: PropTypes.func.isRequired
 };
 
-export default connect(
-  null,
-  { createProfile }
-)(withRouter(CreateProfile));
+export default connect(null, { createProfile })(withRouter(CreateProfile));

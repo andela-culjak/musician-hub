@@ -8,7 +8,7 @@ import ProfileAbout from "./ProfileAbout";
 import ProfileExperience from "./ProfileExperience";
 import ProfileEducation from "./ProfileEducation";
 import ProfileVideos from "./ProfileVideos";
-import AudioTracks from "./Audio"
+import AudioTracks from "./AudioTracks";
 import { getProfileById } from "../../actions/profile";
 
 const Profile = ({
@@ -74,8 +74,8 @@ const Profile = ({
                 <h4>No education listed </h4>
               )}
             </div>
-            <ProfileVideos />
-            <AudioTracks/>
+            {/* <ProfileVideos /> */}
+            <AudioTracks profile={profile} />
           </div>
         </Fragment>
       )}
@@ -94,7 +94,6 @@ const mapStateToProps = state => ({
   auth: state.auth
 });
 
-export default connect(
-  mapStateToProps,
-  { getProfileById }
-)(withRouter(Profile));
+export default connect(mapStateToProps, { getProfileById })(
+  withRouter(Profile)
+);

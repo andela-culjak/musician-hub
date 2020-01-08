@@ -1,6 +1,7 @@
 const express = require("express");
 const request = require("request");
 const router = express.Router();
+const fs = require("fs");
 const auth = require("../../middleware/auth");
 const { check, validationResult } = require("express-validator");
 
@@ -52,9 +53,10 @@ router.post(
       website,
       location,
       bio,
-      status,
+      position,
       skills,
       videos,
+      tracks,
       youtube,
       facebook,
       twitter,
@@ -70,12 +72,15 @@ router.post(
     if (website) profileFields.website = website;
     if (location) profileFields.location = location;
     if (bio) profileFields.bio = bio;
-    if (status) profileFields.status = status;
+    if (position) profileFields.position = position;
     if (skills) {
       profileFields.skills = skills.split(",").map(skill => skill.trim());
     }
     if (videos) {
       profileFields.videos = videos.split(",").map(video => video.trim());
+    }
+    if (tracks) {
+      profileFields.tracks = tracks.split(",").map(track => track.trim());
     }
 
     // Build social object
@@ -357,9 +362,47 @@ router.post("/upload-avatar", auth, async (req, res) => {
 
     await user.save();
     res.json(user);
-
-    //res.json({ fileName: file.name, filePath: `/uploads/${file.name}` });
   });
+});
+
+//@route    POST api/profile/upload-track
+//@desc     Upload new music track
+//@access   Private
+router.post("/upload-track", auth, async (req, res) => {
+  if (req.files === null) {
+    return res.status(400).json({ msg: "No file uploaded" });
+  }
+
+  try {
+    const file = req.files.file;
+    const dirPath = `${process.cwd()}/client/public/uploads/tracks/${
+      req.user.id
+    }`;
+
+    if (!fs.existsSync(dirPath)) {
+      fs.mkdirSync(dirPath);
+    }
+
+    file.mv(`${dirPath}/${file.name}`, async err => {
+      if (err) {
+        console.error(err);
+        return res.status(500).send(err);
+      }
+
+      const profile = await Profile.findOne({ user: req.user.id });
+
+      //Add the track to existing tracks
+      profile.tracks.push(`/uploads/tracks/${req.user.id}/${file.name}`);
+
+      console.log(profile.tracks);
+
+      await profile.save();
+      res.json(profile);
+    });
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server error");
+  }
 });
 
 module.exports = router;

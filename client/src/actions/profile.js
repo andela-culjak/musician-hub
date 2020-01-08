@@ -41,7 +41,8 @@ export const getProfiles = () => async dispatch => {
   } catch (err) {
     dispatch({
       type: PROFILE_ERROR,
-      payload: { //msg: err.response.statusText, status: err.response.status 
+      payload: {
+        //msg: err.response.statusText, status: err.response.status
       }
     });
   }
@@ -60,7 +61,9 @@ export const getProfileById = (user_id, history) => async dispatch => {
     history.push("/dashboard"); //not the best thing, works well tho
     dispatch({
       type: PROFILE_ERROR,
-      payload: { /* msg: err.response.statusText, status: err.response.status */}
+      payload: {
+        /* msg: err.response.statusText, status: err.response.status */
+      }
     });
   }
 };
@@ -192,6 +195,32 @@ export const uploadAvatar = (formData, history) => async dispatch => {
     dispatch({
       type: PROFILE_ERROR,
       payload: { msg: err.response.statusText, status: err.response.status }
+    });
+  }
+};
+
+//Upload tracks
+export const uploadTrack = (formData, history) => async dispatch => {
+  try {
+    const config = {
+      headers: {
+        "Content-Type": "multipart/form-data"
+      }
+    };
+
+    const res = await axios.post("/api/profile/upload-track", formData, config);
+
+    dispatch({
+      type: UPDATE_PROFILE,
+      payload: res.data
+    });
+
+    dispatch(setAlert("Tracks updated", "success"));
+    history.push("/dashboard");
+  } catch (err) {
+    dispatch({
+      type: PROFILE_ERROR,
+      payload: { statusText: "Some error", status: 400 }
     });
   }
 };

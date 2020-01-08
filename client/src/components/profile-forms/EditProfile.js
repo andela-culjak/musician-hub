@@ -14,7 +14,7 @@ const EditProfile = ({
     band: "",
     website: "",
     location: "",
-    status: "",
+    position: "",
     skills: "",
     videos: "",
     bio: "",
@@ -34,7 +34,7 @@ const EditProfile = ({
       band: loading || !profile.band ? "" : profile.band,
       website: loading || !profile.website ? "" : profile.website,
       location: loading || !profile.location ? "" : profile.location,
-      status: loading || !profile.status ? "" : profile.status,
+      position: loading || !profile.position ? "" : profile.position,
       skills: loading || !profile.skills ? "" : profile.skills.join(","),
       videos: loading || !profile.videos ? "" : profile.videos.join(","),
       bio: loading || !profile.bio ? "" : profile.bio,
@@ -50,7 +50,7 @@ const EditProfile = ({
     /*profile.bio,
     profile.band,
     profile.website,
-    profile.status,
+    profile.position,
     profile.skills,
     profile.videos,
     profile.social,
@@ -61,7 +61,7 @@ const EditProfile = ({
     band,
     website,
     location,
-    status,
+    position,
     skills,
     videos,
     bio,
@@ -93,8 +93,8 @@ const EditProfile = ({
           <input
             type="text"
             placeholder="Position/role"
-            name="status"
-            value={status}
+            name="position"
+            value={position}
             onChange={e => onChange(e)}
           />
           <small className="form-text">

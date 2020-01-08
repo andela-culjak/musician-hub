@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 const ProfileTop = ({
   profile: {
-    status,
+    position,
     band,
     location,
     website,
@@ -17,7 +17,7 @@ const ProfileTop = ({
       <h1 className="large">{name}</h1>
       <p className="lead">
         {" "}
-        {status} {band && <span> at {band}</span>}
+        {position} {band && <span> at {band}</span>}
       </p>
       <p>{location && <span> {location} </span>}</p>
       <div className="icons my-1">

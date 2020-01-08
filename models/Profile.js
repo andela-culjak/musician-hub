@@ -15,7 +15,7 @@ const ProfileSchema = new Schema({
   location: {
     type: String
   },
-  status: {
+  position: {
     type: String
   },
   skills: {
@@ -23,6 +23,9 @@ const ProfileSchema = new Schema({
     required: true
   },
   videos: {
+    type: [String]
+  },
+  tracks: {
     type: [String]
   },
   bio: {
