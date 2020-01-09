@@ -31,7 +31,9 @@ const AudioTracks = ({ profile }) => {
 
       setWavesurfer(wavesurfer);
 
-      wavesurfer.load(profile.tracks[0]);
+      const randomSongIndex = Math.floor(Math.random() * profile.tracks.length);
+
+      wavesurfer.load(profile.tracks[randomSongIndex].url);
     }
   }, [setWavesurfer]);
 
@@ -84,6 +86,9 @@ const AudioTracks = ({ profile }) => {
               placeholder="Add a comment"
             ></input>
           </div>
+          {/* <div className="playlist">
+              
+          </div> */}
         </div>
       ) : (
         <div className="audio-tracks">

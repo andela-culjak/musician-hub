@@ -6,18 +6,24 @@ import { uploadTrack } from "../../actions/profile";
 
 const UploadTrack = ({ uploadTrack, history }) => {
   const [file, setFile] = useState("");
+  const [title, setTitle] = useState("");
   const [label, setLabel] = useState("Choose a file");
 
   const formData = new FormData();
 
-  const onChange = e => {
-    setFile(e.target.files[0]); // because this is a single file upload
+  const onChangeFile = e => {
+    setFile(e.target.files[0]);
     setLabel("Audio file chosen");
+  };
+
+  const onChangeTitle = e => {
+    setTitle(e.target.value);
   };
 
   const onSubmit = async e => {
     e.preventDefault();
-    formData.append("file", file);
+    formData.append("track", file);
+    formData.append("title", title);
     uploadTrack(formData, history);
   };
 
@@ -30,8 +36,9 @@ const UploadTrack = ({ uploadTrack, history }) => {
             type="file"
             id="aud-file"
             accept="audio/*"
-            onChange={onChange}
+            onChange={onChangeFile}
           />
+          <input type="text" id="track-title" onChange={onChangeTitle} />
           <label htmlFor="aud-file"> {label} </label>
         </div>
 

@@ -48,7 +48,4 @@ UploadAvatar.propTypes = {
   uploadAvatar: PropTypes.func.isRequired
 };
 
-export default connect(
-  null,
-  { uploadAvatar }
-)(withRouter(UploadAvatar));
+export default connect(null, { uploadAvatar })(withRouter(UploadAvatar));

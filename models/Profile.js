@@ -25,9 +25,43 @@ const ProfileSchema = new Schema({
   videos: {
     type: [String]
   },
-  tracks: {
-    type: [String]
-  },
+  tracks: [
+    {
+      title: {
+        type: String
+      },
+      url: {
+        type: String
+      },
+      comments: [
+        {
+          user: {
+            type: Schema.Types.ObjectId,
+            ref: "user"
+          },
+          text: {
+            type: String,
+            required: true
+          },
+          date: {
+            type: Date,
+            default: Date.now
+          },
+          time: {
+            type: Number
+          }
+        }
+      ],
+      likes: [
+        {
+          user: {
+            type: Schema.Types.ObjectId,
+            ref: "user"
+          }
+        }
+      ]
+    }
+  ],
   bio: {
     type: String
   },

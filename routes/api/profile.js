@@ -79,9 +79,6 @@ router.post(
     if (videos) {
       profileFields.videos = videos.split(",").map(video => video.trim());
     }
-    if (tracks) {
-      profileFields.tracks = tracks.split(",").map(track => track.trim());
-    }
 
     // Build social object
     profileFields.social = {};
@@ -374,7 +371,8 @@ router.post("/upload-track", auth, async (req, res) => {
   }
 
   try {
-    const file = req.files.file;
+    const file = req.files.track;
+    const title = req.body.title;
     const dirPath = `${process.cwd()}/client/public/uploads/tracks/${
       req.user.id
     }`;
@@ -392,9 +390,14 @@ router.post("/upload-track", auth, async (req, res) => {
       const profile = await Profile.findOne({ user: req.user.id });
 
       //Add the track to existing tracks
-      profile.tracks.push(`/uploads/tracks/${req.user.id}/${file.name}`);
+      const newTrack = {
+        title: title,
+        url: `/uploads/tracks/${req.user.id}/${file.name}`,
+        comments: [],
+        likes: []
+      };
 
-      console.log(profile.tracks);
+      profile.tracks.push(newTrack);
 
       await profile.save();
       res.json(profile);
