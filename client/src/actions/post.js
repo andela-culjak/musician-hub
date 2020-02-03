@@ -8,11 +8,13 @@ import {
   ADD_POST,
   GET_POST,
   ADD_COMMENT,
-  REMOVE_COMMENT
+  REMOVE_COMMENT,
+  CLEAR_PROFILE
 } from "./types";
 
 //Get Posts
 export const getPosts = () => async dispatch => {
+  dispatch({ type: CLEAR_PROFILE });
   try {
     const res = await axios.get("/api/posts");
 
@@ -130,11 +132,7 @@ export const addComment = (postId, formData) => async dispatch => {
   };
 
   try {
-    const res = await axios.post(
-      `/api/posts/comment/${postId}`,
-      formData,
-      config
-    );
+    const res = await axios.post(`/api/posts/comment/${postId}`, formData, config);
 
     dispatch({
       type: ADD_COMMENT,

@@ -7,7 +7,7 @@ import ProfileTop from "./ProfileTop";
 import ProfileAbout from "./ProfileAbout";
 import ProfileExperience from "./ProfileExperience";
 import ProfileEducation from "./ProfileEducation";
-import ProfileVideos from "./ProfileVideos";
+//import ProfileVideos from "./ProfileVideos";
 import AudioTracks from "./AudioTracks";
 import { getProfileById } from "../../actions/profile";
 
@@ -19,6 +19,7 @@ const Profile = ({
   history
 }) => {
   useEffect(() => {
+    console.log("PROFILE USE EFFECT");
     getProfileById(match.params.id, history);
   }, [getProfileById, match.params.id, history]);
 
@@ -48,10 +49,7 @@ const Profile = ({
               {profile.experience.length > 0 ? (
                 <Fragment>
                   {profile.experience.map(experience => (
-                    <ProfileExperience
-                      key={experience._id}
-                      experience={experience}
-                    />
+                    <ProfileExperience key={experience._id} experience={experience} />
                   ))}
                 </Fragment>
               ) : (
@@ -64,10 +62,7 @@ const Profile = ({
               {profile.education.length > 0 ? (
                 <Fragment>
                   {profile.education.map(education => (
-                    <ProfileEducation
-                      key={education._id}
-                      education={education}
-                    />
+                    <ProfileEducation key={education._id} education={education} />
                   ))}
                 </Fragment>
               ) : (
@@ -94,6 +89,4 @@ const mapStateToProps = state => ({
   auth: state.auth
 });
 
-export default connect(mapStateToProps, { getProfileById })(
-  withRouter(Profile)
-);
+export default connect(mapStateToProps, { getProfileById })(withRouter(Profile));

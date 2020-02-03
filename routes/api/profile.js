@@ -16,7 +16,7 @@ router.get("/me", auth, async (req, res) => {
   try {
     const profile = await Profile.findOne({
       user: req.user.id
-    }).populate("user", ["name", "avatar"]);
+    }).populate("user tracks.comments.user", ["name", "avatar"]);
 
     if (!profile) {
       return res.status(400).json({ msg: "There is no profile for this user" });
@@ -134,7 +134,7 @@ router.get("/user/:user_id", async (req, res) => {
   try {
     const profile = await Profile.findOne({
       user: req.params.user_id
-    }).populate("user", ["name", "avatar"]);
+    }).populate("user tracks.comments.user", ["name", "avatar"]);
 
     if (!profile) {
       return res.status(400).json({ msg: "Profile not found" });
@@ -196,15 +196,7 @@ router.put(
       return res.status(400).json({ errors: errors.array() });
     }
 
-    const {
-      position,
-      band,
-      location,
-      from,
-      to,
-      current,
-      description
-    } = req.body;
+    const { position, band, location, from, to, current, description } = req.body;
 
     const newExp = {
       position, //same as position: position
@@ -280,15 +272,7 @@ router.put(
       return res.status(400).json({ errors: errors.array() });
     }
 
-    const {
-      school,
-      degree,
-      fieldofstudy,
-      from,
-      to,
-      current,
-      description
-    } = req.body;
+    const { school, degree, fieldofstudy, from, to, current, description } = req.body;
 
     const newEdu = {
       school,
@@ -323,9 +307,7 @@ router.delete("/education/:edu_id", auth, async (req, res) => {
     const profile = await Profile.findOne({ user: req.user.id });
 
     //Get the remove index
-    const removeIndex = profile.education
-      .map(item => item.id)
-      .indexOf(req.params.edu_id);
+    const removeIndex = profile.education.map(item => item.id).indexOf(req.params.edu_id);
 
     profile.education.splice(removeIndex, 1);
     await profile.save();
@@ -373,9 +355,8 @@ router.post("/upload-track", auth, async (req, res) => {
   try {
     const file = req.files.track;
     const title = req.body.title;
-    const dirPath = `${process.cwd()}/client/public/uploads/tracks/${
-      req.user.id
-    }`;
+    const duration = req.body.duration;
+    const dirPath = `${process.cwd()}/client/public/uploads/tracks/${req.user.id}`;
 
     if (!fs.existsSync(dirPath)) {
       fs.mkdirSync(dirPath);
@@ -393,6 +374,7 @@ router.post("/upload-track", auth, async (req, res) => {
       const newTrack = {
         title: title,
         url: `/uploads/tracks/${req.user.id}/${file.name}`,
+        duration: duration,
         comments: [],
         likes: []
       };
@@ -407,5 +389,52 @@ router.post("/upload-track", auth, async (req, res) => {
     res.status(500).send("Server error");
   }
 });
+
+//@route    POST api/profile/comment/:profile_id/:track_id
+//@desc     Comment on a music track
+//@access   Private
+router.post(
+  "/comment/:profile_id/:track_id",
+  [
+    auth,
+    [
+      check("text", "Text is required")
+        .not()
+        .isEmpty()
+    ]
+  ],
+  async (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
+
+    try {
+      const user = await User.findById(req.user.id).select("-password");
+      const profile = await Profile.findById(
+        req.params.profile_id
+      ).populate("tracks.comments.user", ["name", "avatar"]);
+
+      const trackIndex = profile.tracks.findIndex(
+        element => element.id === req.params.track_id
+      );
+
+      const newComment = {
+        text: req.body.text,
+        time: req.body.time,
+        date: new Date(),
+        user: user //works fine. use populate?
+      };
+
+      profile.tracks[trackIndex].comments.unshift(newComment);
+      await profile.save();
+
+      res.json(profile.tracks);
+    } catch (err) {
+      console.error(err.message);
+      res.status(500).send("Server error");
+    }
+  }
+);
 
 module.exports = router;

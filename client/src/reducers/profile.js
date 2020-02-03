@@ -3,7 +3,8 @@ import {
   PROFILE_ERROR,
   CLEAR_PROFILE,
   UPDATE_PROFILE,
-  GET_PROFILES
+  GET_PROFILES,
+  ADD_TRACK_COMMENT
 } from "../actions/types";
 
 const initialState = {
@@ -42,6 +43,14 @@ export default function(state = initialState, action) {
         profile: null,
         repos: [],
         loading: false
+      };
+    case ADD_TRACK_COMMENT:
+      return {
+        ...state,
+        profile: {
+          ...state.profile,
+          tracks: payload
+        }
       };
     default:
       return state;

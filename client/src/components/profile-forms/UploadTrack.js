@@ -7,13 +7,24 @@ import { uploadTrack } from "../../actions/profile";
 const UploadTrack = ({ uploadTrack, history }) => {
   const [file, setFile] = useState("");
   const [title, setTitle] = useState("");
+  const [duration, setDuration] = useState("");
   const [label, setLabel] = useState("Choose a file");
 
   const formData = new FormData();
 
   const onChangeFile = e => {
-    setFile(e.target.files[0]);
-    setLabel("Audio file chosen");
+    var file = e.target.files[0];
+    var reader = new FileReader();
+    reader.onload = function() {
+      var aud = new Audio(reader.result);
+      aud.onloadedmetadata = function() {
+        console.log(aud.duration);
+        setFile(file);
+        setLabel("Audio file chosen");
+        setDuration(aud.duration);
+      };
+    };
+    reader.readAsDataURL(file);
   };
 
   const onChangeTitle = e => {
@@ -24,6 +35,7 @@ const UploadTrack = ({ uploadTrack, history }) => {
     e.preventDefault();
     formData.append("track", file);
     formData.append("title", title);
+    formData.append("duration", duration);
     uploadTrack(formData, history);
   };
 
@@ -32,12 +44,7 @@ const UploadTrack = ({ uploadTrack, history }) => {
       <h1 className="large text-primary">Upload an audio file</h1>
       <form className="form" onSubmit={onSubmit}>
         <div className="form-group">
-          <input
-            type="file"
-            id="aud-file"
-            accept="audio/*"
-            onChange={onChangeFile}
-          />
+          <input type="file" id="aud-file" accept="audio/*" onChange={onChangeFile} />
           <input type="text" id="track-title" onChange={onChangeTitle} />
           <label htmlFor="aud-file"> {label} </label>
         </div>

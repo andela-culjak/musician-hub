@@ -33,6 +33,9 @@ const ProfileSchema = new Schema({
       url: {
         type: String
       },
+      duration: {
+        type: Number
+      },
       comments: [
         {
           user: {

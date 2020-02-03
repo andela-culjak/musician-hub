@@ -8,7 +8,8 @@ import {
   UPDATE_PROFILE,
   CLEAR_PROFILE,
   ACCOUNT_DELETED,
-  UPDATE_AVATAR
+  UPDATE_AVATAR,
+  ADD_TRACK_COMMENT
 } from "./types";
 
 //Get current user's profile
@@ -52,7 +53,6 @@ export const getProfiles = () => async dispatch => {
 export const getProfileById = (user_id, history) => async dispatch => {
   try {
     const res = await axios.get(`/api/profile/user/${user_id}`);
-
     dispatch({
       type: GET_PROFILE,
       payload: res.data
@@ -69,11 +69,7 @@ export const getProfileById = (user_id, history) => async dispatch => {
 };
 
 //Create or update profile
-export const createProfile = (
-  formData,
-  history,
-  edit = false
-) => async dispatch => {
+export const createProfile = (formData, history, edit = false) => async dispatch => {
   try {
     const config = {
       headers: {
@@ -178,11 +174,7 @@ export const uploadAvatar = (formData, history) => async dispatch => {
       }
     };
 
-    const res = await axios.post(
-      "/api/profile/upload-avatar",
-      formData,
-      config
-    );
+    const res = await axios.post("/api/profile/upload-avatar", formData, config);
 
     dispatch({
       type: UPDATE_AVATAR,
@@ -221,6 +213,36 @@ export const uploadTrack = (formData, history) => async dispatch => {
     dispatch({
       type: PROFILE_ERROR,
       payload: { statusText: "Some error", status: 400 }
+    });
+  }
+};
+
+//Add comment on a track
+export const addTrackComment = (formData, profileId, trackId) => async dispatch => {
+  const config = {
+    "Content-Type": "application/json"
+  };
+
+  try {
+    const res = await axios.post(
+      `/api/profile/comment/${profileId}/${trackId}`,
+      formData,
+      config
+    );
+
+    dispatch({
+      type: ADD_TRACK_COMMENT,
+      payload: res.data
+    });
+
+    dispatch(setAlert("Track comment added", "success"));
+  } catch (err) {
+    dispatch({
+      type: PROFILE_ERROR,
+      payload: {
+        msg: err.message || "Server fail",
+        status: err.status || 500
+      }
     });
   }
 };
