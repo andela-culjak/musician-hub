@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link, withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { uploadTrack } from "../../actions/profile";
+import { uploadTrack } from "../../actions/music";
 
 const UploadTrack = ({ uploadTrack, history }) => {
   const [file, setFile] = useState("");

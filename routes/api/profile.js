@@ -16,7 +16,7 @@ router.get("/me", auth, async (req, res) => {
   try {
     const profile = await Profile.findOne({
       user: req.user.id
-    }).populate("user tracks.comments.user", ["name", "avatar"]);
+    }).populate("user", ["name", "avatar"]);
 
     if (!profile) {
       return res.status(400).json({ msg: "There is no profile for this user" });
@@ -56,7 +56,6 @@ router.post(
       position,
       skills,
       videos,
-      tracks,
       youtube,
       facebook,
       twitter,
@@ -134,7 +133,7 @@ router.get("/user/:user_id", async (req, res) => {
   try {
     const profile = await Profile.findOne({
       user: req.params.user_id
-    }).populate("user tracks.comments.user", ["name", "avatar"]);
+    }).populate("user", ["name", "avatar"]);
 
     if (!profile) {
       return res.status(400).json({ msg: "Profile not found" });
@@ -343,98 +342,5 @@ router.post("/upload-avatar", auth, async (req, res) => {
     res.json(user);
   });
 });
-
-//@route    POST api/profile/upload-track
-//@desc     Upload new music track
-//@access   Private
-router.post("/upload-track", auth, async (req, res) => {
-  if (req.files === null) {
-    return res.status(400).json({ msg: "No file uploaded" });
-  }
-
-  try {
-    const file = req.files.track;
-    const title = req.body.title;
-    const duration = req.body.duration;
-    const dirPath = `${process.cwd()}/client/public/uploads/tracks/${req.user.id}`;
-
-    if (!fs.existsSync(dirPath)) {
-      fs.mkdirSync(dirPath);
-    }
-
-    file.mv(`${dirPath}/${file.name}`, async err => {
-      if (err) {
-        console.error(err);
-        return res.status(500).send(err);
-      }
-
-      const profile = await Profile.findOne({ user: req.user.id });
-
-      //Add the track to existing tracks
-      const newTrack = {
-        title: title,
-        url: `/uploads/tracks/${req.user.id}/${file.name}`,
-        duration: duration,
-        comments: [],
-        likes: []
-      };
-
-      profile.tracks.push(newTrack);
-
-      await profile.save();
-      res.json(profile);
-    });
-  } catch (err) {
-    console.error(err.message);
-    res.status(500).send("Server error");
-  }
-});
-
-//@route    POST api/profile/comment/:profile_id/:track_id
-//@desc     Comment on a music track
-//@access   Private
-router.post(
-  "/comment/:profile_id/:track_id",
-  [
-    auth,
-    [
-      check("text", "Text is required")
-        .not()
-        .isEmpty()
-    ]
-  ],
-  async (req, res) => {
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-      return res.status(400).json({ errors: errors.array() });
-    }
-
-    try {
-      const user = await User.findById(req.user.id).select("-password");
-      const profile = await Profile.findById(
-        req.params.profile_id
-      ).populate("tracks.comments.user", ["name", "avatar"]);
-
-      const trackIndex = profile.tracks.findIndex(
-        element => element.id === req.params.track_id
-      );
-
-      const newComment = {
-        text: req.body.text,
-        time: req.body.time,
-        date: new Date(),
-        user: user //works fine. use populate?
-      };
-
-      profile.tracks[trackIndex].comments.unshift(newComment);
-      await profile.save();
-
-      res.json(profile.tracks);
-    } catch (err) {
-      console.error(err.message);
-      res.status(500).send("Server error");
-    }
-  }
-);
 
 module.exports = router;

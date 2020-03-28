@@ -9,11 +9,13 @@ import {
   CLEAR_PROFILE,
   ACCOUNT_DELETED,
   UPDATE_AVATAR,
-  ADD_TRACK_COMMENT
+  CLEAR_MUSIC
 } from "./types";
 
 //Get current user's profile
 export const getCurrentProfile = () => async dispatch => {
+  dispatch({ type: CLEAR_PROFILE });
+  dispatch({ type: CLEAR_MUSIC });
   try {
     const res = await axios.get("/api/profile/me");
 
@@ -32,6 +34,7 @@ export const getCurrentProfile = () => async dispatch => {
 //Get all profiles
 export const getProfiles = () => async dispatch => {
   dispatch({ type: CLEAR_PROFILE });
+  dispatch({ type: CLEAR_MUSIC });
   try {
     const res = await axios.get("/api/profile");
 
@@ -42,6 +45,7 @@ export const getProfiles = () => async dispatch => {
   } catch (err) {
     dispatch({
       type: PROFILE_ERROR,
+
       payload: {
         //msg: err.response.statusText, status: err.response.status
       }
@@ -51,6 +55,8 @@ export const getProfiles = () => async dispatch => {
 
 //Get profile by id
 export const getProfileById = (user_id, history) => async dispatch => {
+  dispatch({ type: CLEAR_PROFILE });
+  dispatch({ type: CLEAR_MUSIC });
   try {
     const res = await axios.get(`/api/profile/user/${user_id}`);
     dispatch({
@@ -101,7 +107,6 @@ export const createProfile = (formData, history, edit = false) => async dispatch
 };
 
 //Add experience
-
 export const addExperience = (formData, history) => async dispatch => {
   try {
     const config = {
@@ -191,62 +196,6 @@ export const uploadAvatar = (formData, history) => async dispatch => {
   }
 };
 
-//Upload tracks
-export const uploadTrack = (formData, history) => async dispatch => {
-  try {
-    const config = {
-      headers: {
-        "Content-Type": "multipart/form-data"
-      }
-    };
-
-    const res = await axios.post("/api/profile/upload-track", formData, config);
-
-    dispatch({
-      type: UPDATE_PROFILE,
-      payload: res.data
-    });
-
-    dispatch(setAlert("Tracks updated", "success"));
-    history.push("/dashboard");
-  } catch (err) {
-    dispatch({
-      type: PROFILE_ERROR,
-      payload: { statusText: "Some error", status: 400 }
-    });
-  }
-};
-
-//Add comment on a track
-export const addTrackComment = (formData, profileId, trackId) => async dispatch => {
-  const config = {
-    "Content-Type": "application/json"
-  };
-
-  try {
-    const res = await axios.post(
-      `/api/profile/comment/${profileId}/${trackId}`,
-      formData,
-      config
-    );
-
-    dispatch({
-      type: ADD_TRACK_COMMENT,
-      payload: res.data
-    });
-
-    dispatch(setAlert("Track comment added", "success"));
-  } catch (err) {
-    dispatch({
-      type: PROFILE_ERROR,
-      payload: {
-        msg: err.message || "Server fail",
-        status: err.status || 500
-      }
-    });
-  }
-};
-
 //Delete an experience
 
 export const deleteExperience = id => async dispatch => {
@@ -299,6 +248,7 @@ export const deleteAccount = () => async dispatch => {
       await axios.delete("/api/profile");
 
       dispatch({ type: CLEAR_PROFILE });
+      dispatch({ type: CLEAR_MUSIC });
       dispatch({ type: ACCOUNT_DELETED });
 
       dispatch(setAlert("Your account has been permanently deleted."));

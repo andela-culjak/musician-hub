@@ -9,12 +9,14 @@ import {
   GET_POST,
   ADD_COMMENT,
   REMOVE_COMMENT,
-  CLEAR_PROFILE
+  CLEAR_PROFILE,
+  CLEAR_MUSIC
 } from "./types";
 
 //Get Posts
 export const getPosts = () => async dispatch => {
   dispatch({ type: CLEAR_PROFILE });
+  dispatch({ type: CLEAR_MUSIC });
   try {
     const res = await axios.get("/api/posts");
 

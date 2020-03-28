@@ -20,7 +20,11 @@ export const UPDATE_PROFILE = "UPDATE_PROFILE";
 export const ACCOUNT_DELETED = "ACCOUNT_DELETED";
 export const UPDATE_AVATAR = "UPDATE_AVATAR";
 
+export const GET_MUSIC = "GET_MUSIC";
+export const UPDATE_MUSIC = "UPDATE_MUSIC";
+export const MUSIC_ERROR = "MUSIC_ERROR";
 export const ADD_TRACK_COMMENT = "ADD_TRACK_COMMENT";
+export const CLEAR_MUSIC = "CLEAR_MUSIC";
 
 export const GET_POSTS = "GET_POSTS";
 export const POST_ERROR = "POST_ERROR";

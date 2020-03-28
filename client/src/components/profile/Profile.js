@@ -10,18 +10,21 @@ import ProfileEducation from "./ProfileEducation";
 //import ProfileVideos from "./ProfileVideos";
 import AudioTracks from "./AudioTracks";
 import { getProfileById } from "../../actions/profile";
+import { getMusicById } from "../../actions/music";
 
 const Profile = ({
   getProfileById,
+  getMusicById,
   profile: { profile, loading },
+  music,
   auth,
   match,
   history
 }) => {
   useEffect(() => {
-    console.log("PROFILE USE EFFECT");
     getProfileById(match.params.id, history);
-  }, [getProfileById, match.params.id, history]);
+    getMusicById(match.params.id);
+  }, [getProfileById, getMusicById, match.params.id, history]);
 
   return (
     <Fragment>
@@ -70,7 +73,13 @@ const Profile = ({
               )}
             </div>
             {/* <ProfileVideos /> */}
-            <AudioTracks profile={profile} />
+            {music && music.tracks.length > 0 ? (
+              <AudioTracks music={music} />
+            ) : (
+              <div className="audio-tracks">
+                <h3>This used has not added any music tracks yet.</h3>
+              </div>
+            )}
           </div>
         </Fragment>
       )}
@@ -80,13 +89,18 @@ const Profile = ({
 
 Profile.propTypes = {
   getProfileById: PropTypes.func.isRequired,
+  getMusicById: PropTypes.func.isRequired,
   profile: PropTypes.object.isRequired,
+  music: PropTypes.object,
   auth: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
   profile: state.profile,
+  music: state.music.music,
   auth: state.auth
 });
 
-export default connect(mapStateToProps, { getProfileById })(withRouter(Profile));
+export default connect(mapStateToProps, { getProfileById, getMusicById })(
+  withRouter(Profile)
+);
