@@ -449,7 +449,7 @@ input::placeholder, textarea::placeholder, input {
 
 .profile-grid {
   display: grid;
-  grid-template-areas: "top top" "about about" "exp edu" "videos videos" "tracks tracks";
+  grid-template-areas: "top top" "about about" "exp edu" "tracks tracks" "videos videos";
   grid-gap: 1rem;
 }
 
@@ -537,7 +537,6 @@ input::placeholder, textarea::placeholder, input {
 }
 
 .audio-tracks {
-  margin-top: 2rem;
   grid-area: tracks;
 }
 

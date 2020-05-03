@@ -1,13 +1,9 @@
 import React, { useState, useEffect } from "react";
-import PropTypes from "prop-types";
-//import { peaks } from "peaks.js";
 import WaveSurfer from "wavesurfer.js";
-import { connect } from "react-redux";
-import { addTrackComment } from "../../actions/music";
 
-const AudioTracks = ({ music, stateMusic, auth, addTrackComment }) => {
-  const [surfer, setWavesurfer] = useState(null);
-  const [currentTrackIndex, setCurrentTrackIndex] = useState("");
+const MainTrack = ({ music, auth, addTrackComment }) => {
+  const [surfer, setSurfer] = useState(null);
+  const [currentTrackIndex, setCurrentTrackIndex] = useState(null);
   const [playingToggle, setPlayingToggle] = useState(false);
   const [comment, setComment] = useState({
     time: 0,
@@ -17,9 +13,8 @@ const AudioTracks = ({ music, stateMusic, auth, addTrackComment }) => {
   useEffect(() => {
     if (surfer) {
       surfer.destroy();
-      setWavesurfer(null);
+      setSurfer(null);
     }
-
     const randomSongIndex = Math.floor(Math.random() * music.tracks.length);
     drawASurfer(randomSongIndex);
     setCurrentTrackIndex(randomSongIndex);
@@ -27,12 +22,12 @@ const AudioTracks = ({ music, stateMusic, auth, addTrackComment }) => {
   }, []);
 
   useEffect(() => {
-    if (music.tracks.length > 0 && currentTrackIndex)
+    if (music.tracks.length > 0 && currentTrackIndex != null) {
       displayComments(music.tracks[currentTrackIndex]);
+    }
   }, [music]);
 
   const drawASurfer = index => {
-    // const aud = document.querySelector("#song");
     const wavesurfer = WaveSurfer.create({
       barWidth: 1.5,
       barHeight: 1.5,
@@ -48,12 +43,35 @@ const AudioTracks = ({ music, stateMusic, auth, addTrackComment }) => {
       autoCenter: true,
       barGap: 2
     });
-
-    // wavesurfer.load(aud, peaks);
     wavesurfer.load(music.tracks[index].url);
 
-    setWavesurfer(wavesurfer);
+    setSurfer(wavesurfer);
     //console.log("Kreirani wavesurfer", wavesurfer.backend.media);
+  };
+
+  const displayComments = track => {
+    const timeline = document.getElementById("timeline");
+    if (track.comments.length > 0) {
+      track.comments.map(comment => {
+        const percentage = (comment.time / track.duration) * 100;
+        let side = percentage > 50 ? "right" : "left";
+        const position =
+          side === "left"
+            ? `calc(${percentage}% - 10px)`
+            : `calc(${100 - percentage}% - 10px)`;
+
+        return (timeline.innerHTML += `<div 
+                  class="user-head" 
+                  style="left: calc(${(comment.time / track.duration) * 100}% - 10px); 
+                    background-image: url(${comment.user.avatar}); "> 
+                </div> 
+    
+                <div class="track-comment-text" style="${side}: ${position}; "> 
+                  <span>${comment.user.name}</span>
+                  ${comment.text}
+                </div>`);
+      });
+    }
   };
 
   const playIt = () => {
@@ -83,35 +101,12 @@ const AudioTracks = ({ music, stateMusic, auth, addTrackComment }) => {
     addTrackComment(comment, music._id, music.tracks[currentTrackIndex]._id);
   };
 
-  const displayComments = track => {
-    const timeline = document.getElementById("timeline");
-    if (track.comments.length > 0) {
-      track.comments.map(comment => {
-        const percentage = (comment.time / track.duration) * 100;
-        let side = percentage > 50 ? "right" : "left";
-        const position =
-          side === "left"
-            ? `calc(${percentage}% - 10px)`
-            : `calc(${100 - percentage}% - 10px)`;
-
-        return (timeline.innerHTML += `<div 
-              class="user-head" 
-              style="left: calc(${(comment.time / track.duration) * 100}% - 10px); 
-                background-image: url(${comment.user.avatar}); "> 
-            </div> 
-
-            <div class="track-comment-text" style="${side}: ${position}; "> 
-              <span>${comment.user.name}</span>
-              ${comment.text}
-            </div>`);
-      });
-    }
-  };
-
   return (
-    <div className="audio-tracks">
-      <h2>{music.user.name.split(" ")[0]}'s Music</h2>
-      <div className="main-track">
+    <div>
+      <div className="track">
+        <h4 className="my-1">
+          {currentTrackIndex !== null && music.tracks[currentTrackIndex].title}
+        </h4>
         <div id="waveform" />
         {/* <audio id="song" src="" /> */}
       </div>
@@ -148,20 +143,8 @@ const AudioTracks = ({ music, stateMusic, auth, addTrackComment }) => {
             onClick={e => submitComment(e)}></input>
         </form>
       </div>
-      {/* <div className="playlist">
-              
-          </div> */}
     </div>
   );
 };
 
-AudioTracks.propTypes = {
-  addTrackComment: PropTypes.func.isRequired
-};
-
-const mapStateToProps = state => ({
-  stateMusic: state.music.music,
-  auth: state.auth
-});
-
-export default connect(mapStateToProps, { addTrackComment })(AudioTracks);
+export default MainTrack;
