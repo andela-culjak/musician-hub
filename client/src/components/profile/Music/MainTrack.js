@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
 import WaveSurfer from "wavesurfer.js";
 
-const MainTrack = ({ music, auth, addTrackComment }) => {
+const MainTrack = ({ currentTrackIndex, music, auth, addTrackComment }) => {
   const [surfer, setSurfer] = useState(null);
-  const [currentTrackIndex, setCurrentTrackIndex] = useState(null);
   const [playingToggle, setPlayingToggle] = useState(false);
   const [comment, setComment] = useState({
     time: 0,
@@ -15,17 +14,12 @@ const MainTrack = ({ music, auth, addTrackComment }) => {
       surfer.destroy();
       setSurfer(null);
     }
-    const randomSongIndex = Math.floor(Math.random() * music.tracks.length);
-    drawASurfer(randomSongIndex);
-    setCurrentTrackIndex(randomSongIndex);
-    displayComments(music.tracks[randomSongIndex]);
-  }, []);
+    drawASurfer(currentTrackIndex);
+  }, [currentTrackIndex]);
 
   useEffect(() => {
-    if (music.tracks.length > 0 && currentTrackIndex != null) {
-      displayComments(music.tracks[currentTrackIndex]);
-    }
-  }, [music]);
+    displayComments(music.tracks[currentTrackIndex]);
+  }, [music.tracks[currentTrackIndex].comments, currentTrackIndex]);
 
   const drawASurfer = index => {
     const wavesurfer = WaveSurfer.create({
@@ -104,13 +98,13 @@ const MainTrack = ({ music, auth, addTrackComment }) => {
   return (
     <div>
       <div className="track">
-        <h4 className="my-1">
-          {currentTrackIndex !== null && music.tracks[currentTrackIndex].title}
-        </h4>
+        <h4 className="my-1">{music.tracks[currentTrackIndex].title}</h4>
         <div id="waveform" />
         {/* <audio id="song" src="" /> */}
       </div>
+
       <div id="timeline"></div>
+
       <div className="track-actions">
         <button className="play-btn" onClick={playIt}>
           {playingToggle ? (
