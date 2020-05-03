@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import WaveSurfer from "wavesurfer.js";
+import { formatTime } from "./Track";
 
 const MainTrack = ({ currentTrackIndex, music, auth, addTrackComment }) => {
   const [surfer, setSurfer] = useState(null);
@@ -8,23 +9,33 @@ const MainTrack = ({ currentTrackIndex, music, auth, addTrackComment }) => {
     time: 0,
     text: ""
   });
+  const [currentTime, setCurrentTime] = useState(0);
+
+  useEffect(() => {
+    if (surfer) {
+      surfer.on("audioprocess", () =>
+        setCurrentTime(Math.round(surfer.getCurrentTime()))
+      );
+    }
+  });
 
   useEffect(() => {
     if (surfer) {
       surfer.destroy();
       setSurfer(null);
     }
+    setPlayingToggle(false);
     drawASurfer(currentTrackIndex);
   }, [currentTrackIndex]);
 
   useEffect(() => {
     displayComments(music.tracks[currentTrackIndex]);
-  }, [music.tracks[currentTrackIndex].comments, currentTrackIndex]);
+  }, [music.tracks, currentTrackIndex]);
 
   const drawASurfer = index => {
     const wavesurfer = WaveSurfer.create({
-      barWidth: 1.5,
-      barHeight: 1.5,
+      barWidth: 1.8,
+      barHeight: 1.2,
       barRadius: 3,
       cursorWidth: 2,
       container: "#waveform",
@@ -45,6 +56,7 @@ const MainTrack = ({ currentTrackIndex, music, auth, addTrackComment }) => {
 
   const displayComments = track => {
     const timeline = document.getElementById("timeline");
+    timeline.innerHTML = "";
     if (track.comments.length > 0) {
       track.comments.map(comment => {
         const percentage = (comment.time / track.duration) * 100;
@@ -61,7 +73,8 @@ const MainTrack = ({ currentTrackIndex, music, auth, addTrackComment }) => {
                 </div> 
     
                 <div class="track-comment-text" style="${side}: ${position}; "> 
-                  <span>${comment.user.name}</span>
+                  <span class="user">${comment.user.name}</span>
+                  at ${formatTime(comment.time)} -
                   ${comment.text}
                 </div>`);
       });
@@ -97,12 +110,18 @@ const MainTrack = ({ currentTrackIndex, music, auth, addTrackComment }) => {
 
   return (
     <div>
-      <div className="track">
+      <div className="main-track">
         <h4 className="my-1">{music.tracks[currentTrackIndex].title}</h4>
+
         <div id="waveform" />
         {/* <audio id="song" src="" /> */}
       </div>
-
+      <div className="times">
+        <div className="current-time bg-light">{formatTime(currentTime)}</div>
+        <div className="total-time bg-light">
+          {formatTime(music.tracks[currentTrackIndex].duration)}
+        </div>
+      </div>
       <div id="timeline"></div>
 
       <div className="track-actions">

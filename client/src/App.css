@@ -536,8 +536,35 @@ input::placeholder, textarea::placeholder, input {
   position: absolute;
 }
 
+/* Music Tracks */
+
 .audio-tracks {
   grid-area: tracks;
+}
+
+.times {
+  position: relative;
+  z-index: 5;
+  margin-top: -3.9rem;
+  opacity: 90%;
+  /* temp - dok ne prominim bg-light u nesto */
+}
+
+.current-time, .total-time {
+  display: inline-block;
+  width: 30px;
+  text-align: center;
+  font-size: 0.7rem;
+  position: absolute;
+  bottom: 0;
+}
+
+.current-time {
+  left: 0;
+}
+
+.total-time {
+  right: 0;
 }
 
 #timeline {
@@ -596,7 +623,7 @@ input::placeholder, textarea::placeholder, input {
   outline: none;
 }
 
-.track-comment-text span {
+.track-comment-text .user {
   color: rgb(137, 186, 206);
   padding-right: 3px;
 }
@@ -652,6 +679,11 @@ input::placeholder, textarea::placeholder, input {
 
 .play-btn:focus, .heart-button:focus, .track-comment-input:focus {
   outline: none;
+}
+
+.playlist-item {
+  display: flex;
+  justify-content: space-between;
 }
 
 /* Posts Page */
