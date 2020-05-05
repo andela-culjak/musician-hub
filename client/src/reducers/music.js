@@ -3,6 +3,7 @@ import {
   GET_MUSIC,
   CLEAR_MUSIC,
   ADD_TRACK_COMMENT,
+  UPDATE_TRACK_LIKES,
   MUSIC_ERROR
 } from "../actions/types";
 
@@ -35,6 +36,16 @@ export default function(state = initialState, action) {
         music: {
           ...state.music,
           tracks: payload
+        }
+      };
+    case UPDATE_TRACK_LIKES:
+      return {
+        ...state,
+        music: {
+          ...state.music,
+          tracks: state.music.tracks.map(track =>
+            track._id === payload.trackId ? { ...track, likes: payload.likes } : track
+          )
         }
       };
     case MUSIC_ERROR:

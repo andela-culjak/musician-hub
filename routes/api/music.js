@@ -77,7 +77,7 @@ router.post("/upload-track", auth, async (req, res) => {
   }
 });
 
-//@route    POST api/music/comment/:profile_id/:track_id
+//@route    POST api/music/comment/:music_id/:track_id
 //@desc     Comment on a music track
 //@access   Private
 router.post(
@@ -97,7 +97,6 @@ router.post(
     }
 
     try {
-      const user = await User.findById(req.user.id).select("-password");
       const music = await Music.findById(req.params.music_id);
 
       const trackIndex = music.tracks.findIndex(
@@ -108,7 +107,7 @@ router.post(
         text: req.body.text,
         time: req.body.time,
         date: new Date(),
-        user: user
+        user: req.user.id
       };
 
       music.tracks[trackIndex].comments.unshift(newComment);
@@ -125,5 +124,64 @@ router.post(
     }
   }
 );
+
+//@route    PUT api/music/like/:music_id/:track_id
+//@desc     Like a track
+//@access   Private
+router.put("/like/:music_id/:track_id", auth, async (req, res) => {
+  try {
+    const music = await Music.findById(req.params.music_id);
+    const trackIndex = music.tracks.findIndex(
+      element => element.id === req.params.track_id
+    );
+
+    if (
+      music.tracks[trackIndex].likes.filter(like => like.user.toString() === req.user.id)
+        .length > 0
+    ) {
+      return res.status(400).json({ msg: "Track already liked" });
+    }
+
+    music.tracks[trackIndex].likes.unshift({ user: req.user.id });
+
+    await music.save();
+    res.json(music.tracks[trackIndex].likes);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server error");
+  }
+});
+
+//@route    PUT api/music/unlike/:music_id/:track_id
+//@desc     Unlike a track
+//@access   Private
+router.put("/unlike/:music_id/:track_id", auth, async (req, res) => {
+  try {
+    const music = await Music.findById(req.params.music_id);
+    const trackIndex = music.tracks.findIndex(
+      element => element.id === req.params.track_id
+    );
+
+    if (
+      music.tracks[trackIndex].likes.filter(like => like.user.toString() === req.user.id)
+        .length === 0
+    ) {
+      return res.status(400).json({ msg: "Track has not yet been liked" });
+    }
+
+    //Get the remove index
+    const removeIndex = music.tracks[trackIndex].likes
+      .map(like => like.user.toString())
+      .indexOf(req.user.id);
+
+    music.tracks[trackIndex].likes.splice(removeIndex, 1);
+
+    await music.save();
+    res.json(music.tracks[trackIndex].likes);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server error");
+  }
+});
 
 module.exports = router;

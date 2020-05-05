@@ -1,8 +1,18 @@
 import React, { useState, useEffect } from "react";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { addTrackComment, likeATrack, unlikeATrack } from "../../../actions/music";
 import WaveSurfer from "wavesurfer.js";
 import { formatTime } from "./Track";
 
-const MainTrack = ({ currentTrackIndex, music, auth, addTrackComment }) => {
+const MainTrack = ({
+  currentTrackIndex,
+  music,
+  auth,
+  addTrackComment,
+  likeATrack,
+  unlikeATrack
+}) => {
   const [surfer, setSurfer] = useState(null);
   const [playingToggle, setPlayingToggle] = useState(false);
   const [comment, setComment] = useState({
@@ -10,6 +20,11 @@ const MainTrack = ({ currentTrackIndex, music, auth, addTrackComment }) => {
     text: ""
   });
   const [currentTime, setCurrentTime] = useState(0);
+  const [track, updateTrack] = useState(music.tracks[currentTrackIndex]);
+
+  useEffect(() => {
+    updateTrack(music.tracks[currentTrackIndex]);
+  });
 
   useEffect(() => {
     if (surfer) {
@@ -25,14 +40,14 @@ const MainTrack = ({ currentTrackIndex, music, auth, addTrackComment }) => {
       setSurfer(null);
     }
     setPlayingToggle(false);
-    drawASurfer(currentTrackIndex);
+    drawASurfer();
   }, [currentTrackIndex]);
 
   useEffect(() => {
-    displayComments(music.tracks[currentTrackIndex]);
-  }, [music.tracks, currentTrackIndex]);
+    displayComments();
+  }, [track.comments, currentTrackIndex]);
 
-  const drawASurfer = index => {
+  const drawASurfer = () => {
     const wavesurfer = WaveSurfer.create({
       barWidth: 1.8,
       barHeight: 1.2,
@@ -48,13 +63,13 @@ const MainTrack = ({ currentTrackIndex, music, auth, addTrackComment }) => {
       autoCenter: true,
       barGap: 2
     });
-    wavesurfer.load(music.tracks[index].url);
+    wavesurfer.load(track.url);
 
     setSurfer(wavesurfer);
     //console.log("Kreirani wavesurfer", wavesurfer.backend.media);
   };
 
-  const displayComments = track => {
+  const displayComments = () => {
     const timeline = document.getElementById("timeline");
     timeline.innerHTML = "";
     if (track.comments.length > 0) {
@@ -102,25 +117,33 @@ const MainTrack = ({ currentTrackIndex, music, auth, addTrackComment }) => {
 
   const submitComment = e => {
     e.preventDefault();
-    setComment({ time: "", text: "" });
+
     const form = document.getElementById("myForm");
     form.reset();
-    addTrackComment(comment, music._id, music.tracks[currentTrackIndex]._id);
+    setComment({ time: "", text: "" });
+    addTrackComment(comment, music._id, track._id);
+  };
+
+  const likeOrUnlikeTrack = () => {
+    if (track.likes.filter(like => like.user === auth.user._id).length > 0) {
+      unlikeATrack(music._id, track._id);
+    } else {
+      console.log("is gonna be liked");
+      likeATrack(music._id, track._id);
+    }
   };
 
   return (
     <div>
       <div className="main-track">
-        <h4 className="my-1">{music.tracks[currentTrackIndex].title}</h4>
+        <h4 className="my-1">{track.title}</h4>
 
         <div id="waveform" />
         {/* <audio id="song" src="" /> */}
       </div>
       <div className="times">
         <div className="current-time bg-light">{formatTime(currentTime)}</div>
-        <div className="total-time bg-light">
-          {formatTime(music.tracks[currentTrackIndex].duration)}
-        </div>
+        <div className="total-time bg-light">{formatTime(track.duration)}</div>
       </div>
       <div id="timeline"></div>
 
@@ -134,11 +157,15 @@ const MainTrack = ({ currentTrackIndex, music, auth, addTrackComment }) => {
         </button>
         <button
           type="button"
-          className="heart-button"
-          // onClick={() => LikeTrack(_id)}
-        >
+          className={
+            (auth.user &&
+              track.likes.filter(like => like.user === auth.user._id).length) > 0
+              ? `heart-button liked`
+              : `heart-button`
+          }
+          onClick={() => auth.isAuthenticated && likeOrUnlikeTrack()}>
           <i className="far fa-heart" />{" "}
-          {/* {likes.length > 0 && <span> {likes.length}</span>} */}
+          {track.likes.length > 0 && <span> {track.likes.length}</span>}
         </button>
         <form id="myForm" className="track-comment-form">
           <input
@@ -160,4 +187,19 @@ const MainTrack = ({ currentTrackIndex, music, auth, addTrackComment }) => {
   );
 };
 
-export default MainTrack;
+MainTrack.propTypes = {
+  addTrackComment: PropTypes.func.isRequired,
+  likeATrack: PropTypes.func.isRequired,
+  unlikeATrack: PropTypes.func.isRequired,
+  currentTrackIndex: PropTypes.number.isRequired,
+  music: PropTypes.shape({}).isRequired,
+  auth: PropTypes.shape({}).isRequired
+};
+
+const mapStateToProps = state => ({
+  auth: state.auth
+});
+
+export default connect(mapStateToProps, { addTrackComment, likeATrack, unlikeATrack })(
+  MainTrack
+);

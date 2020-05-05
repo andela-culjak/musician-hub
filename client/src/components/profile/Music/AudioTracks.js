@@ -1,11 +1,8 @@
 import React, { useState, useEffect } from "react";
-import PropTypes from "prop-types";
-import { connect } from "react-redux";
-import { addTrackComment } from "../../../actions/music";
 import MainTrack from "./MainTrack";
 import Track from "./Track";
 
-const AudioTracks = ({ music, auth, addTrackComment }) => {
+const AudioTracks = ({ music }) => {
   const [currentTrackIndex, setCurrentTrackIndex] = useState(null);
 
   useEffect(() => {
@@ -21,12 +18,7 @@ const AudioTracks = ({ music, auth, addTrackComment }) => {
       <div className="audio-tracks">
         <h2 className="my-2">{music.user.name.split(" ")[0]}'s Tracks</h2>
 
-        <MainTrack
-          currentTrackIndex={currentTrackIndex}
-          music={music}
-          auth={auth}
-          addTrackComment={addTrackComment}
-        />
+        <MainTrack currentTrackIndex={currentTrackIndex} music={music} />
 
         <div className="playlist">
           {music.tracks.map(track => (
@@ -45,12 +37,4 @@ const AudioTracks = ({ music, auth, addTrackComment }) => {
   }
 };
 
-AudioTracks.propTypes = {
-  addTrackComment: PropTypes.func.isRequired
-};
-
-const mapStateToProps = state => ({
-  auth: state.auth
-});
-
-export default connect(mapStateToProps, { addTrackComment })(AudioTracks);
+export default AudioTracks;

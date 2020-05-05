@@ -6,7 +6,7 @@
   --secondary-color: rgb(17, 61, 102);
   --dark-color: #102b41f5;
   --light-color: #e5e6ec;
-  --danger-color: #660425;
+  --danger-color: #a10023;
   --success-color: #23ac8e;
   --borders-1: #0f1a2e;
   --landing-background: url("./img/concert2.jpg") no-repeat center center/cover;
@@ -130,6 +130,22 @@ input::placeholder, textarea::placeholder, input {
   padding: 3rem 0;
 }
 
+.px {
+  padding: 0 0.5rem;
+}
+
+.px-1 {
+  padding: 0 1rem;
+}
+
+.px-2 {
+  padding: 0 2rem;
+}
+
+.px-3 {
+  padding: 0 3rem;
+}
+
 /* Margin */
 
 .m {
@@ -162,6 +178,22 @@ input::placeholder, textarea::placeholder, input {
 
 .my-3 {
   margin: 3rem 0;
+}
+
+.mx {
+  margin: 0 0.5rem;
+}
+
+.mx-1 {
+  margin: 0 1rem;
+}
+
+.mx-2 {
+  margin: 0 2rem;
+}
+
+.mx-3 {
+  margin: 0 3rem;
 }
 
 .btn {
@@ -659,6 +691,10 @@ input::placeholder, textarea::placeholder, input {
   line-height: 50%;
   text-align: center;
   margin-right: 0.4rem;
+}
+
+.liked {
+  color: var(--danger-color);
 }
 
 .track-comment-form {

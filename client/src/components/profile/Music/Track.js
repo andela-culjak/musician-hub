@@ -15,7 +15,17 @@ const Track = ({ track, currentTrackId, trackSelected }) => {
       } playlist-item my-1 p-1`}
       onClick={() => trackSelected(track._id)}>
       <h4>{track.title}</h4>
-      <h4>{formatTime(track.duration)}</h4>
+      <div>
+        {track.likes.length > 0 && (
+          <span className="mx">
+            {" "}
+            {track.likes.length}
+            <i className="far fa-heart" />
+          </span>
+        )}
+
+        <span className="mx">{formatTime(track.duration)}</span>
+      </div>
     </div>
   );
 };

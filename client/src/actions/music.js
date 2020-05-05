@@ -1,7 +1,13 @@
 import axios from "axios";
 import { setAlert } from "./alert";
 
-import { UPDATE_MUSIC, MUSIC_ERROR, ADD_TRACK_COMMENT, GET_MUSIC } from "./types";
+import {
+  UPDATE_MUSIC,
+  MUSIC_ERROR,
+  ADD_TRACK_COMMENT,
+  GET_MUSIC,
+  UPDATE_TRACK_LIKES
+} from "./types";
 
 //Get music by id
 export const getMusicById = user_id => async dispatch => {
@@ -73,6 +79,40 @@ export const addTrackComment = (formData, musicId, trackId) => async dispatch =>
         msg: err.message || "Server fail",
         status: err.status || 500
       }
+    });
+  }
+};
+
+//Like a track
+export const likeATrack = (musicId, trackId) => async dispatch => {
+  try {
+    const res = await axios.put(`/api/music/like/${musicId}/${trackId}`);
+
+    dispatch({
+      type: UPDATE_TRACK_LIKES,
+      payload: { trackId, likes: res.data }
+    });
+  } catch (err) {
+    dispatch({
+      type: MUSIC_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status }
+    });
+  }
+};
+
+//Unlike a track
+export const unlikeATrack = (musicId, trackId) => async dispatch => {
+  try {
+    const res = await axios.put(`/api/music/unlike/${musicId}/${trackId}`);
+
+    dispatch({
+      type: UPDATE_TRACK_LIKES,
+      payload: { trackId, likes: res.data }
+    });
+  } catch (err) {
+    dispatch({
+      type: MUSIC_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status }
     });
   }
 };
