@@ -20,8 +20,8 @@ const DashboardActions = user => {
       <Link to="upload-avatar" className="btn btn-light">
         <i className="fas fa-user text-primary" /> Change profile picture
       </Link>
-      <Link to="upload-track" className="btn btn-light">
-        <i className="fas fa-music text-primary" /> Add your music tracks
+      <Link to="manage-tracks" className="btn btn-light">
+        <i className="fas fa-music text-primary" /> My music
       </Link>
       {user && (
         <Link to={`/profile/user/${user.user._id}`} className="btn btn-light">

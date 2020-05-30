@@ -1,5 +1,6 @@
 import {
   UPDATE_MUSIC,
+  REMOVE_TRACK,
   GET_MUSIC,
   CLEAR_MUSIC,
   ADD_TRACK_COMMENT,
@@ -22,6 +23,18 @@ export default function(state = initialState, action) {
       return {
         ...state,
         music: payload,
+        loading: false
+      };
+
+    case REMOVE_TRACK:
+      return {
+        ...state,
+        music: {
+          ...state.music,
+          tracks: state.music.tracks.filter(
+            track => track.url !== `/uploads/tracks/5d49d5fa8ae8f22b74af8a6f/${payload}`
+          )
+        },
         loading: false
       };
     case CLEAR_MUSIC:

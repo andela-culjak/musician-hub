@@ -3,6 +3,7 @@ import { setAlert } from "./alert";
 
 import {
   UPDATE_MUSIC,
+  REMOVE_TRACK,
   MUSIC_ERROR,
   ADD_TRACK_COMMENT,
   GET_MUSIC,
@@ -44,11 +45,30 @@ export const uploadTrack = (formData, history) => async dispatch => {
     });
 
     dispatch(setAlert("Tracks updated", "success"));
-    history.push("/dashboard");
   } catch (err) {
     dispatch({
       type: MUSIC_ERROR,
       payload: { statusText: "Some error", status: 400 }
+    });
+  }
+};
+
+//Delete a track
+export const deleteTrack = (trackName, musicId) => async dispatch => {
+  try {
+    await axios.delete(`/api/music/remove-track/${musicId}/${trackName}`);
+
+    dispatch({
+      type: REMOVE_TRACK,
+      payload: trackName
+    });
+
+    dispatch(setAlert("Track removed", "success"));
+  } catch (err) {
+    console.log(err);
+    dispatch({
+      type: MUSIC_ERROR,
+      payload: { statusText: "Something went wrong. Track is not deleted.", status: 400 }
     });
   }
 };

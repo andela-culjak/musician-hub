@@ -22,6 +22,7 @@ export const UPDATE_AVATAR = "UPDATE_AVATAR";
 
 export const GET_MUSIC = "GET_MUSIC";
 export const UPDATE_MUSIC = "UPDATE_MUSIC";
+export const REMOVE_TRACK = "REMOVE_TRACK";
 export const MUSIC_ERROR = "MUSIC_ERROR";
 export const ADD_TRACK_COMMENT = "ADD_TRACK_COMMENT";
 export const UPDATE_TRACK_LIKES = "UPDATE_TRACK_LIKES";

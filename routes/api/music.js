@@ -77,6 +77,44 @@ router.post("/upload-track", auth, async (req, res) => {
   }
 });
 
+//@route    DELETE api/music/remove-track/:track_id/:track_name
+//@desc     Remove a music track
+//@access   Private
+router.delete("/remove-track/:track_id/:track_name", auth, async (req, res) => {
+  if (!req.params.track_id) {
+    return res.status(400).json({ msg: "Bad request, no track id provided." });
+  }
+
+  try {
+    //removing from file system
+    const path = `${process.cwd()}/client/public/uploads/tracks/${req.user.id}/${
+      req.params.track_name
+    }`;
+
+    fs.unlink(path, err => {
+      if (err) throw err;
+      console.log("path/file.txt was deleted");
+    });
+
+    //removing from db
+    let music = await Music.findOne({ user: req.user.id });
+    const removeIndex = music.tracks.findIndex(
+      track =>
+        track.url === `/uploads/tracks/5d49d5fa8ae8f22b74af8a6f/${req.params.track_name}`
+    );
+
+    if (removeIndex > -1) {
+      music.tracks.splice(removeIndex, 1);
+      await music.save();
+    }
+
+    res.json(music);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send(err);
+  }
+});
+
 //@route    POST api/music/comment/:music_id/:track_id
 //@desc     Comment on a music track
 //@access   Private
@@ -169,6 +207,7 @@ router.put("/unlike/:music_id/:track_id", auth, async (req, res) => {
       return res.status(400).json({ msg: "Track has not yet been liked" });
     }
 
+    //TODO check if this works correctly
     //Get the remove index
     const removeIndex = music.tracks[trackIndex].likes
       .map(like => like.user.toString())

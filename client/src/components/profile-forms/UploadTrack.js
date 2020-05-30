@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 import { uploadTrack } from "../../actions/music";
 
 const UploadTrack = ({ uploadTrack, history }) => {
-  const [file, setFile] = useState("");
+  const [file, setFile] = useState(null);
   const [title, setTitle] = useState("");
   const [duration, setDuration] = useState("");
   const [label, setLabel] = useState("Choose a file");
@@ -37,15 +37,18 @@ const UploadTrack = ({ uploadTrack, history }) => {
     formData.append("title", title);
     formData.append("duration", duration);
     uploadTrack(formData, history);
+    setTitle("");
+    setFile(null);
+    setLabel("Choose a file");
   };
 
   return (
-    <div className="container">
-      <h1 className="large text-primary">Upload an audio file</h1>
+    <div className="my-3">
+      <h2>Upload an audio file</h2>
       <form className="form" onSubmit={onSubmit}>
         <div className="form-group">
           <input type="file" id="aud-file" accept="audio/*" onChange={onChangeFile} />
-          <input type="text" id="track-title" onChange={onChangeTitle} />
+          <input type="text" id="track-title" value={title} onChange={onChangeTitle} />
           <label htmlFor="aud-file"> {label} </label>
         </div>
 
