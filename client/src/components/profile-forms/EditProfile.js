@@ -35,8 +35,8 @@ const EditProfile = ({
       website: loading || !profile.website ? "" : profile.website,
       location: loading || !profile.location ? "" : profile.location,
       position: loading || !profile.position ? "" : profile.position,
-      skills: loading || !profile.skills ? "" : profile.skills.join(","),
-      videos: loading || !profile.videos ? "" : profile.videos.join(","),
+      skills: loading || !profile.skills ? "" : profile.skills.join(", "),
+      videos: loading || !profile.videos ? "" : profile.videos.join(", "),
       bio: loading || !profile.bio ? "" : profile.bio,
       twitter: loading || !profile.social ? "" : profile.social.twitter,
       facebook: loading || !profile.social ? "" : profile.social.facebook,
@@ -72,8 +72,7 @@ const EditProfile = ({
     instagram
   } = formData;
 
-  const onChange = e =>
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+  const onChange = e => setFormData({ ...formData, [e.target.name]: e.target.value });
 
   const onSubmit = e => {
     e.preventDefault();
@@ -84,8 +83,8 @@ const EditProfile = ({
     <Fragment>
       <h1 className="large text-primary">Create Your Profile</h1>
       <p className="lead">
-        <i className="fas fa-user" /> Let's get some information to make your
-        profile stand out
+        <i className="fas fa-user" /> Let's get some information to make your profile
+        stand out
       </p>
       <small>* = required field</small>
       <form className="form" onSubmit={e => onSubmit(e)}>
@@ -109,9 +108,7 @@ const EditProfile = ({
             value={band}
             onChange={e => onChange(e)}
           />
-          <small className="form-text">
-            Could be your own band or one you work for
-          </small>
+          <small className="form-text">Could be your own band or one you work for</small>
         </div>
         <div className="form-group">
           <input
@@ -121,9 +118,7 @@ const EditProfile = ({
             value={website}
             onChange={e => onChange(e)}
           />
-          <small className="form-text">
-            Could be your own or a band website
-          </small>
+          <small className="form-text">Could be your own or a band website</small>
         </div>
         <div className="form-group">
           <input
@@ -133,9 +128,7 @@ const EditProfile = ({
             value={location}
             onChange={e => onChange(e)}
           />
-          <small className="form-text">
-            City and state suggested (eg. Boston, MA)
-          </small>
+          <small className="form-text">City and state suggested (eg. Boston, MA)</small>
         </div>
         <div className="form-group">
           <input
@@ -168,8 +161,8 @@ const EditProfile = ({
             onChange={e => onChange(e)}
           />
           <small className="form-text">
-            Paste in some links to your videos (Youtube, Vimeo, Twitch etc.) and
-            separate them by comma (eg. Link1, Link2,...)
+            Paste in some links to your videos (Youtube, Vimeo, Twitch etc.) and separate
+            them by comma (eg. Link1, Link2,...)
           </small>
         </div>
 
@@ -177,8 +170,7 @@ const EditProfile = ({
           <button
             onClick={() => toggleSocialInputs(!displaySocialInputs)}
             type="button"
-            className="btn btn-light"
-          >
+            className="btn btn-light">
             Add Social Network Links
           </button>
           <span>Optional</span>
@@ -262,7 +254,6 @@ const mapStateToProps = state => ({
   profile: state.profile
 });
 
-export default connect(
-  mapStateToProps,
-  { createProfile, getCurrentProfile }
-)(withRouter(EditProfile));
+export default connect(mapStateToProps, { createProfile, getCurrentProfile })(
+  withRouter(EditProfile)
+);

@@ -18,9 +18,7 @@ const Track = ({ track, currentTrackId, trackSelected }) => {
       <div>
         {track.likes.length > 0 && (
           <span className="mx">
-            {" "}
-            {track.likes.length}
-            <i className="far fa-heart" />
+            {track.likes.length + " "} <i className="far fa-heart" />
           </span>
         )}
 

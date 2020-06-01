@@ -1,16 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import Spinner from "../layout/Spinner";
 import ReactPlayer from "react-player";
 
-const ProfileVideos = ({ videos }) => {
+const ProfileVideos = ({ videos, name }) => {
   return (
     <div className="profile-videos bg-light">
-      <h2 className="text-primary m"> My videos </h2>
-      {videos === null || videos === undefined ? (
-        <Spinner />
-      ) : (
+      <h2 className="m">{name.split(" ")[0]}'s Videos</h2>
+      {videos.length > 0 ? (
         <div className="videos-container">
           {videos.map((video, index) => (
             <div className="player-wrapper" key={index}>
@@ -24,6 +21,8 @@ const ProfileVideos = ({ videos }) => {
             </div>
           ))}
         </div>
+      ) : (
+        <h4 className="m">No videos yet.</h4>
       )}
     </div>
   );

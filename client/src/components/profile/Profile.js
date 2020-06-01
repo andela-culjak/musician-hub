@@ -7,7 +7,7 @@ import ProfileTop from "./ProfileTop";
 import ProfileAbout from "./ProfileAbout";
 import ProfileExperience from "./ProfileExperience";
 import ProfileEducation from "./ProfileEducation";
-//import ProfileVideos from "./ProfileVideos";
+import ProfileVideos from "./ProfileVideos";
 import AudioTracks from "./Music/AudioTracks";
 import { getProfileById } from "../../actions/profile";
 import { getMusicById } from "../../actions/music";
@@ -72,14 +72,16 @@ const Profile = ({
                 <h4>No education listed </h4>
               )}
             </div>
-            {/* <ProfileVideos /> */}
+
             {music && music.tracks.length > 0 ? (
               <AudioTracks music={music} />
             ) : (
-              <div className="audio-tracks">
+              <div className="audio-tracks bg-white p-1">
                 <h3>This used has not added any music tracks yet.</h3>
               </div>
             )}
+
+            <ProfileVideos name={profile.user.name} />
           </div>
         </Fragment>
       )}

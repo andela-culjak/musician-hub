@@ -198,7 +198,7 @@ router.put(
     const { position, band, location, from, to, current, description } = req.body;
 
     const newExp = {
-      position, //same as position: position
+      position,
       band,
       location,
       from,
