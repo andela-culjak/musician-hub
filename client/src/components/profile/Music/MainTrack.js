@@ -11,20 +11,16 @@ const MainTrack = ({
   auth,
   addTrackComment,
   likeATrack,
-  unlikeATrack
+  unlikeATrack,
+  track,
 }) => {
   const [surfer, setSurfer] = useState(null);
   const [playingToggle, setPlayingToggle] = useState(false);
   const [comment, setComment] = useState({
     time: 0,
-    text: ""
+    text: "",
   });
   const [currentTime, setCurrentTime] = useState(0);
-  const [track, updateTrack] = useState(music.tracks[currentTrackIndex]);
-
-  useEffect(() => {
-    updateTrack(music.tracks[currentTrackIndex]);
-  });
 
   useEffect(() => {
     if (surfer) {
@@ -61,7 +57,7 @@ const MainTrack = ({
       waveColor: "#ccc",
       cursorColor: "rgba(255,255,255,0)",
       autoCenter: true,
-      barGap: 2
+      barGap: 2,
     });
     wavesurfer.load(track.url);
 
@@ -73,7 +69,7 @@ const MainTrack = ({
     const timeline = document.getElementById("timeline");
     timeline.innerHTML = "";
     if (track.comments.length > 0) {
-      track.comments.map(comment => {
+      track.comments.map((comment) => {
         const percentage = (comment.time / track.duration) * 100;
         let side = percentage > 50 ? "right" : "left";
         const position =
@@ -104,18 +100,18 @@ const MainTrack = ({
   const freezeCommentTime = () => {
     setComment({
       ...comment,
-      time: surfer.getCurrentTime()
+      time: surfer.getCurrentTime(),
     });
   };
 
-  const addCommentText = e => {
+  const addCommentText = (e) => {
     setComment({
       ...comment,
-      text: e.target.value
+      text: e.target.value,
     });
   };
 
-  const submitComment = e => {
+  const submitComment = (e) => {
     e.preventDefault();
 
     const form = document.getElementById("myForm");
@@ -125,10 +121,9 @@ const MainTrack = ({
   };
 
   const likeOrUnlikeTrack = () => {
-    if (track.likes.filter(like => like.user === auth.user._id).length > 0) {
+    if (track.likes.filter((like) => like.user === auth.user._id).length > 0) {
       unlikeATrack(music._id, track._id);
     } else {
-      console.log("is gonna be liked");
       likeATrack(music._id, track._id);
     }
   };
@@ -159,7 +154,7 @@ const MainTrack = ({
           type="button"
           className={
             (auth.user &&
-              track.likes.filter(like => like.user === auth.user._id).length) > 0
+              track.likes.filter((like) => like.user === auth.user._id).length) > 0
               ? `heart-button liked`
               : `heart-button`
           }
@@ -172,7 +167,7 @@ const MainTrack = ({
             type="text"
             className="track-comment-input"
             onClick={freezeCommentTime}
-            onChange={e => addCommentText(e)}
+            onChange={(e) => addCommentText(e)}
             placeholder="Add a comment"
             required
             disabled={!auth.isAuthenticated}></input>
@@ -180,7 +175,7 @@ const MainTrack = ({
           <input
             className="invisible"
             type="submit"
-            onClick={e => submitComment(e)}></input>
+            onClick={(e) => submitComment(e)}></input>
         </form>
       </div>
     </div>
@@ -193,11 +188,11 @@ MainTrack.propTypes = {
   unlikeATrack: PropTypes.func.isRequired,
   currentTrackIndex: PropTypes.number.isRequired,
   music: PropTypes.shape({}).isRequired,
-  auth: PropTypes.shape({}).isRequired
+  auth: PropTypes.shape({}).isRequired,
 };
 
-const mapStateToProps = state => ({
-  auth: state.auth
+const mapStateToProps = (state) => ({
+  auth: state.auth,
 });
 
 export default connect(mapStateToProps, { addTrackComment, likeATrack, unlikeATrack })(

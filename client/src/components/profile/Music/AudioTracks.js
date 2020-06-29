@@ -9,8 +9,8 @@ const AudioTracks = ({ music }) => {
     setCurrentTrackIndex(Math.floor(Math.random() * music.tracks.length));
   }, []);
 
-  const changeTrack = selectedTrackId => {
-    setCurrentTrackIndex(music.tracks.findIndex(x => x._id === selectedTrackId));
+  const changeTrack = (selectedTrackId) => {
+    setCurrentTrackIndex(music.tracks.findIndex((x) => x._id === selectedTrackId));
   };
 
   if (currentTrackIndex !== null) {
@@ -18,10 +18,14 @@ const AudioTracks = ({ music }) => {
       <div className="audio-tracks bg-white p-1">
         <h2 className="my-2">{music.user.name.split(" ")[0]}'s Tracks</h2>
 
-        <MainTrack currentTrackIndex={currentTrackIndex} music={music} />
+        <MainTrack
+          currentTrackIndex={currentTrackIndex}
+          music={music}
+          track={music.tracks[currentTrackIndex]}
+        />
 
         <div className="playlist">
-          {music.tracks.map(track => (
+          {music.tracks.map((track) => (
             <Track
               key={track._id}
               track={track}
