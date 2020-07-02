@@ -3,12 +3,17 @@
 
 :root {
   --primary-color: #2b587c;
-  --secondary-color: rgb(17, 61, 102);
+  --primary-light: #89bace;
+  --secondary-color: #113d66;
   --dark-color: #102b41f5;
   --light-color: #e5e6ec;
+  --borders-1: #0f1a2e;
   --danger-color: #a10023;
   --success-color: #23ac8e;
-  --borders-1: #0f1a2e;
+  --white: #fff;
+  --light-gray: #c9c9c9;
+  --almost-black: #303030;
+  --black: #000;
   --landing-background: url("./img/concert2.jpg") no-repeat center center/cover;
 }
 
@@ -22,8 +27,8 @@ body {
   font-family: "Cagliostro", sans-serif;
   font-size: 1rem;
   line-height: 1.6;
-  background-color: #fff;
-  color: #333;
+  background-color: var(--white);
+  color: var(--almost-black);
 }
 
 a {
@@ -263,7 +268,7 @@ input::placeholder, textarea::placeholder, input {
 .btn {
   display: inline-block;
   background: var(--light-color);
-  color: #333;
+  color: var(--almost-black);
   padding: 0.3rem 1rem;
   font-size: 1rem;
   border: none;
@@ -279,7 +284,7 @@ input::placeholder, textarea::placeholder, input {
   text-align: center;
   margin: 0.3rem;
   background: var(--light-color);
-  color: #333;
+  color: var(--almost-black);
 }
 
 .alert {
@@ -287,17 +292,17 @@ input::placeholder, textarea::placeholder, input {
   margin: 1rem 0;
   opacity: 0.9;
   background: var(--light-color);
-  color: #333;
+  color: var(--almost-black);
 }
 
 .btn-primary, .bg-primary, .badge-primary, .alert-primary {
   background: var(--primary-color);
-  color: #fff;
+  color: var(--white);
 }
 
 .btn-secondary {
   background: var(--secondary-color);
-  color: #fff;
+  color: var(--white);
 }
 
 .btn-light, .bg-light, .badge-light, .alert-light {
@@ -307,23 +312,23 @@ input::placeholder, textarea::placeholder, input {
 
 .btn-dark, .bg-dark, .badge-dark, .alert-dark {
   background: var(--dark-color);
-  color: #fff;
+  color: var(--white);
 }
 
 .btn-danger, .bg-danger, .badge-danger, .alert-danger {
   background: var(--danger-color);
-  color: #fff;
+  color: var(--white);
 }
 
 .btn-success, .bg-success, .badge-success, .alert-success {
   background: var(--success-color);
-  color: #fff;
+  color: var(--white);
 }
 
 .btn-white, .bg-white, .badge-white, .alert-white {
-  background: #fff;
-  color: #333;
-  border: #ccc solid 1px;
+  background: var(--white);
+  color: var(--almost-black);
+  border: var(--light-gray) solid 1px;
 }
 
 .btn:hover {
@@ -331,7 +336,7 @@ input::placeholder, textarea::placeholder, input {
 }
 
 .bg-light, .badge-light {
-  border: #ccc solid 1px;
+  border: var(--light-gray) solid 1px;
 }
 
 .round-img {
@@ -340,7 +345,7 @@ input::placeholder, textarea::placeholder, input {
 
 .line {
   height: 1px;
-  background: #ccc;
+  background: var(--light-gray);
   margin: 1.5rem 0;
 }
 
@@ -364,7 +369,6 @@ input::placeholder, textarea::placeholder, input {
 .form .form-text {
   display: block;
   margin-top: 0.3rem;
-  color: #888;
 }
 
 .form input[type="text"], .form input[type="email"], .form input[type="password"], .form input[type="date"], .form select, .form textarea {
@@ -372,7 +376,7 @@ input::placeholder, textarea::placeholder, input {
   width: 100%;
   padding: 0.4rem;
   font-size: 1.2rem;
-  border: 1px solid #ccc;
+  border: 1px solid var(--light-gray);
 }
 
 .form input[type="file"] {
@@ -388,7 +392,7 @@ input::placeholder, textarea::placeholder, input {
   padding: 0.5rem;
   font-size: 1rem;
   background: var(--dark-color);
-  color: #fff;
+  color: var(--white);
   display: inline-block;
   cursor: pointer;
 }
@@ -412,24 +416,8 @@ input::placeholder, textarea::placeholder, input {
   width: 4rem;
 }
 
-.form .social-input i.fa-twitter {
-  color: #38a1f3;
-}
-
-.form .social-input i.fa-facebook {
-  color: #3b5998;
-}
-
-.form .social-input i.fa-instagram {
-  color: #3f729b;
-}
-
-.form .social-input i.fa-youtube {
-  color: #c4302b;
-}
-
-.form .social-input i.fa-linkedin {
-  color: #0077b5;
+.form .social-input i {
+  color: var(--secondary-color);
 }
 
 .table th, .table td {
@@ -467,7 +455,7 @@ input::placeholder, textarea::placeholder, input {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  color: #fff;
+  color: var(--white);
   padding: 0.25rem 0.4rem;
   margin: 0 0.2rem;
   width: 100%;
@@ -507,7 +495,7 @@ input::placeholder, textarea::placeholder, input {
 }
 
 .landing-inner {
-  color: #fff;
+  color: var(--white);
   height: 100%;
   width: 80%;
   margin: auto;
@@ -555,7 +543,7 @@ input::placeholder, textarea::placeholder, input {
 }
 
 .modal-content {
-  border-bottom: 1px solid #ccc;
+  border-bottom: 1px solid var(--light-gray);
   text-align: center;
 }
 
@@ -597,7 +585,7 @@ input::placeholder, textarea::placeholder, input {
 }
 
 .profile-top .icons a {
-  color: #fff;
+  color: var(--white);
   margin: 0 0.3rem;
 }
 
@@ -632,7 +620,7 @@ input::placeholder, textarea::placeholder, input {
 .profile-exp>div, .profile-edu>div {
   margin-bottom: 1rem;
   padding-bottom: 1rem;
-  border-bottom: #ccc 1px dotted;
+  border-bottom: var(--light-gray) 1px dotted;
 }
 
 .profile-exp>div:last-child, .profile-edu>div:last-child {
@@ -743,9 +731,9 @@ input::placeholder, textarea::placeholder, input {
   position: absolute;
   margin-top: 1.1rem;
   border-radius: 15px;
-  border: 0.07143rem solid #000000;
-  background: #292929;
-  color: white;
+  border: 0.07143rem solid var(--black);
+  background: var(--almost-black);
+  color: var(--white);
   box-sizing: border-box;
   pointer-events: auto;
   cursor: pointer;
@@ -754,7 +742,7 @@ input::placeholder, textarea::placeholder, input {
 }
 
 .track-comment-text .user {
-  color: rgb(137, 186, 206);
+  color: var(--primary-light);
   padding-right: 3px;
 }
 
@@ -777,7 +765,7 @@ input::placeholder, textarea::placeholder, input {
   text-align: center;
   border-radius: 100%;
   background-color: var(--secondary-color);
-  color: white;
+  color: var(--white);
   margin-right: 1.5rem;
 }
 
@@ -807,7 +795,7 @@ input::placeholder, textarea::placeholder, input {
   display: block;
   padding: 0.2rem;
   font-size: 1rem;
-  border: 1px solid #ccc;
+  border: 1px solid var(--light-gray);
   width: 100%;
 }
 
@@ -852,7 +840,7 @@ input::placeholder, textarea::placeholder, input {
 }
 
 .post .post-date {
-  color: #aaa;
+  color: var(--light-gray);
   font-size: 0.8rem;
   margin-bottom: 0.5rem;
 }
