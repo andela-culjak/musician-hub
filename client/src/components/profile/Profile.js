@@ -19,7 +19,7 @@ const Profile = ({
   music,
   auth,
   match,
-  history
+  history,
 }) => {
   useEffect(() => {
     getProfileById(match.params.id, history);
@@ -32,18 +32,7 @@ const Profile = ({
         <Spinner />
       ) : (
         <Fragment>
-          <Link to="/profiles" className="btn btn-white">
-            {" "}
-            All profiles{" "}
-          </Link>
-          {auth.isAuthenticated &&
-            auth.loading === false &&
-            auth.user._id === profile.user._id && (
-              <Link to="/dashboard" className="btn btn-dark">
-                Manage My Profile
-              </Link>
-            )}
-          <div className="profile-grid my-1">
+          <div className="profile-grid">
             <ProfileTop profile={profile} />
             <ProfileAbout profile={profile} />
 
@@ -51,7 +40,7 @@ const Profile = ({
               <h2 className="text-primary">Experience</h2>
               {profile.experience.length > 0 ? (
                 <Fragment>
-                  {profile.experience.map(experience => (
+                  {profile.experience.map((experience) => (
                     <ProfileExperience key={experience._id} experience={experience} />
                   ))}
                 </Fragment>
@@ -64,7 +53,7 @@ const Profile = ({
               <h2 className="text-primary">Education</h2>
               {profile.education.length > 0 ? (
                 <Fragment>
-                  {profile.education.map(education => (
+                  {profile.education.map((education) => (
                     <ProfileEducation key={education._id} education={education} />
                   ))}
                 </Fragment>
@@ -83,6 +72,13 @@ const Profile = ({
 
             <ProfileVideos name={profile.user.name} />
           </div>
+          {auth.isAuthenticated &&
+            auth.loading === false &&
+            auth.user._id === profile.user._id && (
+              <Link to="/dashboard" className="btn btn-dark my-1">
+                Manage My Profile
+              </Link>
+            )}
         </Fragment>
       )}
     </Fragment>
@@ -94,13 +90,13 @@ Profile.propTypes = {
   getMusicById: PropTypes.func.isRequired,
   profile: PropTypes.object.isRequired,
   music: PropTypes.object,
-  auth: PropTypes.object.isRequired
+  auth: PropTypes.object.isRequired,
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   profile: state.profile,
   music: state.music.music,
-  auth: state.auth
+  auth: state.auth,
 });
 
 export default connect(mapStateToProps, { getProfileById, getMusicById })(

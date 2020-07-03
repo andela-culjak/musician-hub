@@ -37,10 +37,12 @@ const MainTrack = ({
     }
     setPlayingToggle(false);
     drawASurfer();
+    // eslint-disable-next-line
   }, [currentTrackIndex]);
 
   useEffect(() => {
     displayComments();
+    // eslint-disable-next-line
   }, [track.comments, currentTrackIndex]);
 
   const drawASurfer = () => {

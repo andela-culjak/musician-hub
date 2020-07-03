@@ -7,6 +7,7 @@ const AudioTracks = ({ music }) => {
 
   useEffect(() => {
     setCurrentTrackIndex(Math.floor(Math.random() * music.tracks.length));
+    // eslint-disable-next-line
   }, []);
 
   const changeTrack = (selectedTrackId) => {
