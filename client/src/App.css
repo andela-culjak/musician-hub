@@ -63,7 +63,7 @@ input::placeholder, textarea::placeholder, input {
   max-width: 1200px;
   margin: auto;
   overflow: hidden;
-  padding: 3rem 1rem 3rem 1rem;
+  padding: 6rem 1rem 3rem 1rem;
 }
 
 .container:empty {
@@ -552,7 +552,10 @@ input::placeholder, textarea::placeholder, input {
 /* Profiles Page */
 
 .profile {
+  display: grid;
+  grid-template-columns: 2fr 4fr 2fr;
   align-items: center;
+  grid-gap: 2rem;
   padding: 1rem;
   line-height: 1.8;
   margin-bottom: 1rem;
@@ -562,7 +565,7 @@ input::placeholder, textarea::placeholder, input {
 
 .profile-grid {
   display: grid;
-  grid-template-areas: "top top" "about about" "exp edu" "tracks tracks" "videos videos";
+  grid-template-areas: "top top" "nav nav" "about about" "exp edu" "tracks tracks" "videos videos";
   grid-gap: 1rem;
 }
 
@@ -575,9 +578,9 @@ input::placeholder, textarea::placeholder, input {
   width: 200px;
 }
 
-/* .profile-top .heading-items {
-  grid-area: heading;
-} */
+.profile-nav {
+  grid-area: nav;
+}
 
 .profile-top .icons a {
   color: var(--white);
