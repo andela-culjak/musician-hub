@@ -12,6 +12,7 @@
   --success-color: #23ac8e;
   --white: #fff;
   --light-gray: #c9c9c9;
+  --dark-gray: #505050;
   --almost-black: #303030;
   --black: #000;
   --landing-background: url("./img/concert2.jpg") no-repeat center center/cover;
@@ -565,7 +566,7 @@ input::placeholder, textarea::placeholder, input {
 
 .profile-grid {
   display: grid;
-  grid-template-areas: "top top" "nav nav" "about about" "exp edu" "tracks tracks" "videos videos";
+  grid-template-areas: "top top" "nav nav" "catcontent catcontent" "cat2 cat3";
   grid-gap: 1rem;
 }
 
@@ -580,6 +581,20 @@ input::placeholder, textarea::placeholder, input {
 
 .profile-nav {
   grid-area: nav;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.nav-category, .nav-category:focus {
+  color: var(--dark-gray);
+  border: none;
+  background: none;
+  outline: none;
+}
+
+.nav-category.selected {
+  color: var(--almost-black)!important;
+  border-bottom: 2px solid var(--almost-black)!important;
 }
 
 .profile-top .icons a {
@@ -592,7 +607,7 @@ input::placeholder, textarea::placeholder, input {
 }
 
 .profile-about {
-  grid-area: about;
+  grid-area: catcontent;
   text-align: center;
 }
 
@@ -604,11 +619,11 @@ input::placeholder, textarea::placeholder, input {
 }
 
 .profile-exp {
-  grid-area: exp;
+  grid-area: cat2;
 }
 
 .profile-edu {
-  grid-area: edu;
+  grid-area: cat3;
 }
 
 .profile-exp h2, .profile-edu h2 {
@@ -630,7 +645,7 @@ input::placeholder, textarea::placeholder, input {
 }
 
 .profile-videos {
-  grid-area: videos;
+  grid-area: catcontent;
   padding: 10px;
 }
 
@@ -655,7 +670,7 @@ input::placeholder, textarea::placeholder, input {
 /* Music Tracks */
 
 .audio-tracks {
-  grid-area: tracks;
+  grid-area: catcontent;
 }
 
 .times {

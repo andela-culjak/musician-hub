@@ -1,12 +1,10 @@
-import React, { Fragment, useEffect } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import { Link, withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import Spinner from "../layout/Spinner";
 import ProfileTop from "./ProfileTop";
-import ProfileAbout from "./ProfileAbout";
-import ProfileExperience from "./ProfileExperience";
-import ProfileEducation from "./ProfileEducation";
+import About from "./About";
 import ProfileVideos from "./ProfileVideos";
 import AudioTracks from "./Music/AudioTracks";
 import { getProfileById } from "../../actions/profile";
@@ -26,59 +24,60 @@ const Profile = ({
     getMusicById(match.params.id);
   }, [getProfileById, getMusicById, match.params.id, history]);
 
+  const categories = ["music", "videos", "about"];
+  const [category, setCategory] = useState("music");
+
   return (
     <Fragment>
-      {profile === null || loading ? (
+      {!profile || loading ? (
         <Spinner />
       ) : (
         <Fragment>
           <div className="profile-grid">
             <ProfileTop profile={profile} />
-            <ProfileAbout profile={profile} />
 
-            <div className="profile-exp bg-white p-2">
-              <h2 className="text-primary">Experience</h2>
-              {profile.experience.length > 0 ? (
-                <Fragment>
-                  {profile.experience.map((experience) => (
-                    <ProfileExperience key={experience._id} experience={experience} />
-                  ))}
-                </Fragment>
-              ) : (
-                <h4>No experiences listed </h4>
-              )}
+            <div className="profile-nav bg-white p-1">
+              {categories.map((cat) => (
+                <button
+                  key={cat}
+                  onClick={() => setCategory(cat)}
+                  className={`nav-category mx-1 ${cat === category && "selected"}`}>
+                  {cat.toUpperCase()}
+                </button>
+              ))}
+
+              {auth.isAuthenticated &&
+                auth.loading === false &&
+                auth.user._id === profile.user._id && (
+                  <button
+                    onClick={() => setCategory("dashboard")}
+                    className={`nav-category mx-1 ${
+                      "dashboard" === category && "selected"
+                    }`}>
+                    DASHBOARD
+                  </button>
+                )}
             </div>
 
-            <div className="profile-edu bg-white p-2">
-              <h2 className="text-primary">Education</h2>
-              {profile.education.length > 0 ? (
-                <Fragment>
-                  {profile.education.map((education) => (
-                    <ProfileEducation key={education._id} education={education} />
-                  ))}
-                </Fragment>
+            {category === "music" &&
+              (music && music.tracks.length > 0 ? (
+                <AudioTracks music={music} />
               ) : (
-                <h4>No education listed </h4>
-              )}
-            </div>
+                <div className="audio-tracks bg-white p-1">
+                  <h3>This user has not added any music tracks yet.</h3>
+                </div>
+              ))}
 
-            {music && music.tracks.length > 0 ? (
-              <AudioTracks music={music} />
-            ) : (
-              <div className="audio-tracks bg-white p-1">
-                <h3>This used has not added any music tracks yet.</h3>
-              </div>
-            )}
+            {category === "about" && <About profile={profile} />}
 
-            <ProfileVideos name={profile.user.name} />
-          </div>
-          {auth.isAuthenticated &&
-            auth.loading === false &&
-            auth.user._id === profile.user._id && (
+            {category === "videos" && <ProfileVideos name={profile.user.name} />}
+
+            {category === "dashboard" && (
               <Link to="/dashboard" className="btn btn-dark my-1">
                 Manage My Profile
               </Link>
             )}
+          </div>
         </Fragment>
       )}
     </Fragment>
