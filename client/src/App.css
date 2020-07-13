@@ -566,7 +566,7 @@ input::placeholder, textarea::placeholder, input {
 
 .profile-grid {
   display: grid;
-  grid-template-areas: "top top" "nav nav" "catcontent catcontent" "cat2 cat3";
+  grid-template-areas: "top top" "nav nav" "catcontent catcontent" "cat2 cat2";
   grid-gap: 1rem;
 }
 
@@ -622,25 +622,21 @@ input::placeholder, textarea::placeholder, input {
   grid-area: cat2;
 }
 
-.profile-edu {
-  grid-area: cat3;
-}
-
-.profile-exp h2, .profile-edu h2 {
+.profile-exp h2 {
   margin-bottom: 1rem;
 }
 
-.profile-exp>div, .profile-edu>div {
+.profile-exp>div {
   margin-bottom: 1rem;
   padding-bottom: 1rem;
   border-bottom: var(--light-gray) 1px dotted;
 }
 
-.profile-exp>div:last-child, .profile-edu>div:last-child {
+.profile-exp>div:last-child {
   border: 0;
 }
 
-.profile-exp p, .profile-edu p {
+.profile-exp p {
   margin: 0.5rem 0;
 }
 
@@ -950,9 +946,9 @@ input::placeholder, textarea::placeholder, input {
     width: 200px;
     margin: auto;
   }
-  .profile-grid {
+  /* .profile-grid {
     grid-template-areas: "top" "about" "exp" "edu" "videos" "tracks";
-  }
+  } */
   .profile-about .skills {
     flex-direction: column;
   }

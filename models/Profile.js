@@ -4,114 +4,84 @@ const Schema = mongoose.Schema;
 const ProfileSchema = new Schema({
   user: {
     type: Schema.Types.ObjectId,
-    ref: "user"
+    ref: "user",
   },
   band: {
-    type: String
+    type: String,
   },
   website: {
-    type: String
+    type: String,
   },
   location: {
-    type: String
+    type: String,
   },
   position: {
-    type: String
+    type: String,
   },
   skills: {
     type: [String],
-    required: true
+    required: true,
   },
   videos: {
-    type: [String]
+    type: [String],
   },
   music: {
     type: Schema.Types.ObjectId,
-    ref: "music"
+    ref: "music",
   },
   bio: {
-    type: String
+    type: String,
   },
   experience: [
     {
       position: {
         type: String,
-        required: true
+        required: true,
       },
       band: {
         type: String,
-        required: true
+        required: true,
       },
       location: {
-        type: String
+        type: String,
       },
       from: {
         type: Date,
-        required: true
+        required: true,
       },
       to: {
-        type: Date
-      },
-      current: {
-        type: Boolean,
-        default: false
-      },
-      description: {
-        type: String
-      }
-    }
-  ],
-  education: [
-    {
-      school: {
-        type: String,
-        required: true
-      },
-      degree: {
-        type: String,
-        required: true
-      },
-      fieldofstudy: {
-        type: String,
-        required: true
-      },
-      from: {
         type: Date,
-        required: true
-      },
-      to: {
-        type: Date
       },
       current: {
         type: Boolean,
-        default: false
+        default: false,
       },
       description: {
-        type: String
-      }
-    }
+        type: String,
+      },
+    },
   ],
   social: {
     youtube: {
-      type: String
+      type: String,
     },
     twitter: {
-      type: String
+      type: String,
     },
     facebook: {
-      type: String
+      type: String,
     },
     linkedin: {
-      type: String
+      type: String,
     },
     instagram: {
-      type: String
-    }
+      type: String,
+    },
   },
   date: {
     type: Date,
-    default: Date.now
-  }
+    default: Date.now,
+  },
 });
 
 module.exports = Profile = mongoose.model("profile", ProfileSchema);

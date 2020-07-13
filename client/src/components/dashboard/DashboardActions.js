@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
-const DashboardActions = user => {
+const DashboardActions = (user) => {
   /*if (user) {
     console.log(user);
   }*/
@@ -13,9 +13,6 @@ const DashboardActions = user => {
       </Link>
       <Link to="add-experience" className="btn btn-light">
         <i className="fab fa-black-tie text-primary" /> Add Experience
-      </Link>
-      <Link to="add-education" className="btn btn-light">
-        <i className="fas fa-graduation-cap text-primary" /> Add Education
       </Link>
       <Link to="upload-avatar" className="btn btn-light">
         <i className="fas fa-user text-primary" /> Change profile picture
@@ -33,7 +30,7 @@ const DashboardActions = user => {
 };
 
 DashboardActions.propTypes = {
-  user: PropTypes.object.isRequired
+  user: PropTypes.object.isRequired,
 };
 
 export default DashboardActions;
