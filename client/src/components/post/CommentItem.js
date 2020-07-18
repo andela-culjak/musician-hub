@@ -9,9 +9,9 @@ const CommentItem = ({
   postId,
   comment: { _id, text, user, date },
   auth,
-  deleteComment
+  deleteComment,
 }) => (
-  <div className="post comment bg-white p my">
+  <div className="post comment bg-white p-05 my-05">
     <div>
       {user._id ? (
         <Link to={`/profile/user/${user._id}`}>
@@ -30,10 +30,9 @@ const CommentItem = ({
 
       {!auth.loading && user._id === auth.user._id && (
         <button
-          onClick={e => deleteComment(postId, _id)}
+          onClick={(e) => deleteComment(postId, _id)}
           type="button"
-          className="btn delete-comment-btn"
-        >
+          className="btn delete-comment-btn">
           <i className="fas fa-times" />{" "}
         </button>
       )}
@@ -45,14 +44,11 @@ CommentItem.propTypes = {
   postId: PropTypes.string.isRequired,
   comment: PropTypes.object.isRequired,
   auth: PropTypes.object.isRequired,
-  deleteComment: PropTypes.func.isRequired
+  deleteComment: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = state => ({
-  auth: state.auth
+const mapStateToProps = (state) => ({
+  auth: state.auth,
 });
 
-export default connect(
-  mapStateToProps,
-  { deleteComment }
-)(CommentItem);
+export default connect(mapStateToProps, { deleteComment })(CommentItem);

@@ -8,7 +8,7 @@ import { getMusicById, deleteTrack } from "../../actions/music";
 const ManageTracks = ({ music, auth, getMusicById, deleteTrack }) => {
   const [deleteModal, setDeleteModal] = useState({
     show: false,
-    track: null
+    track: null,
   });
 
   useEffect(() => {
@@ -31,13 +31,13 @@ const ManageTracks = ({ music, auth, getMusicById, deleteTrack }) => {
           <Fragment>
             <div className="mb-1">
               <h2>My tracks:</h2>
-              {music.tracks.map(track => (
+              {music.tracks.map((track) => (
                 <div
                   key={track._id}
                   className="manage-tracks-list-item bg-light my-1 p-1">
                   {track.title}
                   <button
-                    onClick={e => setDeleteModal({ show: true, track: track })}
+                    onClick={(e) => setDeleteModal({ show: true, track: track })}
                     className="btn delete-track-btn">
                     Remove
                   </button>
@@ -61,7 +61,7 @@ const ManageTracks = ({ music, auth, getMusicById, deleteTrack }) => {
             continue?
           </h4>
 
-          <div className="modal-actions py">
+          <div className="modal-actions py-05">
             <button className="btn toggle-button" onClick={() => confirmDeletingTrack()}>
               Yes
             </button>
@@ -82,12 +82,12 @@ ManageTracks.propTypes = {
   music: PropTypes.shape({}),
   auth: PropTypes.shape({}),
   getMusicById: PropTypes.func.isRequired,
-  deleteTrack: PropTypes.func.isRequired
+  deleteTrack: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   music: state.music.music,
-  auth: state.auth
+  auth: state.auth,
 });
 
 export default connect(mapStateToProps, { getMusicById, deleteTrack })(

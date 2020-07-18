@@ -1,432 +1,4 @@
-@import url("https://fonts.googleapis.com/css?family=Cagliostro|Dawning+of+a+New+Day&display=swap");
-/* Global Styles */
-
-:root {
-  --primary-color: #2b587c;
-  --primary-light: #89bace;
-  --secondary-color: #113d66;
-  --dark-color: #102b41f5;
-  --light-color: #e5e6ec;
-  --borders-1: #0f1a2e;
-  --danger-color: #a10023;
-  --success-color: #23ac8e;
-  --white: #fff;
-  --light-gray: #c9c9c9;
-  --dark-gray: #505050;
-  --almost-black: #303030;
-  --black: #000;
-  --landing-background: url("./img/concert2.jpg") no-repeat center center/cover;
-}
-
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-body {
-  font-family: "Cagliostro", sans-serif;
-  font-size: 1rem;
-  line-height: 1.6;
-  background-color: var(--white);
-  color: var(--almost-black);
-}
-
-a {
-  color: var(--primary-color);
-  text-decoration: none;
-}
-
-ul {
-  list-style: none;
-}
-
-img {
-  width: 100%;
-}
-
-input::placeholder, textarea::placeholder, input {
-  font-family: "Cagliostro", sans-serif;
-}
-
-.logo {
-  font-size: 1.6rem;
-  font-family: "Dawning of a New Day", cursive;
-}
-
-.invisible {
-  display: none;
-}
-
-/* Utilities */
-
-.container {
-  max-width: 1200px;
-  margin: auto;
-  overflow: hidden;
-  padding: 6rem 1rem 3rem 1rem;
-}
-
-.container:empty {
-  display: none;
-}
-
-/* Text Styles*/
-
-.x-large {
-  font-size: 5.5rem;
-  line-height: 1.2;
-}
-
-.large {
-  font-size: 3rem;
-  line-height: 1.2;
-}
-
-.lead {
-  font-size: 1.3rem;
-}
-
-.text-center {
-  text-align: center;
-}
-
-.text-primary {
-  color: var(--primary-color);
-}
-
-.text-dark {
-  color: var(--dark-color);
-}
-
-/* Padding */
-
-.p {
-  padding: 0.5rem;
-}
-
-.p-1 {
-  padding: 1rem;
-}
-
-.p-2 {
-  padding: 2rem;
-}
-
-.p-3 {
-  padding: 3rem;
-}
-
-.pt {
-  padding-top: 0.5rem;
-}
-
-.pt-1 {
-  padding-top: 1rem;
-}
-
-.pt-2 {
-  padding-top: 2rem;
-}
-
-.pt-3 {
-  padding-top: 3rem;
-}
-
-.pb {
-  padding-bottom: 0.5rem;
-}
-
-.pb-1 {
-  padding-bottom: 1rem;
-}
-
-.pb-2 {
-  padding-bottom: 2rem;
-}
-
-.pb-3 {
-  padding-bottom: 3rem;
-}
-
-.py {
-  padding: 0.5rem 0;
-}
-
-.py-1 {
-  padding: 1rem 0;
-}
-
-.py-2 {
-  padding: 2rem 0;
-}
-
-.py-3 {
-  padding: 3rem 0;
-}
-
-.px {
-  padding: 0 0.5rem;
-}
-
-.px-1 {
-  padding: 0 1rem;
-}
-
-.px-2 {
-  padding: 0 2rem;
-}
-
-.px-3 {
-  padding: 0 3rem;
-}
-
-/* Margin */
-
-.m {
-  margin: 0.5rem;
-}
-
-.m-1 {
-  margin: 1rem;
-}
-
-.m-2 {
-  margin: 2rem;
-}
-
-.m-3 {
-  margin: 3rem;
-}
-
-.mt {
-  margin-top: 0.5rem;
-}
-
-.mt-1 {
-  margin-top: 1rem;
-}
-
-.mt-2 {
-  margin-top: 2rem;
-}
-
-.mt-3 {
-  margin-top: 3rem;
-}
-
-.mb {
-  margin-bottom: 0.5rem;
-}
-
-.mb-1 {
-  margin-bottom: 1rem;
-}
-
-.mb-2 {
-  margin-bottom: 2rem;
-}
-
-.mb-3 {
-  margin-bottom: 3rem;
-}
-
-.my {
-  margin: 0.5rem 0;
-}
-
-.my-1 {
-  margin: 1rem 0;
-}
-
-.my-2 {
-  margin: 2rem 0;
-}
-
-.my-3 {
-  margin: 3rem 0;
-}
-
-.mx {
-  margin: 0 0.5rem;
-}
-
-.mx-1 {
-  margin: 0 1rem;
-}
-
-.mx-2 {
-  margin: 0 2rem;
-}
-
-.mx-3 {
-  margin: 0 3rem;
-}
-
-.btn {
-  display: inline-block;
-  background: var(--light-color);
-  color: var(--almost-black);
-  padding: 0.3rem 1rem;
-  font-size: 1rem;
-  border: none;
-  cursor: pointer;
-  margin-right: 0.5rem;
-  transition: opacity 0.2s ease-in;
-  outline: none;
-}
-
-.badge {
-  font-size: 0.8rem;
-  padding: 0.1rem;
-  text-align: center;
-  margin: 0.3rem;
-  background: var(--light-color);
-  color: var(--almost-black);
-}
-
-.alert {
-  padding: 0.8rem;
-  margin: 1rem 0;
-  opacity: 0.9;
-  background: var(--light-color);
-  color: var(--almost-black);
-}
-
-.btn-primary, .bg-primary, .badge-primary, .alert-primary {
-  background: var(--primary-color);
-  color: var(--white);
-}
-
-.btn-secondary {
-  background: var(--secondary-color);
-  color: var(--white);
-}
-
-.btn-light, .bg-light, .badge-light, .alert-light {
-  background: var(--light-color);
-  color: #333;
-}
-
-.btn-dark, .bg-dark, .badge-dark, .alert-dark {
-  background: var(--dark-color);
-  color: var(--white);
-}
-
-.btn-danger, .bg-danger, .badge-danger, .alert-danger {
-  background: var(--danger-color);
-  color: var(--white);
-}
-
-.btn-success, .bg-success, .badge-success, .alert-success {
-  background: var(--success-color);
-  color: var(--white);
-}
-
-.btn-white, .bg-white, .badge-white, .alert-white {
-  background: var(--white);
-  color: var(--almost-black);
-  border: var(--light-gray) solid 1px;
-}
-
-.btn:hover {
-  opacity: 0.8;
-}
-
-.bg-light, .badge-light {
-  border: var(--light-gray) solid 1px;
-}
-
-.round-img {
-  border-radius: 50%;
-}
-
-.line {
-  height: 1px;
-  background: var(--light-gray);
-  margin: 1.5rem 0;
-}
-
-/* Overlay */
-
-.dark-overlay {
-  background-color: rgba(0, 0, 0, 0.7);
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-}
-
-/* Forms */
-
-.form .form-group {
-  margin: 1.2rem 0;
-}
-
-.form .form-text {
-  display: block;
-  margin-top: 0.3rem;
-}
-
-.form input[type="text"], .form input[type="email"], .form input[type="password"], .form input[type="date"], .form select, .form textarea {
-  display: block;
-  width: 100%;
-  padding: 0.4rem;
-  font-size: 1.2rem;
-  border: 1px solid var(--light-gray);
-}
-
-.form input[type="file"] {
-  width: 0.1px;
-  height: 0.1px;
-  opacity: 0;
-  overflow: hidden;
-  position: absolute;
-  z-index: -1;
-}
-
-.form input[type="file"]+label {
-  padding: 0.5rem;
-  font-size: 1rem;
-  background: var(--dark-color);
-  color: var(--white);
-  display: inline-block;
-  cursor: pointer;
-}
-
-.form input[type="file"]:focus+label, .form input[type="file"]+label:hover {
-  opacity: 0.8;
-  outline: 1px dotted #000;
-  outline: -webkit-focus-ring-color auto 5px;
-}
-
-.form input[type="submit"], button {
-  font: inherit;
-}
-
-.form .social-input {
-  display: flex;
-}
-
-.form .social-input i {
-  padding: 0.5rem;
-  width: 4rem;
-}
-
-.form .social-input i {
-  color: var(--secondary-color);
-}
-
-.table th, .table td {
-  padding: 0.5rem 0.7rem;
-  text-align: left;
-}
-
-.table th {
-  background: var(--light-color);
-}
-
+@import "./Utility.css";
 /* Navbar */
 
 .navbar {
@@ -486,6 +58,15 @@ input::placeholder, textarea::placeholder, input {
 }
 
 /* Landing Page */
+
+.dark-overlay {
+  background-color: rgba(0, 0, 0, 0.7);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
 
 .landing {
   position: relative;
@@ -566,7 +147,7 @@ input::placeholder, textarea::placeholder, input {
 
 .profile-grid {
   display: grid;
-  grid-template-areas: "top top" "nav nav" "catcontent catcontent" "cat2 cat2";
+  grid-template-areas: "top" "nav" "category";
   grid-gap: 1rem;
 }
 
@@ -607,19 +188,23 @@ input::placeholder, textarea::placeholder, input {
 }
 
 .profile-about {
-  grid-area: catcontent;
-  text-align: center;
+  grid-area: category;
+  display: grid;
+  grid-template-areas: "info experience";
+  grid-gap: 1rem;
 }
 
-.profile-about .skills {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
+.profile-info {
+  grid-area: info;
+}
+
+.profile-info .info-list-item {
+  border: solid 1px var(--light-gray);
+  box-shadow: -2rem 2rem 2rem rgba(rgb(255, 255, 255), 0.2);
 }
 
 .profile-exp {
-  grid-area: cat2;
+  grid-area: experience;
 }
 
 .profile-exp h2 {
@@ -641,7 +226,7 @@ input::placeholder, textarea::placeholder, input {
 }
 
 .profile-videos {
-  grid-area: catcontent;
+  grid-area: category;
   padding: 10px;
 }
 
@@ -666,7 +251,7 @@ input::placeholder, textarea::placeholder, input {
 /* Music Tracks */
 
 .audio-tracks {
-  grid-area: catcontent;
+  grid-area: category;
 }
 
 .times {
@@ -947,9 +532,9 @@ input::placeholder, textarea::placeholder, input {
     margin: auto;
   }
   /* .profile-grid {
-    grid-template-areas: "top" "about" "exp" "edu" "videos" "tracks";
+    grid-template-areas: "top" "info" "exp" "edu" "videos" "tracks";
   } */
-  .profile-about .skills {
+  .profile-info .instruments {
     flex-direction: column;
   }
   .profile-videos .videos-container {

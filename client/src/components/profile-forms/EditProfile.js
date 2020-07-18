@@ -15,7 +15,9 @@ const EditProfile = ({
     website: "",
     location: "",
     position: "",
-    skills: "",
+    instruments: "",
+    genres: "",
+    influences: "",
     videos: "",
     bio: "",
     twitter: "",
@@ -35,7 +37,9 @@ const EditProfile = ({
       website: loading || !profile.website ? "" : profile.website,
       location: loading || !profile.location ? "" : profile.location,
       position: loading || !profile.position ? "" : profile.position,
-      skills: loading || !profile.skills ? "" : profile.skills.join(", "),
+      instruments: loading || !profile.instruments ? "" : profile.instruments.join(", "),
+      genres: loading || !profile.genres ? "" : profile.genres.join(", "),
+      influences: loading || !profile.influences ? "" : profile.influences.join(", "),
       videos: loading || !profile.videos ? "" : profile.videos.join(", "),
       bio: loading || !profile.bio ? "" : profile.bio,
       twitter: loading || !profile.social ? "" : profile.social.twitter,
@@ -52,7 +56,9 @@ const EditProfile = ({
     website,
     location,
     position,
-    skills,
+    instruments,
+    genres,
+    influences,
     videos,
     bio,
     twitter,
@@ -123,13 +129,37 @@ const EditProfile = ({
         <div className="form-group">
           <input
             type="text"
-            placeholder="* Skills"
-            name="skills"
-            value={skills}
+            placeholder="* Instruments"
+            name="instruments"
+            value={instruments}
             onChange={(e) => onChange(e)}
           />
           <small className="form-text">
-            Please use comma separated values (eg. guitar,piano,ukulele)
+            Separate by comma (eg. guitar, piano, drums)
+          </small>
+        </div>
+        <div className="form-group">
+          <input
+            type="text"
+            placeholder="Genres"
+            name="genres"
+            value={genres}
+            onChange={(e) => onChange(e)}
+          />
+          <small className="form-text">
+            Separate by comma (eg. country, electronic, pop)
+          </small>
+        </div>
+        <div className="form-group">
+          <input
+            type="text"
+            placeholder="Influences"
+            name="influences"
+            value={influences}
+            onChange={(e) => onChange(e)}
+          />
+          <small className="form-text">
+            Separate by comma (eg. Metallica, The Cure, David Bowie)
           </small>
         </div>
         <div className="form-group">

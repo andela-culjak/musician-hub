@@ -75,7 +75,7 @@ export const getProfileById = (user_id, history) => async (dispatch) => {
 };
 
 //Create or update profile
-export const createProfile = (formData, history, edit = false) => async (dispatch) => {
+export const createProfile = (formData, history, edit) => async (dispatch) => {
   try {
     const config = {
       headers: {
