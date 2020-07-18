@@ -7,17 +7,13 @@ const PostForm = ({ addPost }) => {
   const [text, setText] = useState("");
   return (
     <div className="post-form">
-      <div className="bg-primary p">
-        <h4>Create a post</h4>
-      </div>
       <form
         className="form my-1"
-        onSubmit={e => {
+        onSubmit={(e) => {
           e.preventDefault();
           addPost({ text });
           setText("");
-        }}
-      >
+        }}>
         <textarea
           name="text"
           cols="30"
@@ -25,7 +21,7 @@ const PostForm = ({ addPost }) => {
           placeholder="What's on your mind?"
           value={text}
           required
-          onChange={e => {
+          onChange={(e) => {
             setText(e.target.value);
           }}
         />
@@ -36,10 +32,7 @@ const PostForm = ({ addPost }) => {
 };
 
 PostForm.propTypes = {
-  addPost: PropTypes.func.isRequired
+  addPost: PropTypes.func.isRequired,
 };
 
-export default connect(
-  null,
-  { addPost }
-)(PostForm);
+export default connect(null, { addPost })(PostForm);

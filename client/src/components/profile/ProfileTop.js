@@ -21,10 +21,10 @@ const ProfileTop = ({
         <h1 className="large">{name}</h1>
 
         <p className="lead">
-          {position} {band && <span> at {band}</span>}
+          {position} {band && <span> {band && "at " + band} </span>}
         </p>
         <p>{location && <span> {location} </span>}</p>
-        <div className="icons mt">
+        <div className="icons mt-05">
           {website && (
             <a href={website} target="_blank" rel="noopener noreferrer">
               <i className="fas fa-globe fa-1x" />

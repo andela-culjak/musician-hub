@@ -1,0 +1,539 @@
+@import url("https://fonts.googleapis.com/css?family=Cagliostro|Dawning+of+a+New+Day&display=swap");
+/* Global Styles */
+
+:root {
+    --primary-color: #2b587c;
+    --primary-light: #89bace;
+    --secondary-color: #113d66;
+    --dark-color: #102b41f5;
+    --light-color: #e5e6ec;
+    --borders-1: #0f1a2e;
+    --danger-color: #a10023;
+    --success-color: #23ac8e;
+    --white: #fff;
+    --light-gray: #c9c9c9;
+    --dark-gray: #505050;
+    --almost-black: #303030;
+    --black: #000;
+    --landing-background: url("./img/concert2.jpg") no-repeat center center/cover;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: "Cagliostro", sans-serif;
+    font-size: 1rem;
+    line-height: 1.5;
+    background-color: var(--white);
+    color: var(--almost-black);
+}
+
+a {
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+ul {
+    list-style: none;
+}
+
+img {
+    width: 100%;
+}
+
+input::placeholder, textarea::placeholder, input {
+    font-family: "Cagliostro", sans-serif;
+}
+
+.logo {
+    font-size: 1.6rem;
+    font-family: "Dawning of a New Day", cursive;
+}
+
+.invisible {
+    display: none;
+}
+
+/* Utilities */
+
+.container {
+    max-width: 1200px;
+    margin: auto;
+    overflow: hidden;
+    padding: 6rem 1rem 3rem 1rem;
+}
+
+.container:empty {
+    display: none;
+}
+
+/* Text Styles*/
+
+.x-large {
+    font-size: 5.5rem;
+    line-height: 1.2;
+}
+
+.large {
+    font-size: 3rem;
+    line-height: 1.2;
+}
+
+.lead {
+    font-size: 1.3rem;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.text-primary {
+    color: var(--primary-color);
+}
+
+.text-dark {
+    color: var(--dark-color);
+}
+
+/* Buttons */
+
+.btn {
+    display: inline-block;
+    background: var(--light-color);
+    color: var(--almost-black);
+    padding: 0.3rem 1rem;
+    font-size: 1rem;
+    border: none;
+    cursor: pointer;
+    margin-right: 0.5rem;
+    transition: opacity 0.2s ease-in;
+    outline: none;
+}
+
+.badge {
+    font-size: 0.8rem;
+    padding: 0.1rem;
+    text-align: center;
+    margin: 0.3rem;
+    background: var(--light-color);
+    color: var(--almost-black);
+}
+
+.alert {
+    padding: 0.8rem;
+    margin: 1rem 0;
+    opacity: 0.9;
+    background: var(--light-color);
+    color: var(--almost-black);
+}
+
+.btn-primary, .bg-primary, .badge-primary, .alert-primary {
+    background: var(--primary-color);
+    color: var(--white);
+}
+
+.btn-secondary {
+    background: var(--secondary-color);
+    color: var(--white);
+}
+
+.btn-light, .bg-light, .badge-light, .alert-light {
+    background: var(--light-color);
+    color: #333;
+}
+
+.btn-dark, .bg-dark, .badge-dark, .alert-dark {
+    background: var(--dark-color);
+    color: var(--white);
+}
+
+.btn-danger, .bg-danger, .badge-danger, .alert-danger {
+    background: var(--danger-color);
+    color: var(--white);
+}
+
+.btn-success, .bg-success, .badge-success, .alert-success {
+    background: var(--success-color);
+    color: var(--white);
+}
+
+.btn-white, .bg-white, .badge-white, .alert-white {
+    background: var(--white);
+    color: var(--almost-black);
+    border: var(--light-gray) solid 1px;
+}
+
+.btn:hover {
+    opacity: 0.8;
+}
+
+.bg-light, .badge-light {
+    border: var(--light-gray) solid 1px;
+}
+
+.round-img {
+    border-radius: 50%;
+}
+
+.line {
+    height: 1px;
+    background: var(--light-gray);
+    margin: 1rem 0;
+}
+
+/* Forms */
+
+.form .form-group {
+    margin: 1.2rem 0;
+}
+
+.form .form-text {
+    display: block;
+    margin-top: 0.3rem;
+}
+
+.form input[type="text"], .form input[type="email"], .form input[type="password"], .form input[type="date"], .form select, .form textarea {
+    display: block;
+    width: 100%;
+    padding: 0.4rem;
+    font-size: 1.2rem;
+    border: 1px solid var(--light-gray);
+}
+
+.form input[type="file"] {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+
+.form input[type="file"]+label {
+    padding: 0.5rem;
+    font-size: 1rem;
+    background: var(--dark-color);
+    color: var(--white);
+    display: inline-block;
+    cursor: pointer;
+}
+
+.form input[type="file"]:focus+label, .form input[type="file"]+label:hover {
+    opacity: 0.8;
+    outline: 1px dotted #000;
+    outline: -webkit-focus-ring-color auto 5px;
+}
+
+.form input[type="submit"], button {
+    font: inherit;
+}
+
+.form .social-input {
+    display: flex;
+}
+
+.form .social-input i {
+    padding: 0.5rem;
+    width: 4rem;
+}
+
+.form .social-input i {
+    color: var(--secondary-color);
+}
+
+.table th, .table td {
+    padding: 0.5rem 0.7rem;
+    text-align: left;
+}
+
+.table th {
+    background: var(--light-color);
+}
+
+/* Padding */
+
+.p-025 {
+    padding: 0.25rem;
+}
+
+.p-05 {
+    padding: 0.5rem;
+}
+
+.p-1 {
+    padding: 1rem;
+}
+
+.p-2 {
+    padding: 2rem;
+}
+
+.p-3 {
+    padding: 3rem;
+}
+
+.py-025 {
+    padding: 0.25rem 0;
+}
+
+.py-05 {
+    padding: 0.5rem 0;
+}
+
+.py-1 {
+    padding: 1rem 0;
+}
+
+.py-2 {
+    padding: 2rem 0;
+}
+
+.py-3 {
+    padding: 3rem 0;
+}
+
+.pt-025 {
+    padding-top: 0.25rem;
+}
+
+.pt-05 {
+    padding-top: 0.5rem;
+}
+
+.pt-1 {
+    padding-top: 1rem;
+}
+
+.pt-2 {
+    padding-top: 2rem;
+}
+
+.pt-3 {
+    padding-top: 3rem;
+}
+
+.pb-025 {
+    padding-bottom: 0.25rem;
+}
+
+.pb-05 {
+    padding-bottom: 0.5rem;
+}
+
+.pb-1 {
+    padding-bottom: 1rem;
+}
+
+.pb-2 {
+    padding-bottom: 2rem;
+}
+
+.pb-3 {
+    padding-bottom: 3rem;
+}
+
+.px-025 {
+    padding: 0 0.25rem;
+}
+
+.px-05 {
+    padding: 0 0.5rem;
+}
+
+.px-1 {
+    padding: 0 1rem;
+}
+
+.px-2 {
+    padding: 0 2rem;
+}
+
+.px-3 {
+    padding: 0 3rem;
+}
+
+.pl-025 {
+    padding-left: 0.25rem;
+}
+
+.pl-05 {
+    padding-left: 0.5rem;
+}
+
+.pl-1 {
+    padding-left: 1rem;
+}
+
+.pl-2 {
+    padding-left: 2rem;
+}
+
+.pl-3 {
+    padding-left: 3rem;
+}
+
+.pr-025 {
+    padding-right: 0.25rem;
+}
+
+.pr-05 {
+    padding-right: 0.5rem;
+}
+
+.pr-1 {
+    padding-right: 1rem;
+}
+
+.pr-2 {
+    padding-right: 2rem;
+}
+
+.pr-3 {
+    padding-right: 3rem;
+}
+
+/* Margin */
+
+.m-025 {
+    margin: 0.25rem;
+}
+
+.m-05 {
+    margin: 0.5rem;
+}
+
+.m-1 {
+    margin: 1rem;
+}
+
+.m-2 {
+    margin: 2rem;
+}
+
+.m-3 {
+    margin: 3rem;
+}
+
+.my-025 {
+    margin: 0.25rem 0;
+}
+
+.my-05 {
+    margin: 0.5rem 0;
+}
+
+.my-1 {
+    margin: 1rem 0;
+}
+
+.my-2 {
+    margin: 2rem 0;
+}
+
+.my-3 {
+    margin: 3rem 0;
+}
+
+.mt-025 {
+    margin-top: 0.25rem;
+}
+
+.mt-05 {
+    margin-top: 0.5rem;
+}
+
+.mt-1 {
+    margin-top: 1rem;
+}
+
+.mt-2 {
+    margin-top: 2rem;
+}
+
+.mt-3 {
+    margin-top: 3rem;
+}
+
+.mb-025 {
+    margin-bottom: 0.25rem;
+}
+
+.mb-05 {
+    margin-bottom: 0.5rem;
+}
+
+.mb-1 {
+    margin-bottom: 1rem;
+}
+
+.mb-2 {
+    margin-bottom: 2rem;
+}
+
+.mb-3 {
+    margin-bottom: 3rem;
+}
+
+.mx-025 {
+    margin: 0 0.25rem;
+}
+
+.mx-05 {
+    margin: 0 0.5rem;
+}
+
+.mx-1 {
+    margin: 0 1rem;
+}
+
+.mx-2 {
+    margin: 0 2rem;
+}
+
+.mx-3 {
+    margin: 0 3rem;
+}
+
+.ml-025 {
+    margin-left: 0.25rem;
+}
+
+.ml-05 {
+    margin-left: 0.5rem;
+}
+
+.ml-1 {
+    margin-left: 1rem;
+}
+
+.ml-2 {
+    margin-left: 2rem;
+}
+
+.ml-3 {
+    margin-left: 3rem;
+}
+
+.mr-025 {
+    margin-right: 0.25rem;
+}
+
+.mr-05 {
+    margin-right: 0.5rem;
+}
+
+.mr-1 {
+    margin-right: 1rem;
+}
+
+.mr-2 {
+    margin-right: 2rem;
+}
+
+.mr-3 {
+    margin-right: 3rem;
+}

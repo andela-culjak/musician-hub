@@ -4,33 +4,62 @@ import PropTypes from "prop-types";
 const ProfileAbout = ({
   profile: {
     bio,
-    skills,
-    user: { name }
-  }
+    instruments,
+    genres,
+    influences,
+    user: { name },
+  },
 }) => (
-  <div className="profile-about bg-light p-2">
+  <div className="profile-info bg-light p-2">
     {bio && (
       <Fragment>
-        <h2 className="text-primary">{name.split(" ")[0]}'s Bio</h2>
+        <h4 className="text-primary my-05">{name.split(" ")[0]}'s Bio</h4>
         <p>{bio}</p>
         <div className="line" />
       </Fragment>
     )}
 
-    <h2 className="text-primary">Skill Set</h2>
-    <div className="skills">
-      {skills.map((skill, index) => (
-        <div key={index} className="p-1">
-          <i className="fas fa-check" />
-          {skill}
-        </div>
+    <h4 className="text-primary my-05">Instruments</h4>
+    <div className="instruments">
+      {instruments.map((instrument, index) => (
+        <span key={index} className="mr-025 px-025 info-list-item">
+          {instrument}
+        </span>
       ))}
     </div>
+
+    {genres.length > 0 && (
+      <Fragment>
+        <div className="line" />
+        <h4 className="text-primary my-05">Genres</h4>
+        <div className="genres">
+          {genres.map((genre, index) => (
+            <span key={index} className="mr-025 px-025 info-list-item">
+              {genre}
+            </span>
+          ))}
+        </div>
+      </Fragment>
+    )}
+
+    {influences.length > 0 && (
+      <Fragment>
+        <div className="line" />
+        <h4 className="text-primary my-05">Influences</h4>
+        <div className="influences">
+          {influences.map((influence, index) => (
+            <span key={index} className="mr-025 px-025 info-list-item">
+              {influence}
+            </span>
+          ))}
+        </div>
+      </Fragment>
+    )}
   </div>
 );
 
 ProfileAbout.propTypes = {
-  profile: PropTypes.object.isRequired
+  profile: PropTypes.object.isRequired,
 };
 
 export default ProfileAbout;

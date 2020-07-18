@@ -4,7 +4,7 @@ import ProfileAbout from "./ProfileAbout";
 import ProfileExperience from "./ProfileExperience";
 
 const About = ({ profile }) => (
-  <>
+  <div className="profile-about">
     <ProfileAbout profile={profile} />
     <div className="profile-exp bg-white p-2">
       <h2 className="text-primary">Experience</h2>
@@ -18,7 +18,7 @@ const About = ({ profile }) => (
         <h4>No experiences listed </h4>
       )}
     </div>
-  </>
+  </div>
 );
 
 About.propTypes = {

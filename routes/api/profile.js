@@ -34,7 +34,7 @@ router.get("/me", auth, async (req, res) => {
 //@access   Private
 router.post(
   "/",
-  [auth, [check("skills", "Skills is required").not().isEmpty()]],
+  [auth, [check("instruments", "Instruments is required").not().isEmpty()]],
   async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
@@ -47,7 +47,9 @@ router.post(
       location,
       bio,
       position,
-      skills,
+      instruments,
+      genres,
+      influences,
       videos,
       youtube,
       facebook,
@@ -60,25 +62,21 @@ router.post(
     const profileFields = {};
 
     profileFields.user = req.user.id;
-    if (band) profileFields.band = band;
-    if (website) profileFields.website = website;
-    if (location) profileFields.location = location;
-    if (bio) profileFields.bio = bio;
-    if (position) profileFields.position = position;
-    if (skills) {
-      profileFields.skills = skills.split(",").map((skill) => skill.trim());
-    }
-    if (videos) {
-      profileFields.videos = videos.split(",").map((video) => video.trim());
-    }
+    profileFields.band = band;
+    profileFields.website = website;
+    profileFields.location = location;
+    profileFields.bio = bio;
+    profileFields.position = position;
+    profileFields.instruments = instruments
+      ? instruments.split(",").map((instrument) => instrument.trim())
+      : [];
+    profileFields.genres = genres ? genres.split(",").map((genre) => genre.trim()) : [];
+    profileFields.influences = influences
+      ? influences.split(",").map((influence) => influence.trim())
+      : [];
+    profileFields.videos = videos ? videos.split(",").map((video) => video.trim()) : [];
 
-    // Build social object
-    profileFields.social = {};
-    if (youtube) profileFields.social.youtube = youtube;
-    if (twitter) profileFields.social.twitter = twitter;
-    if (facebook) profileFields.social.facebook = facebook;
-    if (linkedin) profileFields.social.linkedin = linkedin;
-    if (instagram) profileFields.social.instagram = instagram;
+    profileFields.social = { youtube, facebook, twitter, instagram, linkedin };
 
     try {
       let profile = await Profile.findOne({ user: req.user.id });

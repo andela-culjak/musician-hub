@@ -10,14 +10,16 @@ const CreateProfile = ({ createProfile, history }) => {
     website: "",
     location: "",
     position: "",
-    skills: "",
+    instruments: "",
+    genres: "",
+    influences: "",
     videos: "",
     bio: "",
     twitter: "",
     facebook: "",
     linkedin: "",
     youtube: "",
-    instagram: ""
+    instagram: "",
   });
 
   const [displaySocialInputs, toggleSocialInputs] = useState(false);
@@ -27,40 +29,41 @@ const CreateProfile = ({ createProfile, history }) => {
     website,
     location,
     position,
-    skills,
+    instruments,
+    genres,
+    influences,
     videos,
     bio,
     twitter,
     facebook,
     linkedin,
     youtube,
-    instagram
+    instagram,
   } = formData;
 
-  const onChange = e =>
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+  const onChange = (e) => setFormData({ ...formData, [e.target.name]: e.target.value });
 
-  const onSubmit = e => {
+  const onSubmit = (e) => {
     e.preventDefault();
-    createProfile(formData, history);
+    createProfile(formData, history, true);
   };
 
   return (
     <Fragment>
       <h1 className="large text-primary">Create Your Profile</h1>
       <p className="lead">
-        <i className="fas fa-user" /> Let's get some information to make your
-        profile stand out
+        <i className="fas fa-user" /> Let's get some information to make your profile
+        stand out
       </p>
       <small>* = required field</small>
-      <form className="form" onSubmit={e => onSubmit(e)}>
+      <form className="form" onSubmit={(e) => onSubmit(e)}>
         <div className="form-group">
           <input
             type="text"
             placeholder="Position/role"
             name="position"
             value={position}
-            onChange={e => onChange(e)}
+            onChange={(e) => onChange(e)}
           />
           <small className="form-text">
             Give us an idea of what you do at the moment
@@ -72,11 +75,9 @@ const CreateProfile = ({ createProfile, history }) => {
             placeholder="Band"
             name="band"
             value={band}
-            onChange={e => onChange(e)}
+            onChange={(e) => onChange(e)}
           />
-          <small className="form-text">
-            Could be your own band or a collaboration
-          </small>
+          <small className="form-text">Could be your own band or a collaboration</small>
         </div>
         <div className="form-group">
           <input
@@ -84,11 +85,9 @@ const CreateProfile = ({ createProfile, history }) => {
             placeholder="Website"
             name="website"
             value={website}
-            onChange={e => onChange(e)}
+            onChange={(e) => onChange(e)}
           />
-          <small className="form-text">
-            Could be your own or a band website
-          </small>
+          <small className="form-text">Could be your own or a band website</small>
         </div>
         <div className="form-group">
           <input
@@ -96,22 +95,44 @@ const CreateProfile = ({ createProfile, history }) => {
             placeholder="Location"
             name="location"
             value={location}
-            onChange={e => onChange(e)}
+            onChange={(e) => onChange(e)}
+          />
+          <small className="form-text">City and state suggested (eg. Boston, MA)</small>
+        </div>
+        <div className="form-group">
+          <input
+            type="text"
+            placeholder="* Instruments"
+            name="instruments"
+            value={instruments}
+            onChange={(e) => onChange(e)}
           />
           <small className="form-text">
-            City and state suggested (eg. Boston, MA)
+            Separate by comma (eg. guitar, piano, vocals)
           </small>
         </div>
         <div className="form-group">
           <input
             type="text"
-            placeholder="* Skills"
-            name="skills"
-            value={skills}
-            onChange={e => onChange(e)}
+            placeholder="Genres"
+            name="genres"
+            value={genres}
+            onChange={(e) => onChange(e)}
           />
           <small className="form-text">
-            Please use comma separated values (eg. guitar,piano,ukulele)
+            Separate by comma (eg. country, electronic, pop)
+          </small>
+        </div>
+        <div className="form-group">
+          <input
+            type="text"
+            placeholder="Influences"
+            name="influences"
+            value={influences}
+            onChange={(e) => onChange(e)}
+          />
+          <small className="form-text">
+            Separate by comma (eg. Metallica, The Cure, David Bowie)
           </small>
         </div>
         <div className="form-group">
@@ -119,9 +140,9 @@ const CreateProfile = ({ createProfile, history }) => {
             placeholder="A short bio of yourself"
             name="bio"
             value={bio}
-            onChange={e => onChange(e)}
+            onChange={(e) => onChange(e)}
           />
-          <small className="form-text">Tell us a little about yourself</small>
+          <small className="form-text">Tell us about yourself</small>
         </div>
         <div className="form-group">
           <input
@@ -129,11 +150,11 @@ const CreateProfile = ({ createProfile, history }) => {
             placeholder="Your music links"
             name="videos"
             value={videos}
-            onChange={e => onChange(e)}
+            onChange={(e) => onChange(e)}
           />
           <small className="form-text">
-            Paste in some links to your videos (Youtube, Vimeo, Twitch etc.) and
-            separate them by comma (eg. Link1, Link2,...)
+            Paste in some links to your videos (Youtube, Vimeo, Twitch etc.) and separate
+            them by comma (eg. Link1, Link2,...)
           </small>
         </div>
 
@@ -141,8 +162,7 @@ const CreateProfile = ({ createProfile, history }) => {
           <button
             onClick={() => toggleSocialInputs(!displaySocialInputs)}
             type="button"
-            className="btn btn-light"
-          >
+            className="btn btn-light">
             Add Social Network Links
           </button>
           <span>Optional</span>
@@ -157,7 +177,7 @@ const CreateProfile = ({ createProfile, history }) => {
                 placeholder="Twitter URL"
                 name="twitter"
                 value={twitter}
-                onChange={e => onChange(e)}
+                onChange={(e) => onChange(e)}
               />
             </div>
 
@@ -168,7 +188,7 @@ const CreateProfile = ({ createProfile, history }) => {
                 placeholder="Facebook URL"
                 name="facebook"
                 value={facebook}
-                onChange={e => onChange(e)}
+                onChange={(e) => onChange(e)}
               />
             </div>
 
@@ -179,7 +199,7 @@ const CreateProfile = ({ createProfile, history }) => {
                 placeholder="YouTube URL"
                 name="youtube"
                 value={youtube}
-                onChange={e => onChange(e)}
+                onChange={(e) => onChange(e)}
               />
             </div>
 
@@ -190,7 +210,7 @@ const CreateProfile = ({ createProfile, history }) => {
                 placeholder="Linkedin URL"
                 name="linkedin"
                 value={linkedin}
-                onChange={e => onChange(e)}
+                onChange={(e) => onChange(e)}
               />
             </div>
 
@@ -201,7 +221,7 @@ const CreateProfile = ({ createProfile, history }) => {
                 placeholder="Instagram URL"
                 name="instagram"
                 value={instagram}
-                onChange={e => onChange(e)}
+                onChange={(e) => onChange(e)}
               />
             </div>
           </Fragment>
@@ -217,7 +237,7 @@ const CreateProfile = ({ createProfile, history }) => {
 };
 
 CreateProfile.propTypes = {
-  createProfile: PropTypes.func.isRequired
+  createProfile: PropTypes.func.isRequired,
 };
 
 export default connect(null, { createProfile })(withRouter(CreateProfile));

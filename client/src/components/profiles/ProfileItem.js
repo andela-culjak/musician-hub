@@ -8,8 +8,8 @@ const ProfileItem = ({
     position,
     band,
     location,
-    skills
-  }
+    instruments,
+  },
 }) => {
   return (
     <div className="profile bg-light">
@@ -30,9 +30,9 @@ const ProfileItem = ({
         </Link>
       </div>
       <ul>
-        {skills.slice(0, 4).map((skill, index) => (
+        {instruments.slice(0, 4).map((instrument, index) => (
           <li key={index} className="text-primary">
-            <i className="fas fa-check" /> {skill}
+            <i className="fas fa-check" /> {instrument}
           </li>
         ))}
       </ul>
@@ -41,7 +41,7 @@ const ProfileItem = ({
 };
 
 ProfileItem.propTypes = {
-  profile: PropTypes.object.isRequired
+  profile: PropTypes.object.isRequired,
 };
 
 export default ProfileItem;

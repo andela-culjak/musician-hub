@@ -18,9 +18,15 @@ const ProfileSchema = new Schema({
   position: {
     type: String,
   },
-  skills: {
+  instruments: {
     type: [String],
     required: true,
+  },
+  genres: {
+    type: [String],
+  },
+  influences: {
+    type: [String],
   },
   videos: {
     type: [String],

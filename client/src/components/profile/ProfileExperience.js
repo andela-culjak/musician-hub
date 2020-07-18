@@ -2,26 +2,23 @@ import React from "react";
 import PropTypes from "prop-types";
 import Moment from "react-moment";
 
-const ProfileExperience = ({
-  experience: { band, position, location, current, from, to, description }
-}) => (
+const ProfileExperience = ({ experience: { band, position, from, to, description } }) => (
   <div>
-    <h3 className="text-dark">{band}</h3>
+    <strong>
+      {position} in {band}
+    </strong>
+
     <p>
-      <Moment format="YYYY/MM/DD">{from}</Moment> -{" "}
-      {!to ? " Now" : <Moment format="YYYY/MM/DD">{to}</Moment>}
+      <Moment format="MMM YYYY">{from}</Moment> -{" "}
+      {!to ? " Now" : <Moment format="MMM YYYY">{to}</Moment>}
     </p>
-    <p>
-      <strong>Position:</strong> {position}
-    </p>
-    <p>
-      <strong>Description:</strong> {description}
-    </p>
+
+    <p>{description}</p>
   </div>
 );
 
 ProfileExperience.propTypes = {
-  experience: PropTypes.object.isRequired
+  experience: PropTypes.object.isRequired,
 };
 
 export default ProfileExperience;
