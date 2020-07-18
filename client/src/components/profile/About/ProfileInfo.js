@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
 import PropTypes from "prop-types";
 
-const ProfileAbout = ({
+const ProfileInfo = ({
   profile: {
     bio,
     instruments,
@@ -58,8 +58,8 @@ const ProfileAbout = ({
   </div>
 );
 
-ProfileAbout.propTypes = {
+ProfileInfo.propTypes = {
   profile: PropTypes.object.isRequired,
 };
 
-export default ProfileAbout;
+export default ProfileInfo;

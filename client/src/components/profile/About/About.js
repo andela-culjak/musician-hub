@@ -1,11 +1,11 @@
 import React, { Fragment } from "react";
 import PropTypes from "prop-types";
-import ProfileAbout from "./ProfileAbout";
+import ProfileInfo from "./ProfileInfo";
 import ProfileExperience from "./ProfileExperience";
 
 const About = ({ profile }) => (
   <div className="profile-about">
-    <ProfileAbout profile={profile} />
+    <ProfileInfo profile={profile} />
     <div className="profile-exp bg-white p-2">
       <h2 className="text-primary">Experience</h2>
       {profile.experience.length > 0 ? (

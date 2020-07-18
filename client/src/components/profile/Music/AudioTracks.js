@@ -16,9 +16,7 @@ const AudioTracks = ({ music }) => {
 
   if (currentTrackIndex !== null) {
     return (
-      <div className="audio-tracks bg-white p-1">
-        <h2 className="my-2">{music.user.name.split(" ")[0]}'s Tracks</h2>
-
+      <div className="audio-tracks bg-white p-2">
         <MainTrack
           currentTrackIndex={currentTrackIndex}
           music={music}

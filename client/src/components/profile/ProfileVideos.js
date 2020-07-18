@@ -5,8 +5,8 @@ import ReactPlayer from "react-player";
 
 const ProfileVideos = ({ videos, name }) => {
   return (
-    <div className="profile-videos bg-light">
-      <h2 className="m">{name.split(" ")[0]}'s Videos</h2>
+    <div className="profile-videos bg-light p-2">
+      <h2>{name.split(" ")[0]}'s Videos</h2>
       {videos.length > 0 ? (
         <div className="videos-container">
           {videos.map((video, index) => (
@@ -29,11 +29,11 @@ const ProfileVideos = ({ videos, name }) => {
 };
 
 ProfileVideos.propTypes = {
-  videos: PropTypes.array.isRequired
+  videos: PropTypes.array.isRequired,
 };
 
-const mapStateToProps = state => ({
-  videos: state.profile.profile.videos
+const mapStateToProps = (state) => ({
+  videos: state.profile.profile.videos,
 });
 
 export default connect(mapStateToProps)(ProfileVideos);

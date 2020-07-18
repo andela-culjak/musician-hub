@@ -60,7 +60,7 @@
 /* Landing Page */
 
 .dark-overlay {
-  background-color: rgba(0, 0, 0, 0.7);
+  background-color: var(--transparent-black);
   position: fixed;
   top: 0;
   left: 0;
@@ -227,14 +227,12 @@
 
 .profile-videos {
   grid-area: category;
-  padding: 10px;
 }
 
 .profile-videos .videos-container {
   display: flex;
   justify-content: space-evenly;
   flex-wrap: wrap;
-  padding: 10px;
 }
 
 .player-wrapper {
@@ -252,6 +250,19 @@
 
 .audio-tracks {
   grid-area: category;
+}
+
+.title-and-play {
+  display: flex;
+}
+
+.play-btn {
+  font-size: 1rem;
+  line-height: 50%;
+  text-align: center;
+  border: none;
+  background-color: transparent;
+  color: var(--primary-color)
 }
 
 .times {
@@ -348,33 +359,20 @@
   padding: 0.5rem;
   padding-top: 3rem;
   position: relative;
-  background-color: var(--primary-color);
+  background-color: var(--transparent-dark);
   z-index: 4;
 }
 
-.play-btn {
-  font-size: 0.9rem;
-  padding: 0.9rem;
-  line-height: 50%;
-  text-align: center;
-  border-radius: 100%;
-  background-color: var(--secondary-color);
-  color: var(--white);
-  margin-right: 1.5rem;
-}
-
 .heart-button {
-  color: var(--secondary-color);
-  border-radius: 100%;
-  background-color: var(--light-color);
-  padding: 0.4rem;
+  color: var(--white);
+  background-color: transparent;
+  border: none;
   line-height: 50%;
   text-align: center;
-  margin-right: 0.4rem;
 }
 
 .liked {
-  color: var(--danger-color);
+  color: var(--primary-light);
 }
 
 .track-comment-form {
@@ -386,11 +384,16 @@
 
 .track-comment-input {
   max-height: 32px;
+  border-radius: 20px;
   display: block;
-  padding: 0.2rem;
   font-size: 1rem;
+  background-color: var( --ultra-transparent-black);
   border: 1px solid var(--light-gray);
   width: 100%;
+}
+
+.track-comment-input::placeholder {
+  color: var(--light-color)
 }
 
 .play-btn:focus, .heart-button:focus, .track-comment-input:focus {

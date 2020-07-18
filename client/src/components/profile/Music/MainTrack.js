@@ -133,7 +133,16 @@ const MainTrack = ({
   return (
     <div>
       <div className="main-track">
-        <h4 className="my-1">{track.title}</h4>
+        <div className="title-and-play">
+          <button className="play-btn" onClick={playIt}>
+            {playingToggle ? (
+              <i className="fas fa-pause fa-2x mr-1"></i>
+            ) : (
+              <i className="fas fa-play fa-2x mr-1"></i>
+            )}
+          </button>
+          <h2 className="my-1">{track.title}</h2>
+        </div>
 
         <div id="waveform" />
         {/* <audio id="song" src="" /> */}
@@ -145,29 +154,24 @@ const MainTrack = ({
       <div id="timeline"></div>
 
       <div className="track-actions">
-        <button className="play-btn" onClick={playIt}>
-          {playingToggle ? (
-            <i className="fas fa-pause"></i>
-          ) : (
-            <i className="fas fa-play"></i>
-          )}
-        </button>
         <button
           type="button"
-          className={
-            (auth.user &&
-              track.likes.filter((like) => like.user === auth.user._id).length) > 0
-              ? `heart-button liked`
-              : `heart-button`
-          }
+          className="heart-button mx-05"
           onClick={() => auth.isAuthenticated && likeOrUnlikeTrack()}>
-          <i className="far fa-heart" />{" "}
+          <i
+            className={
+              (auth.user &&
+                track.likes.filter((like) => like.user === auth.user._id).length) > 0
+                ? `fa fa-heart fa-lg`
+                : `far fa-heart fa-lg`
+            }
+          />
           {track.likes.length > 0 && <span> {track.likes.length}</span>}
         </button>
         <form id="myForm" className="track-comment-form">
           <input
             type="text"
-            className="track-comment-input"
+            className="track-comment-input p-05"
             onClick={freezeCommentTime}
             onChange={(e) => addCommentText(e)}
             placeholder="Add a comment"
