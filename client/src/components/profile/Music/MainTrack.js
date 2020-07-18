@@ -141,7 +141,7 @@ const MainTrack = ({
               <i className="fas fa-play fa-2x mr-1"></i>
             )}
           </button>
-          <h2 className="my-1">{track.title}</h2>
+          <span className="my-1 medium-large">{track.title}</span>
         </div>
 
         <div id="waveform" />

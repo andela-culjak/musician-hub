@@ -1,7 +1,7 @@
-@import url("https://fonts.googleapis.com/css?family=Cagliostro|Dawning+of+a+New+Day&display=swap");
-/* Global Styles */
-
+@import url("https://fonts.googleapis.com/css?family=Dawning+of+a+New+Day&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@200;300;400;500;600&display=swap');
 :root {
+    --main-font: "Quicksand", sans-serif;
     --primary-color: #2b587c;
     --primary-light: #89bace;
     --secondary-color: #113d66;
@@ -28,7 +28,7 @@
 }
 
 body {
-    font-family: "Cagliostro", sans-serif;
+    font-family: var(--main-font);
     font-size: 1rem;
     line-height: 1.5;
     background-color: var(--white);
@@ -49,7 +49,7 @@ img {
 }
 
 input::placeholder, textarea::placeholder, input {
-    font-family: "Cagliostro", sans-serif;
+    font-family: var(--main-font);
 }
 
 .logo {
@@ -83,6 +83,11 @@ input::placeholder, textarea::placeholder, input {
 
 .large {
     font-size: 3rem;
+    line-height: 1.2;
+}
+
+.medium-large {
+    font-size: 2rem;
     line-height: 1.2;
 }
 

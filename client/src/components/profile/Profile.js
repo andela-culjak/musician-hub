@@ -73,9 +73,11 @@ const Profile = ({
             {category === "videos" && <ProfileVideos name={profile.user.name} />}
 
             {category === "dashboard" && (
-              <Link to="/dashboard" className="btn btn-dark my-1">
-                Manage My Profile
-              </Link>
+              <div>
+                <Link to="/dashboard" className="btn btn-dark my-1">
+                  Manage My Profile
+                </Link>
+              </div>
             )}
           </div>
         </Fragment>
