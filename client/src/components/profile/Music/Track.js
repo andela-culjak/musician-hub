@@ -12,17 +12,17 @@ const Track = ({ track, currentTrackId, trackSelected }) => {
     <div
       className={`${
         currentTrackId === track._id ? "bg-light" : "bg-white"
-      } playlist-item my-1 p-1`}
+      } playlist-item my-1 p-1 p-sm-05`}
       onClick={() => trackSelected(track._id)}>
       <h4>{track.title}</h4>
       <div>
         {track.likes.length > 0 && (
-          <span className="mx-025">
+          <span className="likes-number mx-025">
             {track.likes.length + " "} <i className="far fa-heart" />
           </span>
         )}
 
-        <span className="mx-025">{formatTime(track.duration)}</span>
+        <span className="song-length mx-025">{formatTime(track.duration)}</span>
       </div>
     </div>
   );

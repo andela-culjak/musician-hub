@@ -5,7 +5,7 @@ import ReactPlayer from "react-player";
 
 const ProfileVideos = ({ videos, name }) => {
   return (
-    <div className="profile-videos bg-light p-2">
+    <div className="profile-videos bg-light p-2 p-sm-1">
       <h2>{name.split(" ")[0]}'s Videos</h2>
       {videos.length > 0 ? (
         <div className="videos-container">

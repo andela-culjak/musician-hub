@@ -12,12 +12,12 @@ const ProfileTop = ({
   },
 }) => {
   return (
-    <div className="profile-top bg-primary p-3">
+    <div className="profile-top bg-primary p-3 py-sm-2 px-sm-1">
       <div>
         <img className="round-img " src={avatar} alt="" />
       </div>
 
-      <div className="heading-items py-1 px-2">
+      <div className="heading-items py-1 pl-2 pl-sm-1">
         <h1 className="large">{name}</h1>
 
         <p className="lead">

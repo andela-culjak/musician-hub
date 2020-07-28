@@ -12,20 +12,20 @@ const ProfileItem = ({
   },
 }) => {
   return (
-    <div className="profile bg-light">
+    <div className="profile-item bg-light">
       <Link to={`/profile/user/${_id}`}>
         <img src={avatar} alt="" className="round-img" />
       </Link>
       <div>
         <Link to={`/profile/user/${_id}`}>
           {" "}
-          <h2>{name}</h2>{" "}
+          <h3>{name}</h3>{" "}
         </Link>
         <p>
           {position} {band && <span> at {band}</span>}{" "}
         </p>
-        <p className="my-1">{location && <span>{location}</span>}</p>
-        <Link to={`/profile/user/${_id}`} className="btn btn-primary">
+        <p className="my">{location && <span>{location}</span>}</p>
+        <Link to={`/profile/user/${_id}`} className="btn btn-primary btn-small mt-05">
           View profile
         </Link>
       </div>

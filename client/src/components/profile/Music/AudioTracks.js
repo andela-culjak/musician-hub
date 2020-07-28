@@ -16,7 +16,7 @@ const AudioTracks = ({ music }) => {
 
   if (currentTrackIndex !== null) {
     return (
-      <div className="audio-tracks bg-white p-2">
+      <div className="audio-tracks bg-white p-2 p-sm-1">
         <MainTrack
           currentTrackIndex={currentTrackIndex}
           music={music}

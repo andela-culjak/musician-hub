@@ -13,7 +13,7 @@ const Landing = ({ isAuthenticated }) => {
       <div className="dark-overlay">
         <div className="landing-inner">
           <h1 className="x-large logo">Musician Hub</h1>
-          <p className="lead">Music is created by getting together.</p>
+          <p className="lead py-1">Music is created by getting together.</p>
           <div className="buttons">
             <Link to="register" className="btn btn-primary">
               Sign Up
@@ -29,11 +29,11 @@ const Landing = ({ isAuthenticated }) => {
 };
 
 Landing.protoTypes = {
-  isAuthenticated: PropTypes.bool
+  isAuthenticated: PropTypes.bool,
 };
 
-const mapStateToProps = state => ({
-  isAuthenticated: state.auth.isAuthenticated
+const mapStateToProps = (state) => ({
+  isAuthenticated: state.auth.isAuthenticated,
 });
 
 export default connect(mapStateToProps)(Landing);

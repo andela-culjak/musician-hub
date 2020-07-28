@@ -5,7 +5,6 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 1.6rem;
   position: fixed;
   z-index: 7;
   width: 100%;
@@ -52,7 +51,7 @@
 
 .search-bar {
   width: 100%;
-  height: 3rem;
+  height: 2.8rem;
   font-size: 1.3rem;
   padding: 0 0.8rem;
 }
@@ -133,7 +132,7 @@
 
 /* Profiles Page */
 
-.profile {
+.profile-item {
   display: grid;
   grid-template-columns: 2fr 4fr 2fr;
   align-items: center;
@@ -384,16 +383,16 @@
 
 .track-comment-input {
   max-height: 32px;
+  color: var(--light-color);
   border-radius: 20px;
   display: block;
-  font-size: 1rem;
   background-color: var( --ultra-transparent-black);
   border: 1px solid var(--light-gray);
   width: 100%;
 }
 
 .track-comment-input::placeholder {
-  color: var(--light-color)
+  color: var(--light-color);
 }
 
 .play-btn:focus, .heart-button:focus, .track-comment-input:focus {
@@ -403,6 +402,10 @@
 .playlist-item {
   display: flex;
   justify-content: space-between;
+}
+
+.playlist-item .likes-number {
+  white-space: nowrap;
 }
 
 /* Posts Page */
@@ -462,7 +465,7 @@
   width: 60px;
 }
 
-/* Medium Screen Styles */
+/* Large Screen Styles */
 
 @media (max-width: 1350px) {
   .player-wrapper {
@@ -480,63 +483,81 @@
     height: 18vw;
   }
   /* h= w*0.5625  */
+  /* Search bar */
+  .search-bar {
+    height: 2.3rem;
+    font-size: 1.2rem;
+    padding: 0 0.8rem;
+  }
 }
 
 /* Mobile Styles */
 
 @media (max-width: 700px) {
+  body {
+    font-size: 0.8rem;
+    line-height: 1.4;
+  }
   .container {
-    padding-top: 8rem;
+    padding-top: 4rem;
   }
   .hide-sm {
     display: none;
   }
+  .form .form-group {
+    margin: 1rem 0;
+  }
+  .form .form-text {
+    margin-top: 0.2rem;
+  }
+  .form input[type="text"], .form input[type="email"], .form input[type="password"], .form input[type="date"], .form select, .form textarea {
+    padding: 0.2rem;
+    font-size: 1rem;
+  }
   /* Text Styles */
   .x-large {
-    font-size: 3rem;
+    font-size: 2.5rem;
   }
   .large {
-    font-size: 2rem;
+    font-size: 1.5rem;
+  }
+  .medium-large {
+    font-size: 1.2rem;
   }
   .lead {
     font-size: 1rem;
   }
   /* Navbar */
-  /*.navbar {
-    display: block;
-    text-align: center;
+  .navbar {
+    font-size: 0.8rem;
   }
-
-  .navbar ul {
-    text-align: center;
-    justify-content: center;
-  }
-
-  .navbar h1 {
-    margin-bottom: 1rem;
-  }*/
-  .navbar .logo {
+  .navbar .logo-text {
     display: none;
   }
   .navbar .welcome {
     display: none;
   }
   /* Profiles Page */
-  .profile {
-    grid-template-columns: 1fr;
-    text-align: center;
+  .search-bar {
+    height: 2rem;
+    font-size: 1rem;
+    padding: 0 0.5rem;
   }
-  .profile ul {
+  .profile-item {
+    grid-template-columns: 3fr 5fr;
+  }
+  .profile-item img {
+    width: 100px;
+    margin: auto;
+  }
+  .profile-item ul {
     display: none;
   }
   /* Profile Page */
-  .profile-top img, .profile img {
-    width: 200px;
+  .profile-top img {
+    width: 100px;
     margin: auto;
   }
-  /* .profile-grid {
-    grid-template-areas: "top" "info" "exp" "edu" "videos" "tracks";
-  } */
   .profile-info .instruments {
     flex-direction: column;
   }
@@ -544,10 +565,16 @@
     padding: 6px;
   }
   .player-wrapper {
-    width: 56vw;
-    height: 31.5vw;
+    width: 75vw;
+    height: 42.2vw;
   }
   /* h= w*0.5625  */
+  .playlist-item .song-length {
+    display: none;
+  }
+  .profile-about {
+    grid-template-areas: "info" "experience";
+  }
   .dash-buttons a {
     display: block;
     width: 100%;

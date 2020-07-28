@@ -36,12 +36,14 @@ const Profile = ({
           <div className="profile-grid">
             <ProfileTop profile={profile} />
 
-            <div className="profile-nav bg-white p-1">
+            <div className="profile-nav bg-white p-1 p-sm-05">
               {categories.map((cat) => (
                 <button
                   key={cat}
                   onClick={() => setCategory(cat)}
-                  className={`nav-category mx-1 ${cat === category && "selected"}`}>
+                  className={`nav-category mx-1 mx-sm-05 ${
+                    cat === category && "selected"
+                  }`}>
                   {cat.toUpperCase()}
                 </button>
               ))}
@@ -51,7 +53,7 @@ const Profile = ({
                 auth.user._id === profile.user._id && (
                   <button
                     onClick={() => setCategory("dashboard")}
-                    className={`nav-category mx-1 ${
+                    className={`nav-category mx-1 mx-sm-05 ${
                       "dashboard" === category && "selected"
                     }`}>
                     DASHBOARD
