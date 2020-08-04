@@ -32,7 +32,7 @@ const ProfileItem = ({
       <ul>
         {instruments.slice(0, 4).map((instrument, index) => (
           <li key={index} className="text-primary">
-            <i className="fas fa-check" /> {instrument}
+            <i className="fas fa-music" /> {instrument}
           </li>
         ))}
       </ul>
