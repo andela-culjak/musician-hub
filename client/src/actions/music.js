@@ -1,5 +1,6 @@
 import axios from "axios";
 import { setAlert } from "./alert";
+import { addPost } from "./post";
 
 import {
   UPDATE_MUSIC,
@@ -7,60 +8,64 @@ import {
   MUSIC_ERROR,
   ADD_TRACK_COMMENT,
   GET_MUSIC,
-  UPDATE_TRACK_LIKES
+  UPDATE_TRACK_LIKES,
 } from "./types";
 
 //Get music by id
-export const getMusicById = user_id => async dispatch => {
+export const getMusicById = (user_id) => async (dispatch) => {
   try {
     const res = await axios.get(`/api/music/user/${user_id}`);
     dispatch({
       type: GET_MUSIC,
-      payload: res.data
+      payload: res.data,
     });
   } catch (err) {
     dispatch({
       type: MUSIC_ERROR,
       payload: {
         /* msg: err.response.statusText, status: err.response.status */
-      }
+      },
     });
   }
 };
 
 //Upload tracks
-export const uploadTrack = (formData, history) => async dispatch => {
+export const uploadTrack = (formData, text) => async (dispatch) => {
   try {
     const config = {
       headers: {
-        "Content-Type": "multipart/form-data"
-      }
+        "Content-Type": "multipart/form-data",
+      },
     };
 
     const res = await axios.post("/api/music/upload-track", formData, config);
 
     dispatch({
       type: UPDATE_MUSIC,
-      payload: res.data
+      payload: res.data,
     });
 
     dispatch(setAlert("Tracks updated", "success"));
+    text && dispatch(addPost({ text }));
   } catch (err) {
     dispatch({
       type: MUSIC_ERROR,
-      payload: { statusText: "Some error", status: 400 }
+      payload: { statusText: "Some error", status: 400 },
     });
   }
 };
 
 //Delete a track
-export const deleteTrack = (trackName, musicId) => async dispatch => {
+export const deleteTrack = (trackName, musicId, userId) => async (dispatch) => {
   try {
     await axios.delete(`/api/music/remove-track/${musicId}/${trackName}`);
 
     dispatch({
       type: REMOVE_TRACK,
-      payload: trackName
+      payload: {
+        name: trackName,
+        user: userId,
+      },
     });
 
     dispatch(setAlert("Track removed", "success"));
@@ -68,15 +73,15 @@ export const deleteTrack = (trackName, musicId) => async dispatch => {
     console.log(err);
     dispatch({
       type: MUSIC_ERROR,
-      payload: { statusText: "Something went wrong. Track is not deleted.", status: 400 }
+      payload: { statusText: "Something went wrong. Track is not deleted.", status: 400 },
     });
   }
 };
 
 //Add comment on a track
-export const addTrackComment = (formData, musicId, trackId) => async dispatch => {
+export const addTrackComment = (formData, musicId, trackId) => async (dispatch) => {
   const config = {
-    "Content-Type": "application/json"
+    "Content-Type": "application/json",
   };
 
   try {
@@ -88,7 +93,7 @@ export const addTrackComment = (formData, musicId, trackId) => async dispatch =>
 
     dispatch({
       type: ADD_TRACK_COMMENT,
-      payload: res.data
+      payload: res.data,
     });
 
     dispatch(setAlert("Track comment added", "success"));
@@ -97,42 +102,42 @@ export const addTrackComment = (formData, musicId, trackId) => async dispatch =>
       type: MUSIC_ERROR,
       payload: {
         msg: err.message || "Server fail",
-        status: err.status || 500
-      }
+        status: err.status || 500,
+      },
     });
   }
 };
 
 //Like a track
-export const likeATrack = (musicId, trackId) => async dispatch => {
+export const likeATrack = (musicId, trackId) => async (dispatch) => {
   try {
     const res = await axios.put(`/api/music/like/${musicId}/${trackId}`);
 
     dispatch({
       type: UPDATE_TRACK_LIKES,
-      payload: { trackId, likes: res.data }
+      payload: { trackId, likes: res.data },
     });
   } catch (err) {
     dispatch({
       type: MUSIC_ERROR,
-      payload: { msg: err.response.statusText, status: err.response.status }
+      payload: { msg: err.response.statusText, status: err.response.status },
     });
   }
 };
 
 //Unlike a track
-export const unlikeATrack = (musicId, trackId) => async dispatch => {
+export const unlikeATrack = (musicId, trackId) => async (dispatch) => {
   try {
     const res = await axios.put(`/api/music/unlike/${musicId}/${trackId}`);
 
     dispatch({
       type: UPDATE_TRACK_LIKES,
-      payload: { trackId, likes: res.data }
+      payload: { trackId, likes: res.data },
     });
   } catch (err) {
     dispatch({
       type: MUSIC_ERROR,
-      payload: { msg: err.response.statusText, status: err.response.status }
+      payload: { msg: err.response.statusText, status: err.response.status },
     });
   }
 };

@@ -18,7 +18,8 @@ const ManageTracks = ({ music, auth, getMusicById, deleteTrack }) => {
   const confirmDeletingTrack = () => {
     deleteTrack(
       deleteModal.track.url.substring(deleteModal.track.url.lastIndexOf("/") + 1),
-      music._id
+      music._id,
+      auth.user._id
     );
     setDeleteModal({ show: false, track: null });
   };

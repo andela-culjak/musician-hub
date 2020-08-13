@@ -5,16 +5,16 @@ import {
   CLEAR_MUSIC,
   ADD_TRACK_COMMENT,
   UPDATE_TRACK_LIKES,
-  MUSIC_ERROR
+  MUSIC_ERROR,
 } from "../actions/types";
 
 const initialState = {
   music: null,
   loading: true,
-  error: {}
+  error: {},
 };
 
-export default function(state = initialState, action) {
+export default function (state = initialState, action) {
   const { type, payload } = action;
 
   switch (type) {
@@ -23,7 +23,7 @@ export default function(state = initialState, action) {
       return {
         ...state,
         music: payload,
-        loading: false
+        loading: false,
       };
 
     case REMOVE_TRACK:
@@ -32,40 +32,40 @@ export default function(state = initialState, action) {
         music: {
           ...state.music,
           tracks: state.music.tracks.filter(
-            track => track.url !== `/uploads/tracks/5d49d5fa8ae8f22b74af8a6f/${payload}`
-          )
+            (track) => track.url !== `/uploads/tracks/${payload.user}/${payload.name}`
+          ),
         },
-        loading: false
+        loading: false,
       };
     case CLEAR_MUSIC:
       return {
         ...state,
         music: null,
-        loading: false
+        loading: false,
       };
     case ADD_TRACK_COMMENT:
       return {
         ...state,
         music: {
           ...state.music,
-          tracks: payload
-        }
+          tracks: payload,
+        },
       };
     case UPDATE_TRACK_LIKES:
       return {
         ...state,
         music: {
           ...state.music,
-          tracks: state.music.tracks.map(track =>
+          tracks: state.music.tracks.map((track) =>
             track._id === payload.trackId ? { ...track, likes: payload.likes } : track
-          )
-        }
+          ),
+        },
       };
     case MUSIC_ERROR:
       return {
         ...state,
         error: payload,
-        loading: false
+        loading: false,
       };
     default:
       return state;

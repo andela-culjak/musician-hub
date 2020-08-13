@@ -13,7 +13,7 @@ const User = require("../../models/User");
 router.get("/user/:user_id", async (req, res) => {
   try {
     const music = await Music.findOne({
-      user: req.params.user_id
+      user: req.params.user_id,
     }).populate("user tracks.comments.user", ["name", "avatar"]);
 
     res.json(music);
@@ -44,7 +44,7 @@ router.post("/upload-track", auth, async (req, res) => {
       fs.mkdirSync(dirPath);
     }
 
-    file.mv(`${dirPath}/${file.name}`, async err => {
+    file.mv(`${dirPath}/${file.name}`, async (err) => {
       if (err) {
         console.error(err);
         return res.status(500).send(err);
@@ -57,13 +57,13 @@ router.post("/upload-track", auth, async (req, res) => {
         url: `/uploads/tracks/${req.user.id}/${file.name}`,
         duration: duration,
         comments: [],
-        likes: []
+        likes: [],
       };
 
       if (!music) {
         music = new Music({
           user: req.user.id,
-          tracks: []
+          tracks: [],
         });
       }
 
@@ -91,7 +91,7 @@ router.delete("/remove-track/:track_id/:track_name", auth, async (req, res) => {
       req.params.track_name
     }`;
 
-    fs.unlink(path, err => {
+    fs.unlink(path, (err) => {
       if (err) throw err;
       console.log("path/file.txt was deleted");
     });
@@ -99,8 +99,7 @@ router.delete("/remove-track/:track_id/:track_name", auth, async (req, res) => {
     //removing from db
     let music = await Music.findOne({ user: req.user.id });
     const removeIndex = music.tracks.findIndex(
-      track =>
-        track.url === `/uploads/tracks/5d49d5fa8ae8f22b74af8a6f/${req.params.track_name}`
+      (track) => track.url === `/uploads/tracks/${req.user.id}/${req.params.track_name}`
     );
 
     if (removeIndex > -1) {
@@ -120,14 +119,7 @@ router.delete("/remove-track/:track_id/:track_name", auth, async (req, res) => {
 //@access   Private
 router.post(
   "/comment/:music_id/:track_id",
-  [
-    auth,
-    [
-      check("text", "Text is required")
-        .not()
-        .isEmpty()
-    ]
-  ],
+  [auth, [check("text", "Text is required").not().isEmpty()]],
   async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
@@ -138,20 +130,20 @@ router.post(
       const music = await Music.findById(req.params.music_id);
 
       const trackIndex = music.tracks.findIndex(
-        element => element.id === req.params.track_id
+        (element) => element.id === req.params.track_id
       );
 
       const newComment = {
         text: req.body.text,
         time: req.body.time,
         date: new Date(),
-        user: req.user.id
+        user: req.user.id,
       };
 
       music.tracks[trackIndex].comments.unshift(newComment);
       await music
         .save()
-        .then(music =>
+        .then((music) =>
           music.populate("user tracks.comments.user", ["name", "avatar"]).execPopulate()
         );
 
@@ -170,12 +162,13 @@ router.put("/like/:music_id/:track_id", auth, async (req, res) => {
   try {
     const music = await Music.findById(req.params.music_id);
     const trackIndex = music.tracks.findIndex(
-      element => element.id === req.params.track_id
+      (element) => element.id === req.params.track_id
     );
 
     if (
-      music.tracks[trackIndex].likes.filter(like => like.user.toString() === req.user.id)
-        .length > 0
+      music.tracks[trackIndex].likes.filter(
+        (like) => like.user.toString() === req.user.id
+      ).length > 0
     ) {
       return res.status(400).json({ msg: "Track already liked" });
     }
@@ -197,12 +190,13 @@ router.put("/unlike/:music_id/:track_id", auth, async (req, res) => {
   try {
     const music = await Music.findById(req.params.music_id);
     const trackIndex = music.tracks.findIndex(
-      element => element.id === req.params.track_id
+      (element) => element.id === req.params.track_id
     );
 
     if (
-      music.tracks[trackIndex].likes.filter(like => like.user.toString() === req.user.id)
-        .length === 0
+      music.tracks[trackIndex].likes.filter(
+        (like) => like.user.toString() === req.user.id
+      ).length === 0
     ) {
       return res.status(400).json({ msg: "Track has not yet been liked" });
     }
@@ -210,7 +204,7 @@ router.put("/unlike/:music_id/:track_id", auth, async (req, res) => {
     //TODO check if this works correctly
     //Get the remove index
     const removeIndex = music.tracks[trackIndex].likes
-      .map(like => like.user.toString())
+      .map((like) => like.user.toString())
       .indexOf(req.user.id);
 
     music.tracks[trackIndex].likes.splice(removeIndex, 1);
