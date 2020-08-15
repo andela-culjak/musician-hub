@@ -4,41 +4,47 @@ const Schema = mongoose.Schema;
 const PostSchema = new Schema({
   user: {
     type: Schema.Types.ObjectId,
-    ref: "user"
+    ref: "user",
   },
   text: {
     type: String,
-    required: true
+    required: true,
+  },
+  heading: {
+    type: String,
+  },
+  trackId: {
+    type: String,
   },
   likes: [
     {
       user: {
         type: Schema.Types.ObjectId,
-        ref: "user"
-      }
-    }
+        ref: "user",
+      },
+    },
   ],
   comments: [
     {
       user: {
         type: Schema.Types.ObjectId,
-        ref: "user"
+        ref: "user",
       },
       text: {
         type: String,
-        required: true
+        required: true,
       },
       date: {
         type: Date,
-        default: Date.now
-      }
-    }
+        default: Date.now,
+      },
+    },
   ],
   //date of the post
   date: {
     type: Date,
-    default: Date.now
-  }
+    default: Date.now,
+  },
 });
 
 module.exports = Post = mongoose.model("post", PostSchema);

@@ -9,6 +9,7 @@ import {
   ADD_TRACK_COMMENT,
   GET_MUSIC,
   UPDATE_TRACK_LIKES,
+  DELETE_POST,
 } from "./types";
 
 //Get music by id
@@ -30,7 +31,7 @@ export const getMusicById = (user_id) => async (dispatch) => {
 };
 
 //Upload tracks
-export const uploadTrack = (formData, text) => async (dispatch) => {
+export const uploadTrack = (formData, heading, caption) => async (dispatch) => {
   try {
     const config = {
       headers: {
@@ -46,7 +47,8 @@ export const uploadTrack = (formData, text) => async (dispatch) => {
     });
 
     dispatch(setAlert("Tracks updated", "success"));
-    text && dispatch(addPost({ text }));
+    heading &&
+      dispatch(addPost({ text: caption, trackId: res.data._id, heading: heading }));
   } catch (err) {
     dispatch({
       type: MUSIC_ERROR,
@@ -56,10 +58,9 @@ export const uploadTrack = (formData, text) => async (dispatch) => {
 };
 
 //Delete a track
-export const deleteTrack = (trackName, musicId, userId) => async (dispatch) => {
+export const deleteTrack = (trackName, musicId, userId, trackId) => async (dispatch) => {
   try {
     await axios.delete(`/api/music/remove-track/${musicId}/${trackName}`);
-
     dispatch({
       type: REMOVE_TRACK,
       payload: {
@@ -68,7 +69,15 @@ export const deleteTrack = (trackName, musicId, userId) => async (dispatch) => {
       },
     });
 
+    const res = await axios.delete(`/api/posts/multimedia/${trackId}`);
+    res.status === 200 &&
+      dispatch({
+        type: DELETE_POST,
+        payload: res.data.postId,
+      });
+
     dispatch(setAlert("Track removed", "success"));
+    dispatch(setAlert(`Post removed`, "success"));
   } catch (err) {
     console.log(err);
     dispatch({

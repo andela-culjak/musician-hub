@@ -7,6 +7,7 @@ import { uploadTrack } from "../../actions/music";
 const UploadTrack = ({ uploadTrack, auth }) => {
   const [file, setFile] = useState(null);
   const [title, setTitle] = useState("");
+  const [caption, setCaption] = useState("");
   const [duration, setDuration] = useState("");
   const [label, setLabel] = useState("Choose a file");
   const [postToNewsfeed, setPostToNewsfeed] = useState(false);
@@ -32,6 +33,10 @@ const UploadTrack = ({ uploadTrack, auth }) => {
     setTitle(e.target.value);
   };
 
+  const onChangeCaption = (e) => {
+    setCaption(e.target.value);
+  };
+
   const onSubmit = async (e) => {
     e.preventDefault();
     formData.append("track", file);
@@ -41,9 +46,11 @@ const UploadTrack = ({ uploadTrack, auth }) => {
       formData,
       postToNewsfeed
         ? `${auth.user.name.split(" ")[0]} uploaded a new track "${title}".`
-        : undefined
+        : undefined,
+      postToNewsfeed ? caption : undefined
     );
     setTitle("");
+    setCaption("");
     setFile(null);
     setLabel("Choose a file");
   };
@@ -70,6 +77,14 @@ const UploadTrack = ({ uploadTrack, auth }) => {
           />{" "}
           Post to Newsfeed
         </p>
+
+        <input
+          disabled={!postToNewsfeed}
+          type="text"
+          id="caption"
+          value={caption}
+          onChange={onChangeCaption}
+        />
 
         <input type="submit" className="btn btn-primary" />
         <Link className="btn btn-light my-1" to="/dashboard">

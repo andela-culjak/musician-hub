@@ -14,13 +14,11 @@ router.post(
   [
     auth,
     [
-      check("text", "Text is required")
-        .not()
-        .isEmpty(),
+      check("text", "Text is required").not().isEmpty(),
       check("text", "Post has to have at least 10 characters").isLength({
-        min: 10
-      })
-    ]
+        min: 10,
+      }),
+    ],
   ],
   async (req, res) => {
     const errors = validationResult(req);
@@ -33,7 +31,9 @@ router.post(
 
       const newPost = new Post({
         text: req.body.text,
-        user: user
+        heading: req.body.heading,
+        trackId: req.body.trackId,
+        user: user,
       });
 
       const post = await newPost.save();
@@ -65,10 +65,10 @@ router.get("/", auth, async (req, res) => {
 //@access   Private
 router.get("/:id", auth, async (req, res) => {
   try {
-    const post = await Post.findById(req.params.id).populate(
-      "user comments.user",
-      ["name", "avatar"]
-    );
+    const post = await Post.findById(req.params.id).populate("user comments.user", [
+      "name",
+      "avatar",
+    ]);
 
     if (!post) {
       return res.status(404).json({ msg: "Post not found" });
@@ -112,6 +112,29 @@ router.delete("/:id", auth, async (req, res) => {
   }
 });
 
+//@route    DELETE api/post/multimedia/:trackid
+//@desc     Delete music post by track id
+//@access   Private
+router.delete("/multimedia/:trackid", auth, async (req, res) => {
+  try {
+    const post = await Post.findOne({ trackId: req.params.trackid });
+
+    if (!post) {
+      return res.status(404).json({ msg: "Post not found" });
+    }
+
+    await post.remove();
+
+    res.status(200).send(post._id);
+  } catch (err) {
+    console.error(err.message);
+    if (err.kind == "ObjectId") {
+      return res.status(404).json({ msg: "Post not found" });
+    }
+    res.status(500).send("Server error");
+  }
+});
+
 //@route    PUT api/post/like/:id
 //@desc     Like a post
 //@access   Private
@@ -120,9 +143,7 @@ router.put("/like/:id", auth, async (req, res) => {
     const post = await Post.findById(req.params.id);
 
     //Check if the post has already been liked
-    if (
-      post.likes.filter(like => like.user.toString() === req.user.id).length > 0
-    ) {
+    if (post.likes.filter((like) => like.user.toString() === req.user.id).length > 0) {
       return res.status(400).json({ msg: "Post already liked" });
     }
 
@@ -144,17 +165,12 @@ router.put("/unlike/:id", auth, async (req, res) => {
     const post = await Post.findById(req.params.id);
 
     //Check if the post has been liked
-    if (
-      post.likes.filter(like => like.user.toString() === req.user.id).length ===
-      0
-    ) {
+    if (post.likes.filter((like) => like.user.toString() === req.user.id).length === 0) {
       return res.status(400).json({ msg: "Post has not yet been liked" });
     }
 
     //Get the remove index
-    const removeIndex = post.likes
-      .map(like => like.user.toString)
-      .indexOf(req.user.id);
+    const removeIndex = post.likes.map((like) => like.user.toString).indexOf(req.user.id);
 
     post.likes.splice(removeIndex, 1);
 
@@ -171,14 +187,7 @@ router.put("/unlike/:id", auth, async (req, res) => {
 //@access   Private
 router.post(
   "/comment/:id",
-  [
-    auth,
-    [
-      check("text", "Text is required")
-        .not()
-        .isEmpty()
-    ]
-  ],
+  [auth, [check("text", "Text is required").not().isEmpty()]],
   async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
@@ -187,14 +196,14 @@ router.post(
 
     try {
       const user = await User.findById(req.user.id).select("-password");
-      const post = await Post.findById(req.params.id).populate(
-        "user comments.user",
-        ["name", "avatar"]
-      );
+      const post = await Post.findById(req.params.id).populate("user comments.user", [
+        "name",
+        "avatar",
+      ]);
 
       const newComment = {
         text: req.body.text,
-        user: user
+        user: user,
       };
 
       post.comments.unshift(newComment);
@@ -216,9 +225,7 @@ router.delete("/comment/:post_id/:comment_id", auth, async (req, res) => {
     const post = await Post.findById(req.params.post_id);
 
     //pull out the comment
-    const comment = post.comments.find(
-      comment => comment.id === req.params.comment_id
-    );
+    const comment = post.comments.find((comment) => comment.id === req.params.comment_id);
 
     //Check if the comment exists
     if (!comment) {
@@ -232,7 +239,7 @@ router.delete("/comment/:post_id/:comment_id", auth, async (req, res) => {
 
     //Get the remove index
     const removeIndex = post.comments
-      .map(comment => comment.id)
+      .map((comment) => comment.id)
       .indexOf(req.params.comment_id);
 
     post.comments.splice(removeIndex, 1);

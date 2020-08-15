@@ -19,10 +19,18 @@ export default function (state = initialState, action) {
 
   switch (type) {
     case GET_MUSIC:
-    case UPDATE_MUSIC:
       return {
         ...state,
         music: payload,
+        loading: false,
+      };
+    case UPDATE_MUSIC:
+      return {
+        ...state,
+        music: {
+          ...state.music,
+          tracks: [...state.music.tracks, payload],
+        },
         loading: false,
       };
 

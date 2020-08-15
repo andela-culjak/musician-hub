@@ -69,7 +69,7 @@ router.post("/upload-track", auth, async (req, res) => {
 
       music.tracks.push(newTrack);
       await music.save();
-      res.json(music);
+      res.json(music.tracks.find((track) => track.url === newTrack.url));
     });
   } catch (err) {
     console.error(err.message);
