@@ -48,7 +48,7 @@ img {
     width: 100%;
 }
 
-input::placeholder, textarea::placeholder, input {
+input::placeholder, textarea::placeholder, input, textarea {
     font-family: var(--main-font);
 }
 
@@ -64,7 +64,7 @@ input::placeholder, textarea::placeholder, input {
 /* Utilities */
 
 .container {
-    max-width: 1200px;
+    max-width: 1100px;
     margin: auto;
     overflow: hidden;
     padding: 6rem 1rem 3rem 1rem;
@@ -72,6 +72,37 @@ input::placeholder, textarea::placeholder, input {
 
 .container:empty {
     display: none;
+}
+
+.speech-bubble {
+    position: relative;
+    border-radius: .6em;
+}
+
+.speech-bubble:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 30%;
+    width: 0;
+    height: 0;
+    border: 10px solid transparent;
+    border-left: 0;
+    margin-top: -10px;
+    margin-left: -10px;
+}
+
+@media (max-width: 700px) {
+    body {
+        font-size: 0.8rem;
+        line-height: 1.4;
+    }
+    .container {
+        padding-top: 4rem;
+    }
+    .hide-sm {
+        display: none;
+    }
 }
 
 /* Text Styles*/
@@ -95,8 +126,24 @@ input::placeholder, textarea::placeholder, input {
     font-size: 1.3rem;
 }
 
+.medium-small {
+    font-size: 0.9rem;
+}
+
+small {
+    font-size: 0.75rem;
+}
+
 .text-center {
     text-align: center;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.text-left {
+    text-align: left;
 }
 
 .text-primary {
@@ -105,6 +152,24 @@ input::placeholder, textarea::placeholder, input {
 
 .text-dark {
     color: var(--dark-color);
+}
+
+@media (max-width: 700px) {
+    .x-large {
+        font-size: 2.5rem;
+    }
+    .large {
+        font-size: 1.5rem;
+    }
+    .medium-large {
+        font-size: 1.2rem;
+    }
+    .lead {
+        font-size: 1rem;
+    }
+    .medium-small {
+        font-size: 0.8rem;
+    }
 }
 
 /* Buttons */
@@ -116,10 +181,15 @@ input::placeholder, textarea::placeholder, input {
     padding: 0.3rem 1rem;
     font-size: 1rem;
     border: none;
+    border-radius: 1rem;
     cursor: pointer;
     margin-right: 0.5rem;
     transition: opacity 0.2s ease-in;
     outline: none;
+}
+
+.btn-radius-05 {
+    border-radius: 0.5rem;
 }
 
 .badge {
@@ -213,7 +283,7 @@ input::placeholder, textarea::placeholder, input {
     display: block;
     width: 100%;
     padding: 0.4rem;
-    font-size: 1.2rem;
+    font-size: 1rem;
     border: 1px solid var(--light-gray);
 }
 
@@ -267,7 +337,25 @@ input::placeholder, textarea::placeholder, input {
     background: var(--light-color);
 }
 
+@media (max-width: 700px) {
+    .form .form-group {
+        margin: 1rem 0;
+    }
+    .form .form-text {
+        margin-top: 0.2rem;
+    }
+    .form input[type="text"], .form input[type="email"], .form input[type="password"], .form input[type="date"], .form select, .form textarea {
+        padding: 0.2rem;
+        font-size: 1rem;
+        resize: none;
+    }
+}
+
 /* Padding */
+
+.p-0 {
+    padding: 0!important;
+}
 
 .p-025 {
     padding: 0.25rem;
@@ -421,6 +509,10 @@ input::placeholder, textarea::placeholder, input {
 
 /* Margin */
 
+.m-0 {
+    margin: 0!important;
+}
+
 .m-025 {
     margin: 0.25rem;
 }
@@ -496,6 +588,12 @@ input::placeholder, textarea::placeholder, input {
 
 .mb-1 {
     margin-bottom: 1rem;
+}
+
+/* CUSTOM */
+
+.mb-15 {
+    margin-bottom: 1.5rem;
 }
 
 .mb-2 {

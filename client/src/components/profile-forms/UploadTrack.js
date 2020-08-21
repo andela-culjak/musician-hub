@@ -45,7 +45,7 @@ const UploadTrack = ({ uploadTrack, auth }) => {
     uploadTrack(
       formData,
       postToNewsfeed
-        ? `${auth.user.name.split(" ")[0]} uploaded a new track "${title}".`
+        ? `${auth.user.name.split(" ")[0]} uploaded a new track - ${title}`
         : undefined,
       postToNewsfeed ? caption : undefined
     );

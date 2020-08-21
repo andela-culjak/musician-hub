@@ -18,7 +18,8 @@ const Posts = ({ getPosts, post: { posts, loading } }) => {
       <h1 className="large text-primary my-05"> Newsfeed </h1>
 
       <PostForm />
-      <div className="posts">
+
+      <div className="posts mt-2">
         {posts.map((post) => (
           <PostItem key={post._id} post={post} />
         ))}

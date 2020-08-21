@@ -64,7 +64,6 @@ export const getProfileById = (user_id, history) => async (dispatch) => {
       payload: res.data,
     });
   } catch (err) {
-    //history.push("/dashboard"); //not the best thing, works well tho
     dispatch({
       type: PROFILE_ERROR,
       payload: {

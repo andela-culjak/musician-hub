@@ -6,15 +6,16 @@ import { addPost } from "../../actions/post";
 const PostForm = ({ addPost }) => {
   const [text, setText] = useState("");
   return (
-    <div className="post-form">
+    <>
       <form
-        className="form my-1"
+        className="form my-1 post-form"
         onSubmit={(e) => {
           e.preventDefault();
           addPost({ text: text, trackId: "" });
           setText("");
         }}>
         <textarea
+          className="post-input speech-bubble"
           name="text"
           cols="30"
           rows="5"
@@ -25,9 +26,14 @@ const PostForm = ({ addPost }) => {
             setText(e.target.value);
           }}
         />
-        <input type="submit" className="btn btn-dark my-1" value="Submit" />
+
+        <input
+          type="submit"
+          className="btn btn-dark btn-radius-05 submit-post m-0"
+          value="Post"
+        />
       </form>
-    </div>
+    </>
   );
 };
 

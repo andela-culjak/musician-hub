@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import Moment from "react-moment";
@@ -12,64 +12,79 @@ const PostItem = ({
   auth,
   post: { _id, text, user, likes, comments, date, trackId, heading },
   showActions,
-}) => (
-  <div className="post bg-white p-1 my-1">
-    <div>
-      {user._id ? (
-        <Link to={`/profile/user/${user._id}`}>
-          <img className="round-img" src={user.avatar} alt="" />
-          <h4>{user.name}</h4>
-        </Link>
-      ) : (
-        <h4> Deleted user </h4>
-      )}
-    </div>
-    <div>
-      <div className="my-1">
-        {heading && <strong className="mb-1"> {heading}</strong>}
-        <p className="mb-1">{text}</p>
-      </div>
+}) => {
+  const likeOrUnlikePost = (_id, likes) => {
+    likes.filter((like) => like.user === auth.user._id).length > 0
+      ? removeLike(_id)
+      : addLike(_id);
+  };
 
-      <p className="post-date">
-        <Moment format="YYYY/MM/DD">{date}</Moment>{" "}
-      </p>
-
-      {showActions && (
-        <Fragment>
-          <button onClick={() => addLike(_id)} type="button" className="btn btn-light">
-            <i className="fas fa-thumbs-up" />{" "}
-            {likes.length > 0 && <span> {likes.length}</span>}
-          </button>
-
-          <button onClick={() => removeLike(_id)} type="button" className="btn btn-light">
-            <i className="fas fa-thumbs-down" />
-          </button>
-
-          <Link to={`/posts/${_id}`} className="btn btn-primary">
-            {trackId ? (
-              <span> Listen </span>
-            ) : (
-              <span>
-                Comments{" "}
-                {comments.length > 0 && (
-                  <span className="comment-count"> {comments.length}</span>
-                )}
-              </span>
-            )}
+  return (
+    <div className="post p-2">
+      <div className="post-author">
+        {user._id ? (
+          <Link to={`/profile/user/${user._id}`}>
+            <img className="round-img" src={user.avatar} alt="" />
+            <h5>{user.name}</h5>
           </Link>
-          {!auth.loading && user._id === auth.user._id && (
+        ) : (
+          <h5> Deleted user </h5>
+        )}
+
+        <p className="post-date">
+          <Moment fromNow>{date}</Moment>{" "}
+        </p>
+      </div>
+      <div className="post-content">
+        <div>
+          <div className="post-text speech-bubble px-1 py-05">
+            <small className="post-heading">
+              {heading && <strong className="mb-1"> {heading}</strong>}
+            </small>
+            <p className="medium-small">{text}</p>
+            {!auth.loading && user._id === auth.user._id && (
+              <button onClick={() => deletePost(_id)} className="delete-post-btn">
+                <i className="fas fa-times" />
+              </button>
+            )}
+          </div>
+        </div>
+
+        {showActions && (
+          <div className="mt-05">
             <button
-              onClick={() => deletePost(_id)}
               type="button"
-              className="btn delete-post-btn">
-              <i className="fas fa-times" />
+              className="action-button mr-1"
+              onClick={() => auth.isAuthenticated && likeOrUnlikePost(_id, likes)}>
+              <i
+                className={
+                  (auth.user &&
+                    likes.filter((like) => like.user === auth.user._id).length) > 0
+                    ? `fas fa-heart`
+                    : `far fa-heart`
+                }
+              />
+              {likes.length > 0 && <span> {likes.length}</span>}
             </button>
-          )}
-        </Fragment>
-      )}
+
+            <Link to={`/posts/${_id}`}>
+              <button className="action-button mr-1">
+                {trackId ? (
+                  <i className="fas fa-headphones-alt" />
+                ) : (
+                  <>
+                    <i className="far fa-comment-alt" />
+                    {comments.length > 0 && <span> {comments.length}</span>}
+                  </>
+                )}
+              </button>
+            </Link>
+          </div>
+        )}
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
 PostItem.defaultProps = {
   showActions: true,

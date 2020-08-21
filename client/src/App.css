@@ -54,6 +54,7 @@
   height: 2.8rem;
   font-size: 1.3rem;
   padding: 0 0.8rem;
+  outline: none;
 }
 
 /* Landing Page */
@@ -370,10 +371,6 @@
   text-align: center;
 }
 
-.liked {
-  color: var(--primary-light);
-}
-
 .track-comment-form {
   display: flex;
   flex-direction: row;
@@ -410,17 +407,41 @@
 
 /* Posts Page */
 
-.post-form .post-form-header {
-  background: var(--primary-color);
-  padding: 0.5rem;
+.post-form {
+  position: relative;
+}
+
+.post-input, .post-input::placeholder {
+  resize: none;
+}
+
+.submit-post {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+}
+
+.posts {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 1rem;
+}
+
+.post:nth-child(2n) {
+  margin-bottom: -20px;
+}
+
+.post:nth-child(2n+1) {
+  margin-top: -20px;
 }
 
 .post {
   position: relative;
   display: grid;
   grid-template-columns: 1fr 4fr;
-  grid-gap: 2rem;
+  grid-gap: 1rem;
   align-items: center;
+  align-items: start;
 }
 
 .post>div:first-child {
@@ -429,6 +450,38 @@
 
 .post img {
   width: 100px;
+}
+
+.post-text {
+  background: var(--transparent-dark);
+  color: var(--white);
+  min-height: 100px;
+  max-width: 500px;
+}
+
+.post-text:after {
+  border-right-color: var(--transparent-dark);
+}
+
+.post-heading {
+  color: var(--primary-light);
+}
+
+.action-button {
+  font-size: 1.2rem;
+  background-color: transparent;
+  border: none;
+  line-height: 50%;
+  text-align: center;
+  outline: none;
+}
+
+.fa-headphones-alt {
+  font-size: 1.35rem;
+}
+
+.fa-comment-alt {
+  font-size: 1.1rem;
 }
 
 .post .comment-count {
@@ -442,15 +495,17 @@
 .post .post-date {
   color: var(--light-gray);
   font-size: 0.8rem;
-  margin-bottom: 0.5rem;
 }
 
 .delete-comment-btn, .delete-post-btn {
   position: absolute;
   font-size: 0.8rem;
   background-color: transparent;
-  right: 0px;
-  top: 10px;
+  color: var(--white);
+  border: none;
+  outline: none;
+  right: 12px;
+  top: 7px;
 }
 
 .comment {
@@ -494,39 +549,6 @@
 /* Mobile Styles */
 
 @media (max-width: 700px) {
-  body {
-    font-size: 0.8rem;
-    line-height: 1.4;
-  }
-  .container {
-    padding-top: 4rem;
-  }
-  .hide-sm {
-    display: none;
-  }
-  .form .form-group {
-    margin: 1rem 0;
-  }
-  .form .form-text {
-    margin-top: 0.2rem;
-  }
-  .form input[type="text"], .form input[type="email"], .form input[type="password"], .form input[type="date"], .form select, .form textarea {
-    padding: 0.2rem;
-    font-size: 1rem;
-  }
-  /* Text Styles */
-  .x-large {
-    font-size: 2.5rem;
-  }
-  .large {
-    font-size: 1.5rem;
-  }
-  .medium-large {
-    font-size: 1.2rem;
-  }
-  .lead {
-    font-size: 1rem;
-  }
   /* Navbar */
   .navbar {
     font-size: 0.8rem;
@@ -580,10 +602,20 @@
     width: 100%;
     margin-bottom: 0.2rem;
   }
-  .post {
+  /* Posts Page */
+  .posts {
     grid-template-columns: 1fr;
   }
-  .post a, .post button {
-    padding: 0.3rem 0.4rem;
+  .post {
+    padding: 1rem;
+  }
+  .post:nth-child(2n) {
+    margin-bottom: 0;
+  }
+  .post:nth-child(2n+1) {
+    margin-top: 0;
+  }
+  .post img {
+    width: 80px;
   }
 }
