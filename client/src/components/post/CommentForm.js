@@ -8,26 +8,31 @@ const CommentForm = ({ postId, addComment }) => {
 
   return (
     <div className="comment-form">
-      <div className="bg-primary p-05">
+      <div className="bg-primary radius-05 p-05 ">
         <h3>Leave a comment</h3>
       </div>
       <form
-        className="form my-1"
+        className="form my-1 post-form"
         onSubmit={(e) => {
           e.preventDefault();
           addComment(postId, { text });
           setText("");
         }}>
         <textarea
+          className="post-input speech-bubble"
           name="text"
           cols="30"
           rows="5"
-          placeholder="Leave a comment"
+          placeholder="What do you think?"
           value={text}
           onChange={(e) => setText(e.target.value)}
           required
         />
-        <input type="submit" className="btn btn-dark my-1" value="Submit" />
+        <input
+          type="submit"
+          className="btn btn-dark radius-05 submit-post m-0"
+          value="Comment"
+        />
       </form>
     </div>
   );

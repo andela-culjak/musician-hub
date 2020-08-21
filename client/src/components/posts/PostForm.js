@@ -29,7 +29,7 @@ const PostForm = ({ addPost }) => {
 
         <input
           type="submit"
-          className="btn btn-dark btn-radius-05 submit-post m-0"
+          className="btn btn-dark radius-05 submit-post m-0"
           value="Post"
         />
       </form>

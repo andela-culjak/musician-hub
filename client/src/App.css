@@ -427,12 +427,14 @@
   grid-gap: 1rem;
 }
 
-.post:nth-child(2n) {
+.posts .post:nth-child(2n) {
   margin-bottom: -20px;
+  padding: 2rem;
 }
 
-.post:nth-child(2n+1) {
-  margin-top: -20px;
+.posts .post:nth-child(2n+1) {
+  margin-top: -30px;
+  padding: 2rem;
 }
 
 .post {
@@ -492,9 +494,45 @@
   font-size: 0.8rem;
 }
 
-.post .post-date {
+.post-date {
   color: var(--light-gray);
   font-size: 0.8rem;
+}
+
+/* Single Post */
+
+.single-post-page {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto;
+  grid-gap: 1.5rem;
+}
+
+.main-post {
+  grid-column: 1;
+  grid-row: 1;
+  padding: 1rem;
+}
+
+.post-comment-form {
+  grid-column: 1;
+  grid-row: 2;
+}
+
+.post-comments {
+  grid-column: 2;
+  grid-row: 2
+}
+
+.comment-text {
+  background: var(--ultra-transparent-black);
+  color: var(--white);
+  min-height: 100px;
+  max-width: 500px;
+}
+
+.comment-text:after {
+  border-right-color: var(--ultra-transparent-black);
 }
 
 .delete-comment-btn, .delete-post-btn {
@@ -512,12 +550,31 @@
   position: relative;
   display: grid;
   grid-template-columns: 1fr 6fr;
-  grid-gap: 1.5rem;
-  align-items: center;
+  grid-gap: 0.75rem;
 }
 
 .comment img {
   width: 60px;
+}
+
+/* Musical Post */
+
+.musical-post-page {
+  display: grid;
+  grid-template-columns: 0.5fr 2fr 0.5fr;
+  grid-template-rows: auto auto;
+  grid-gap: 1rem;
+}
+
+.main-post-musical {
+  grid-column: 2;
+  grid-row: 1;
+  padding: 1rem;
+}
+
+.post-track {
+  grid-column: 2;
+  grid-row: 2;
 }
 
 /* Large Screen Styles */
@@ -543,6 +600,28 @@
     height: 2.3rem;
     font-size: 1.2rem;
     padding: 0 0.8rem;
+  }
+}
+
+@media (max-width: 900px) {
+  /* Single Post */
+  .single-post-page {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto;
+    grid-gap: 1.5rem;
+  }
+  .main-post {
+    grid-column: 1;
+    grid-row: 1;
+  }
+  .post-comment-form {
+    grid-column: 1;
+    grid-row: 2;
+  }
+  .post-comments {
+    grid-column: 1;
+    grid-row: 3;
   }
 }
 
@@ -609,10 +688,10 @@
   .post {
     padding: 1rem;
   }
-  .post:nth-child(2n) {
+  .posts .post:nth-child(2n) {
     margin-bottom: 0;
   }
-  .post:nth-child(2n+1) {
+  .posts .post:nth-child(2n+1) {
     margin-top: 0;
   }
   .post img {

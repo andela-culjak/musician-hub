@@ -153,7 +153,7 @@ const MainTrack = ({
       </div>
       <div id="timeline"></div>
 
-      <div className="track-actions">
+      <div className="track-actions radius-bottom-1">
         <button
           type="button"
           className="heart-button mx-05"

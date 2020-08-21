@@ -11,31 +11,35 @@ const CommentItem = ({
   auth,
   deleteComment,
 }) => (
-  <div className=" comment bg-white p-05 my-05">
-    <div>
+  <div className="comment p-05">
+    <div className="author">
       {user._id ? (
         <Link to={`/profile/user/${user._id}`}>
           <img className="round-img" src={user.avatar} alt="" />
           <h5>{user.name}</h5>
         </Link>
       ) : (
-        <h4>Deleted User</h4>
+        <h5>Deleted User</h5>
       )}
-    </div>
-    <div>
-      <p className="my-1">{text}</p>
-      <p className="post-date">
-        <Moment format="YYYY/MM/DD">{date}</Moment>{" "}
-      </p>
 
-      {!auth.loading && user._id === auth.user._id && (
-        <button
-          onClick={(e) => deleteComment(postId, _id)}
-          type="button"
-          className="btn delete-comment-btn">
-          <i className="fas fa-times" />{" "}
-        </button>
-      )}
+      <p className="post-date">
+        <Moment fromNow>{date}</Moment>
+      </p>
+    </div>
+
+    <div>
+      <div className="comment-text speech-bubble px-1 py-05">
+        <p className="medium-small">{text}</p>
+
+        {!auth.loading && user._id === auth.user._id && (
+          <button
+            onClick={(e) => deleteComment(postId, _id)}
+            type="button"
+            className="delete-post-btn">
+            <i className="fas fa-times" />{" "}
+          </button>
+        )}
+      </div>
     </div>
   </div>
 );

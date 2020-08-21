@@ -92,6 +92,18 @@ input::placeholder, textarea::placeholder, input, textarea {
     margin-left: -10px;
 }
 
+.radius-05 {
+    border-radius: 0.5rem;
+}
+
+.radius-1 {
+    border-radius: 1rem;
+}
+
+.radius-bottom-1 {
+    border-radius: 0 0 1rem 1rem;
+}
+
 @media (max-width: 700px) {
     body {
         font-size: 0.8rem;
@@ -186,10 +198,6 @@ small {
     margin-right: 0.5rem;
     transition: opacity 0.2s ease-in;
     outline: none;
-}
-
-.btn-radius-05 {
-    border-radius: 0.5rem;
 }
 
 .badge {

@@ -20,8 +20,8 @@ const PostItem = ({
   };
 
   return (
-    <div className="post p-2">
-      <div className="post-author">
+    <div className="post">
+      <div className="author">
         {user._id ? (
           <Link to={`/profile/user/${user._id}`}>
             <img className="round-img" src={user.avatar} alt="" />
@@ -32,16 +32,18 @@ const PostItem = ({
         )}
 
         <p className="post-date">
-          <Moment fromNow>{date}</Moment>{" "}
+          <Moment fromNow>{date}</Moment>
         </p>
       </div>
-      <div className="post-content">
+
+      <div className="content">
         <div>
           <div className="post-text speech-bubble px-1 py-05">
             <small className="post-heading">
               {heading && <strong className="mb-1"> {heading}</strong>}
             </small>
             <p className="medium-small">{text}</p>
+
             {!auth.loading && user._id === auth.user._id && (
               <button onClick={() => deletePost(_id)} className="delete-post-btn">
                 <i className="fas fa-times" />
@@ -67,18 +69,24 @@ const PostItem = ({
               {likes.length > 0 && <span> {likes.length}</span>}
             </button>
 
-            <Link to={`/posts/${_id}`}>
-              <button className="action-button mr-1">
-                {trackId ? (
-                  <i className="fas fa-headphones-alt" />
-                ) : (
-                  <>
-                    <i className="far fa-comment-alt" />
-                    {comments.length > 0 && <span> {comments.length}</span>}
-                  </>
-                )}
-              </button>
-            </Link>
+            {trackId ? (
+              <Link to={`/posts/musical/${_id}`}>
+                <button className="action-button mr-1">
+                  {<i className="fas fa-headphones-alt" />}
+                </button>
+              </Link>
+            ) : (
+              <Link to={`/posts/${_id}`}>
+                <button className="action-button mr-1">
+                  {
+                    <>
+                      <i className="far fa-comment-alt" />
+                      {comments.length > 0 && <span> {comments.length}</span>}
+                    </>
+                  }
+                </button>
+              </Link>
+            )}
           </div>
         )}
       </div>
