@@ -12,15 +12,15 @@ const Profiles = ({ getProfiles, profile: { profiles, loading } }) => {
 
   const [filteredData, setFilteredData] = useState({
     query: "",
-    filteredProfiles: profiles
+    filteredProfiles: profiles,
   });
 
-  const onChange = e => {
+  const onChange = (e) => {
     setFilteredData({
       query: e.target.value,
-      filteredProfiles: profiles.filter(person =>
+      filteredProfiles: profiles.filter((person) =>
         person.user.name.toLowerCase().includes(e.target.value.toLowerCase())
-      )
+      ),
     });
   };
 
@@ -31,25 +31,31 @@ const Profiles = ({ getProfiles, profile: { profiles, loading } }) => {
       ) : (
         <Fragment>
           <h1 className="large text-primary">Members</h1>
-          <p className="lead">Browse and connect with other musicians</p>
-          <input
-            type="text"
-            className="search-bar my-1"
-            placeholder="Search"
-            name="query"
-            onChange={e => onChange(e)}
-          />
+          <p className="lead">Browse and connect with fellow musicians</p>
+
+          <div className="search-bar-container radius-2 px-1 my-1">
+            <input
+              type="text"
+              className="search-bar "
+              placeholder="Search"
+              name="query"
+              onChange={(e) => onChange(e)}
+            />
+            <i className="fas fa-search search-icon"></i>
+          </div>
 
           {
             <div className="profiles">
               {profiles.length > 0 && filteredData.query.length > 0 ? (
-                filteredData.filteredProfiles.map(profile => (
+                filteredData.filteredProfiles.map((profile) => (
                   <ProfileItem key={profile._id} profile={profile} />
                 ))
               ) : profiles.length > 0 ? (
-                profiles.map(profile => (
-                  <ProfileItem key={profile._id} profile={profile} />
-                ))
+                profiles
+                  .sort(() => {
+                    return 0.5 - Math.random();
+                  })
+                  .map((profile) => <ProfileItem key={profile._id} profile={profile} />)
               ) : (
                 <h4>No profiles found...</h4>
               )}
@@ -63,14 +69,11 @@ const Profiles = ({ getProfiles, profile: { profiles, loading } }) => {
 
 Profiles.propTypes = {
   getProfiles: PropTypes.func.isRequired,
-  profile: PropTypes.object.isRequired
+  profile: PropTypes.object.isRequired,
 };
 
-const mapStateToProps = state => ({
-  profile: state.profile
+const mapStateToProps = (state) => ({
+  profile: state.profile,
 });
 
-export default connect(
-  mapStateToProps,
-  { getProfiles }
-)(Profiles);
+export default connect(mapStateToProps, { getProfiles })(Profiles);

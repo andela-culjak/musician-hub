@@ -17,8 +17,8 @@
     --black: #000;
     --transparent-black: rgba(0, 0, 0, 0.7);
     --transparent-dark: rgba(0, 34, 58, 0.808);
-    --ultra-transparent-black: rgba(0, 0, 0, 0.2);
-    --landing-background: url("./img/concert2.jpg") no-repeat center center/cover;
+    --ultra-transparent-black: rgba(0, 0, 0, 0.3);
+    --landing-background: url("./img/home.png") no-repeat center center/cover;
 }
 
 * {
@@ -98,6 +98,10 @@ input::placeholder, textarea::placeholder, input, textarea {
 
 .radius-1 {
     border-radius: 1rem;
+}
+
+.radius-2 {
+    border-radius: 2rem;
 }
 
 .radius-bottom-1 {

@@ -26,7 +26,7 @@ const Post = ({ getPost, post: { post, loading }, match }) => {
           <PostItem post={post} showActions={true} />
         </div>
 
-        <div className="post-comment-form">
+        <div className="post-comment-form my-1">
           <CommentForm postId={post._id} />
         </div>
 

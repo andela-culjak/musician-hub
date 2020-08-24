@@ -49,18 +49,31 @@
 
 /* Search bar */
 
-.search-bar {
+.search-bar-container {
   width: 100%;
   height: 2.8rem;
-  font-size: 1.3rem;
-  padding: 0 0.8rem;
+  border: 1px solid var(--light-gray);
+  color: var(--primary-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.search-bar {
+  font-size: 1rem;
+  width: 90%;
+  border: none;
   outline: none;
+}
+
+.search-bar::placeholder {
+  color: var(--light-gray);
 }
 
 /* Landing Page */
 
 .dark-overlay {
-  background-color: var(--transparent-black);
+  background-color: var(--ultra-transparent-black);
   position: fixed;
   top: 0;
   left: 0;
@@ -76,14 +89,13 @@
 
 .landing-inner {
   color: var(--white);
-  height: 100%;
+  height: 80%;
   width: 80%;
   margin: auto;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  text-align: center;
 }
 
 /* Dashboard */
@@ -502,26 +514,8 @@
 /* Single Post */
 
 .single-post-page {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: auto auto;
-  grid-gap: 1.5rem;
-}
-
-.main-post {
-  grid-column: 1;
-  grid-row: 1;
-  padding: 1rem;
-}
-
-.post-comment-form {
-  grid-column: 1;
-  grid-row: 2;
-}
-
-.post-comments {
-  grid-column: 2;
-  grid-row: 2
+  max-width: 600px;
+  margin: auto;
 }
 
 .comment-text {
@@ -603,28 +597,6 @@
   }
 }
 
-@media (max-width: 900px) {
-  /* Single Post */
-  .single-post-page {
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: auto auto auto;
-    grid-gap: 1.5rem;
-  }
-  .main-post {
-    grid-column: 1;
-    grid-row: 1;
-  }
-  .post-comment-form {
-    grid-column: 1;
-    grid-row: 2;
-  }
-  .post-comments {
-    grid-column: 1;
-    grid-row: 3;
-  }
-}
-
 /* Mobile Styles */
 
 @media (max-width: 700px) {
@@ -655,6 +627,9 @@
     display: none;
   }
   /* Profile Page */
+  /* .profile-top {
+    
+  } */
   .profile-top img {
     width: 100px;
     margin: auto;

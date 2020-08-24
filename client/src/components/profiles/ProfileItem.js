@@ -8,7 +8,7 @@ const ProfileItem = ({
     position,
     band,
     location,
-    instruments,
+    genres,
   },
 }) => {
   return (
@@ -30,9 +30,9 @@ const ProfileItem = ({
         </Link>
       </div>
       <ul>
-        {instruments.slice(0, 4).map((instrument, index) => (
+        {genres.slice(0, 4).map((genre, index) => (
           <li key={index} className="text-primary">
-            <i className="fas fa-music" /> {instrument}
+            <i className="fas fa-music" /> {genre}
           </li>
         ))}
       </ul>
