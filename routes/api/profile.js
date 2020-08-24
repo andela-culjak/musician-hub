@@ -254,4 +254,35 @@ router.post("/upload-avatar", auth, async (req, res) => {
   });
 });
 
+//@route    POST api/profile/upload-cover
+//@desc     Upload new cover photo
+//@access   Private
+router.post("/upload-cover", auth, async (req, res) => {
+  if (req.files === null) {
+    return res.status(400).json({ msg: "No file uploaded" });
+  }
+
+  const file = req.files.file;
+  const dirPath = `${process.cwd()}/client/public/uploads/covers/${req.user.id}`;
+
+  if (!fs.existsSync(dirPath)) {
+    fs.mkdirSync(dirPath);
+  }
+
+  file.mv(`${dirPath}/${file.name}`, async (err) => {
+    if (err) {
+      console.error(err);
+      return res.status(500).send(err);
+    }
+
+    const profile = await Profile.findOne({ user: req.user.id });
+
+    //Change the avatar path
+    profile.cover = `/uploads/covers/${req.user.id}/${file.name}`;
+
+    await profile.save();
+    res.json(profile);
+  });
+});
+
 module.exports = router;

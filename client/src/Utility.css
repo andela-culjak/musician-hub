@@ -17,6 +17,7 @@
     --black: #000;
     --transparent-black: rgba(0, 0, 0, 0.7);
     --transparent-dark: rgba(0, 34, 58, 0.808);
+    --transparent-primary: rgb(43, 88, 124, 0.5);
     --ultra-transparent-black: rgba(0, 0, 0, 0.3);
     --landing-background: url("./img/home.png") no-repeat center center/cover;
 }

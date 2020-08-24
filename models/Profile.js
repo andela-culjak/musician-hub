@@ -38,6 +38,9 @@ const ProfileSchema = new Schema({
   bio: {
     type: String,
   },
+  cover: {
+    type: String,
+  },
   experience: [
     {
       position: {

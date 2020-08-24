@@ -8,16 +8,21 @@ const ProfileTop = ({
     location,
     website,
     social,
-    user: { name, avatar },
+    cover,
+    user: { name, avatar, _id },
   },
 }) => {
   return (
-    <div className="profile-top bg-primary p-3 py-sm-2 px-sm-1">
-      <div>
+    <div
+      style={{ backgroundImage: `url(${cover})` }}
+      className="profile-top bg-primary p-3 py-sm-2 px-sm-1">
+      <div className="cover-photo-overlay"></div>
+
+      <div className="avatar-container py-2">
         <img className="round-img " src={avatar} alt="" />
       </div>
 
-      <div className="heading-items py-1 pl-2 pl-sm-1">
+      <div className="heading-items py-3 pl-2 pl-sm-1">
         <h1 className="large">{name}</h1>
 
         <p className="lead">

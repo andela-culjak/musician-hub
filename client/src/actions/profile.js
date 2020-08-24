@@ -163,6 +163,34 @@ export const uploadAvatar = (formData, history) => async (dispatch) => {
   }
 };
 
+//Upload new cover photo
+export const uploadCover = (formData, history) => async (dispatch) => {
+  try {
+    const config = {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    };
+
+    const res = await axios.post("/api/profile/upload-cover", formData, config);
+
+    dispatch({
+      type: UPDATE_PROFILE,
+      payload: res.data,
+    });
+
+    dispatch(setAlert("Cover photo updated", "success"));
+    history.push("/dashboard");
+  } catch (err) {
+    console.log(err);
+
+    // dispatch({
+    //   type: PROFILE_ERROR,
+    //   payload: { msg: err, status: err },
+    // });
+  }
+};
+
 //Delete an experience
 
 export const deleteExperience = (id) => async (dispatch) => {

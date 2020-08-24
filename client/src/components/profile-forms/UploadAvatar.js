@@ -10,12 +10,12 @@ const UploadAvatar = ({ uploadAvatar, history }) => {
 
   const formData = new FormData();
 
-  const onChange = e => {
+  const onChange = (e) => {
     setFile(e.target.files[0]); // because this is a single file upload
     setLabel("Image file chosen");
   };
 
-  const onSubmit = async e => {
+  const onSubmit = async (e) => {
     e.preventDefault();
     formData.append("file", file);
     uploadAvatar(formData, history);
@@ -26,12 +26,7 @@ const UploadAvatar = ({ uploadAvatar, history }) => {
       <h1 className="large text-primary">Update Profile Photo</h1>
       <form className="form" onSubmit={onSubmit}>
         <div className="form-group">
-          <input
-            type="file"
-            id="img-file"
-            accept="image/*"
-            onChange={onChange}
-          />
+          <input type="file" id="img-file" accept="image/*" onChange={onChange} />
           <label htmlFor="img-file"> {label} </label>
         </div>
 
@@ -45,7 +40,7 @@ const UploadAvatar = ({ uploadAvatar, history }) => {
 };
 
 UploadAvatar.propTypes = {
-  uploadAvatar: PropTypes.func.isRequired
+  uploadAvatar: PropTypes.func.isRequired,
 };
 
 export default connect(null, { uploadAvatar })(withRouter(UploadAvatar));
