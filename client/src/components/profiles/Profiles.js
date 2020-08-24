@@ -45,17 +45,15 @@ const Profiles = ({ getProfiles, profile: { profiles, loading } }) => {
           </div>
 
           {
-            <div className="profiles">
+            <div className="profiles my-3">
               {profiles.length > 0 && filteredData.query.length > 0 ? (
                 filteredData.filteredProfiles.map((profile) => (
                   <ProfileItem key={profile._id} profile={profile} />
                 ))
               ) : profiles.length > 0 ? (
-                profiles
-                  .sort(() => {
-                    return 0.5 - Math.random();
-                  })
-                  .map((profile) => <ProfileItem key={profile._id} profile={profile} />)
+                profiles.map((profile) => (
+                  <ProfileItem key={profile._id} profile={profile} />
+                ))
               ) : (
                 <h4>No profiles found...</h4>
               )}

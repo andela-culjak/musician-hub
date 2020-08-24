@@ -98,6 +98,14 @@
   justify-content: center;
 }
 
+/* Auth Pages */
+
+.login-page, .register-page {
+  max-width: 500px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
 /* Dashboard */
 
 .dash-buttons {
@@ -145,14 +153,47 @@
 
 /* Profiles Page */
 
-.profile-item {
+.profiles {
   display: grid;
-  grid-template-columns: 2fr 4fr 2fr;
-  align-items: center;
+  grid-template-columns: repeat( auto-fit, minmax(300px, 1fr));
   grid-gap: 2rem;
+}
+
+.profile-item {
+  min-height: 200px;
+  position: relative;
+}
+
+.card-cover {
+  height: 200px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  border-bottom: 3px solid var(--light-color);
+  position: relative;
+}
+
+.card-avatar {
+  position: absolute;
+  top: 145px;
+  left: 15px;
+  width: 110px;
+  height: 110px;
+  border: 3px solid var(--light-color);
+  z-index: 2;
+}
+
+.card-info {
+  display: grid;
+  grid-template-rows: auto auto;
+  grid-gap: 1rem;
   padding: 1rem;
-  line-height: 1.8;
-  margin-bottom: 1rem;
+}
+
+.card-genres ul {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
 }
 
 /* Profile Page */
@@ -186,12 +227,13 @@
   z-index: 2;
 }
 
-.heading-items {
-  z-index: 2;
+.main-avatar {
+  width: 200px;
+  border: 2px solid var(--light-color);
 }
 
-.profile-top img {
-  width: 200px;
+.heading-items {
+  z-index: 2;
 }
 
 .profile-nav {
@@ -638,20 +680,7 @@
     font-size: 1rem;
     padding: 0 0.5rem;
   }
-  .profile-item {
-    grid-template-columns: 3fr 5fr;
-  }
-  .profile-item img {
-    width: 100px;
-    margin: auto;
-  }
-  .profile-item ul {
-    display: none;
-  }
   /* Profile Page */
-  /* .profile-top {
-    
-  } */
   .profile-top img {
     width: 100px;
     margin: auto;

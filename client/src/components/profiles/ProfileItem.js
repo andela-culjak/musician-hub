@@ -9,33 +9,38 @@ const ProfileItem = ({
     band,
     location,
     genres,
+    cover,
   },
 }) => {
   return (
-    <div className="profile-item bg-light">
-      <Link to={`/profile/user/${_id}`}>
-        <img src={avatar} alt="" className="round-img" />
-      </Link>
-      <div>
+    <div>
+      <div className="profile-item bg-light ">
         <Link to={`/profile/user/${_id}`}>
-          {" "}
-          <h3>{name}</h3>{" "}
-        </Link>
-        <p>
-          {position} {band && <span> at {band}</span>}{" "}
-        </p>
-        <p className="my">{location && <span>{location}</span>}</p>
-        <Link to={`/profile/user/${_id}`} className="btn btn-primary btn-small mt-05">
-          View profile
+          <div className="card-cover" style={{ backgroundImage: `url(${cover})` }}></div>
+
+          <img src={avatar} alt="" className="round-img card-avatar" />
+
+          <div className="card-info mt-2">
+            <h1 className="text-right">{name}</h1>
+
+            <div>
+              <p className="text-right bold">
+                {position} {band && <> at {band} </>}
+              </p>
+              <p className="text-right my">{location && <span>{location}</span>}</p>
+            </div>
+          </div>
         </Link>
       </div>
-      <ul>
-        {genres.slice(0, 4).map((genre, index) => (
-          <li key={index} className="text-primary">
-            <i className="fas fa-music" /> {genre}
-          </li>
-        ))}
-      </ul>
+      <div className=" bg-primary card-genres p-05">
+        <ul>
+          {genres.slice(0, 4).map((genre, index) => (
+            <li key={index} className="text-primary bold">
+              {genre}
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
   );
 };

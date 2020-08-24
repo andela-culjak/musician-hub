@@ -17,7 +17,7 @@
     --black: #000;
     --transparent-black: rgba(0, 0, 0, 0.7);
     --transparent-dark: rgba(0, 34, 58, 0.808);
-    --transparent-primary: rgb(43, 88, 124, 0.5);
+    --transparent-primary: rgb(43, 88, 124, 0.3);
     --ultra-transparent-black: rgba(0, 0, 0, 0.3);
     --landing-background: url("./img/home.png") no-repeat center center/cover;
 }
@@ -151,6 +151,10 @@ small {
     font-size: 0.75rem;
 }
 
+.bold {
+    font-weight: bold;
+}
+
 .text-center {
     text-align: center;
 }
@@ -161,10 +165,6 @@ small {
 
 .text-left {
     text-align: left;
-}
-
-.text-primary {
-    color: var(--primary-color);
 }
 
 .text-dark {
