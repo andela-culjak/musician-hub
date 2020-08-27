@@ -59,38 +59,50 @@ const UploadTrack = ({ uploadTrack, auth }) => {
     <div className="my-3">
       <h2>Upload an audio file</h2>
       <form className="form" onSubmit={onSubmit}>
-        <div className="form-group">
-          <input type="file" id="aud-file" accept="audio/*" onChange={onChangeFile} />
-          <input type="text" id="track-title" value={title} onChange={onChangeTitle} />
-          <label htmlFor="aud-file"> {label} </label>
-        </div>
-
-        <p>
-          <input
-            type="checkbox"
-            name="newsfeed"
-            checked={postToNewsfeed}
-            value={postToNewsfeed}
-            onChange={() => {
-              setPostToNewsfeed(!postToNewsfeed);
-            }}
-          />{" "}
-          Post to Newsfeed
-        </p>
-
+        <input
+          className="my-05"
+          type="file"
+          id="aud-file"
+          accept="audio/*"
+          onChange={onChangeFile}
+        />
+        <input
+          className="my-05"
+          type="text"
+          placeholder="Song title"
+          id="track-title"
+          value={title}
+          onChange={onChangeTitle}
+        />
+        <label htmlFor="aud-file"> {label} </label>
+        <br />
+        <input
+          type="checkbox"
+          className="my-05"
+          id="newsfeed"
+          name="newsfeed"
+          checked={postToNewsfeed}
+          value={postToNewsfeed}
+          onChange={() => {
+            setPostToNewsfeed(!postToNewsfeed);
+          }}
+        />{" "}
+        <label htmlFor="newsfeed">Post to Newsfeed</label>
         <input
           disabled={!postToNewsfeed}
+          className="my-05"
+          placeholder="Post caption"
           type="text"
           id="caption"
           value={caption}
           onChange={onChangeCaption}
         />
-
         <input type="submit" className="btn btn-primary" />
-        <Link className="btn btn-light my-1" to="/dashboard">
-          Go Back
-        </Link>
       </form>
+
+      <Link className="btn btn-light my-1" to="/dashboard">
+        Go Back
+      </Link>
     </div>
   );
 };

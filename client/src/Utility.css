@@ -10,16 +10,22 @@
     --borders-1: #0f1a2e;
     --danger-color: #a10023;
     --success-color: #23ac8e;
+    --almost-white: #c3d5db;
     --white: #fff;
     --light-gray: #c9c9c9;
     --dark-gray: #505050;
     --almost-black: #303030;
     --black: #000;
     --transparent-black: rgba(0, 0, 0, 0.7);
+    --transparent-white: rgba(255, 255, 255, 0.404);
     --transparent-dark: rgba(0, 34, 58, 0.808);
     --transparent-primary: rgb(43, 88, 124, 0.3);
     --ultra-transparent-black: rgba(0, 0, 0, 0.3);
     --landing-background: url("./img/home.png") no-repeat center center/cover;
+}
+
+#main-background {
+    background: var(--transparent-dark);
 }
 
 * {
@@ -69,6 +75,8 @@ input::placeholder, textarea::placeholder, input, textarea {
     margin: auto;
     overflow: hidden;
     padding: 6rem 1rem 3rem 1rem;
+    background-color: var(--transparent-white);
+    min-height: 100vh;
 }
 
 .container:empty {
@@ -283,61 +291,79 @@ small {
 
 /* Forms */
 
-.form .form-group {
+.form-group {
     margin: 1.2rem 0;
 }
 
-.form .form-text {
+.form-text {
     display: block;
     margin-top: 0.3rem;
 }
 
-.form input[type="text"], .form input[type="email"], .form input[type="password"], .form input[type="date"], .form select, .form textarea {
+input::placeholder {
+    color: var(--almost-white);
+}
+
+input[type="text"], input[type="email"], input[type="password"], input[type="date"], select, textarea {
     display: block;
     width: 100%;
     padding: 0.4rem;
     font-size: 1rem;
     border: 1px solid var(--light-gray);
+    background: var(--transparent-primary);
+    color: var(--white);
+    outline: none;
 }
 
-.form input[type="file"] {
+input[type="file"] {
     width: 0.1px;
     height: 0.1px;
     opacity: 0;
     overflow: hidden;
     position: absolute;
     z-index: -1;
+    color: var(--white);
+    outline: none;
 }
 
-.form input[type="file"]+label {
+input[type="file"]+label {
     padding: 0.5rem;
     font-size: 1rem;
     background: var(--dark-color);
     color: var(--white);
     display: inline-block;
     cursor: pointer;
+    outline: none;
 }
 
-.form input[type="file"]:focus+label, .form input[type="file"]+label:hover {
+input[type="file"]:focus+label, input[type="file"]+label:hover {
     opacity: 0.8;
     outline: 1px dotted #000;
     outline: -webkit-focus-ring-color auto 5px;
 }
 
-.form input[type="submit"], button {
+input[type="submit"], button {
     font: inherit;
 }
 
-.form .social-input {
+input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:focus {
+    border: 1px solid rgb(253, 255, 253);
+    -webkit-text-fill-color: rgb(255, 255, 255);
+    box-shadow: none;
+    -webkit-box-shadow: 0 0 0px 1000px var(--transparent-dark) inset;
+    transition: background-color 5000s ease-in-out 0s;
+}
+
+.social-input {
     display: flex;
 }
 
-.form .social-input i {
+.social-input i {
     padding: 0.5rem;
     width: 4rem;
 }
 
-.form .social-input i {
+.social-input i {
     color: var(--secondary-color);
 }
 
@@ -351,13 +377,13 @@ small {
 }
 
 @media (max-width: 700px) {
-    .form .form-group {
+    .form-group {
         margin: 1rem 0;
     }
-    .form .form-text {
+    .form-text {
         margin-top: 0.2rem;
     }
-    .form input[type="text"], .form input[type="email"], .form input[type="password"], .form input[type="date"], .form select, .form textarea {
+    input[type="text"], .form input[type="email"], .form input[type="password"], .form input[type="date"], .form select, .form textarea {
         padding: 0.2rem;
         font-size: 1rem;
         resize: none;

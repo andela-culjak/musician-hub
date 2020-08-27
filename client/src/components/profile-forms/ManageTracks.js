@@ -27,7 +27,7 @@ const ManageTracks = ({ music, auth, getMusicById, deleteTrack }) => {
 
   return (
     <>
-      <div className="container">
+      <div className="p-3">
         <h1 className="large text-primary mb-3">Manage my music</h1>
         {music ? (
           <Fragment>

@@ -42,25 +42,27 @@ const App = () => {
         <Fragment>
           <Navbar />
           <Route exact path="/" component={Landing} />
-          <section className="container">
-            <Alert />
-            <Switch>
-              <Route exact path="/register" component={Register} />
-              <Route exact path="/login" component={Login} />
-              <Route exact path="/profiles" component={Profiles} />
-              <Route exact path="/profile/user/:id" component={Profile} />
-              <PrivateRoute exact path="/dashboard" component={Dashboard} />
-              <PrivateRoute exact path="/create-profile" component={CreateProfile} />
-              <PrivateRoute exact path="/edit-profile" component={EditProfile} />
-              <PrivateRoute exact path="/add-experience" component={AddExperience} />
-              <PrivateRoute exact path="/upload-avatar" component={UploadAvatar} />
-              <PrivateRoute exact path="/upload-cover" component={UploadCover} />
-              <PrivateRoute exact path="/manage-tracks" component={ManageTracks} />
-              <PrivateRoute exact path="/posts" component={Posts} />
-              <PrivateRoute exact path="/posts/:id" component={Post} />
-              <PrivateRoute exact path="/posts/musical/:id" component={MusicalPost} />
-            </Switch>
-          </section>
+          <div id="main-background">
+            <section className="container">
+              <Alert />
+              <Switch>
+                <Route exact path="/register" component={Register} />
+                <Route exact path="/login" component={Login} />
+                <Route exact path="/profiles" component={Profiles} />
+                <Route exact path="/profile/user/:id" component={Profile} />
+                <PrivateRoute exact path="/dashboard" component={Dashboard} />
+                <PrivateRoute exact path="/create-profile" component={CreateProfile} />
+                <PrivateRoute exact path="/edit-profile" component={EditProfile} />
+                <PrivateRoute exact path="/add-experience" component={AddExperience} />
+                <PrivateRoute exact path="/upload-avatar" component={UploadAvatar} />
+                <PrivateRoute exact path="/upload-cover" component={UploadCover} />
+                <PrivateRoute exact path="/manage-tracks" component={ManageTracks} />
+                <PrivateRoute exact path="/posts" component={Posts} />
+                <PrivateRoute exact path="/posts/:id" component={Post} />
+                <PrivateRoute exact path="/posts/musical/:id" component={MusicalPost} />
+              </Switch>
+            </section>
+          </div>
         </Fragment>
       </Router>
     </Provider>

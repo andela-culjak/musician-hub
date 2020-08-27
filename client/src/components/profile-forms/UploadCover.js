@@ -22,7 +22,7 @@ const UploadCover = ({ uploadCover, history }) => {
   };
 
   return (
-    <div className="container">
+    <div className="p-3">
       <h1 className="large text-primary">Update A Cover Photo</h1>
       <form className="form" onSubmit={onSubmit}>
         <div className="form-group">
