@@ -3,6 +3,9 @@ const router = express.Router();
 const fs = require("fs");
 const auth = require("../../middleware/auth");
 const { check, validationResult } = require("express-validator");
+const imagemin = require("imagemin");
+const imageminMozjpeg = require("imagemin-mozjpeg");
+const imageminPngquant = require("imagemin-pngquant");
 
 const Profile = require("../../models/Profile");
 const User = require("../../models/User");
@@ -274,10 +277,21 @@ router.post("/upload-cover", auth, async (req, res) => {
       return res.status(500).send(err);
     }
 
+    await imagemin([`${dirPath}/${file.name}`], {
+      destination: `${dirPath}/min`,
+      plugins: [
+        imageminMozjpeg({ quality: 50 }),
+        imageminPngquant({
+          quality: [0.3, 0.35],
+        }),
+      ],
+    });
+
     const profile = await Profile.findOne({ user: req.user.id });
 
     //Change the avatar path
     profile.cover = `/uploads/covers/${req.user.id}/${file.name}`;
+    profile.thumbnail = `/uploads/covers/${req.user.id}/min/${file.name}`;
 
     await profile.save();
     res.json(profile);

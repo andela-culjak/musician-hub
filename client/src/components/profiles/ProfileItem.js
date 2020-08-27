@@ -9,14 +9,16 @@ const ProfileItem = ({
     band,
     location,
     genres,
-    cover,
+    thumbnail,
   },
 }) => {
   return (
     <div>
       <div className="profile-item bg-light ">
         <Link to={`/profile/user/${_id}`}>
-          <div className="card-cover" style={{ backgroundImage: `url(${cover})` }}></div>
+          <div
+            className="card-cover"
+            style={{ backgroundImage: `url(${thumbnail})` }}></div>
 
           <img src={avatar} alt="" className="round-img card-avatar" />
 

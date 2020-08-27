@@ -41,6 +41,9 @@ const ProfileSchema = new Schema({
   cover: {
     type: String,
   },
+  thumbnail: {
+    type: String,
+  },
   experience: [
     {
       position: {
