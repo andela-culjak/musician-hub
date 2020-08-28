@@ -21,11 +21,12 @@
     --transparent-dark: rgba(0, 34, 58, 0.808);
     --transparent-primary: rgb(43, 88, 124, 0.3);
     --ultra-transparent-black: rgba(0, 0, 0, 0.3);
-    --landing-background: url("./img/home.png") no-repeat center center/cover;
+    --landing-background: url("./img/bcg1.png") no-repeat center center/cover;
 }
 
 #main-background {
-    background: var(--transparent-dark);
+    background-color: var(--transparent-dark);
+    background: url("./img/bcg1.png") no-repeat fixed center/cover;
 }
 
 * {
@@ -39,11 +40,11 @@ body {
     font-size: 1rem;
     line-height: 1.5;
     background-color: var(--white);
-    color: var(--almost-black);
+    color: var(--primary-color);
 }
 
 a {
-    color: var(--primary-color);
+    color: var(--dark-color);
     text-decoration: none;
 }
 
@@ -301,7 +302,7 @@ small {
 }
 
 input::placeholder {
-    color: var(--almost-white);
+    color: var(--white);
 }
 
 input[type="text"], input[type="email"], input[type="password"], input[type="date"], select, textarea {
