@@ -12,13 +12,15 @@ const ProfileItem = ({
     thumbnail,
   },
 }) => {
+  const backup = "/misc/bcg1.png";
+
   return (
     <div className="box-sh-subtle">
       <div className="profile-item bg-tr-white">
         <Link to={`/profile/user/${_id}`}>
           <div
             className="card-cover"
-            style={{ backgroundImage: `url(${thumbnail})` }}></div>
+            style={{ backgroundImage: `url(${thumbnail || backup})` }}></div>
 
           <img src={avatar} alt="" className="round-img card-avatar" />
 

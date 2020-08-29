@@ -12,10 +12,12 @@ const ProfileTop = ({
     user: { name, avatar, _id },
   },
 }) => {
+  const backup = "/misc/bcg1.png";
+
   return (
     <div
       className="profile-top box-sh-subtle bg-primary p-3"
-      style={{ backgroundImage: `url(${cover})` }}>
+      style={{ backgroundImage: `url(${cover || backup})` }}>
       <div className="cover-photo-overlay"></div>
 
       <div className="avatar-container py-2">

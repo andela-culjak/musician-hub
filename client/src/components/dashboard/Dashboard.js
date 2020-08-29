@@ -17,15 +17,11 @@ const Dashboard = ({
     getCurrentProfile();
   }, [getCurrentProfile]);
 
-  /*if (user) {
-    console.log(user);
-  }*/
-
   return loading && profile === null ? (
     <Spinner />
   ) : (
     <Fragment>
-      <h1 className="large text-primary my-md-05">Dashboard</h1>
+      <h1 className="large page-title my-md-05">Dashboard</h1>
       <p className="medium my-1">
         <i className="fas fa-user" /> Welcome {user && user.name}
       </p>

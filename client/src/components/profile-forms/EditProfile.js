@@ -79,10 +79,9 @@ const EditProfile = ({
 
   return (
     <Fragment>
-      <h1 className="large text-primary">Create Your Profile</h1>
+      <h1 className="large page-title">Edit Your Profile</h1>
       <p className="medium">
-        <i className="fas fa-user" /> Let's get some information to make your profile
-        stand out
+        <i className="fas fa-user" /> Make sure your profile stands out
       </p>
       <small>* = required field</small>
       <form className="form" onSubmit={(e) => onSubmit(e)}>

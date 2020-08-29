@@ -126,6 +126,7 @@
   position: absolute;
   font-size: 0.9rem;
   background-color: transparent;
+  color: white;
   right: 0px;
   top: 10px;
 }
@@ -134,7 +135,6 @@
   max-width: 400px;
   box-shadow: -2rem 2rem 2rem var(--transparent-dark);
   filter: blur(0);
-  /* transform: scale(1);   */
   position: absolute;
   left: 50%;
   top: 40%;
@@ -142,12 +142,26 @@
 }
 
 .modal-content {
-  border-bottom: 1px solid var(--light-gray);
+  border-bottom: 1px solid var(--light-color);
   text-align: center;
 }
 
 .modal-actions {
   text-align: center;
+}
+
+.track-upload {
+  display: grid;
+  grid-template-columns: 3fr 2fr;
+  gap: 3rem;
+}
+
+.drop-zone {
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border: 2px dashed var(--primary-color)!important;
 }
 
 /* Profiles Page */
@@ -488,6 +502,11 @@
   box-shadow: 0 10px 10px -6px var(--subtle-shadow);
 }
 
+.post-input, .post-input::placeholder {
+  color: var(--primary-color);
+  text-shadow: 3px 2px 3px var(--transparent-primary);
+}
+
 .submit-post {
   position: absolute;
   bottom: 10px;
@@ -581,14 +600,15 @@
 }
 
 .comment-text {
-  background: var(--ultra-transparent-black);
+  background: var(--transparent-primary);
+  box-shadow: 0 10px 10px -6px var(--transparent-dim);
   color: var(--white);
   min-height: 100px;
   max-width: 500px;
 }
 
 .comment-text:after {
-  border-right-color: var(--ultra-transparent-black);
+  border-right-color: var(--transparent-primary);
 }
 
 .delete-comment-btn, .delete-post-btn {
@@ -704,6 +724,12 @@
     display: block;
     width: 100%;
     margin-bottom: 0.2rem;
+  }
+  /* Dashboard */
+  .track-upload {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto;
+    gap: 3rem;
   }
   /* Posts Page */
   .posts {

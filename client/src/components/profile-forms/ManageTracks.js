@@ -27,12 +27,11 @@ const ManageTracks = ({ music, auth, getMusicById, deleteTrack }) => {
 
   return (
     <>
-      <div className="p-3">
-        <h1 className="large text-primary mb-3">Manage my music</h1>
+      <div className="p-3 p-sm-1">
+        <h1 className="large page-title mb-3">Manage my music</h1>
         {music ? (
           <Fragment>
-            <div className="mb-1">
-              <h2>My tracks:</h2>
+            <div className="mt-3">
               {music.tracks.map((track) => (
                 <div
                   key={track._id}
@@ -57,7 +56,7 @@ const ManageTracks = ({ music, auth, getMusicById, deleteTrack }) => {
       </div>
 
       <div hidden={!deleteModal.show} className="dark-overlay">
-        <div className="modal bg-white" id="modal">
+        <div className="modal bg-danger" id="modal">
           <h4 className="modal-content p-1">
             Deleting track will also permanently erase comments and likes. Want to
             continue?

@@ -10,8 +10,7 @@ import CreateProfile from "./components/profile-forms/CreateProfile";
 import EditProfile from "./components/profile-forms/EditProfile";
 import ManageTracks from "./components/profile-forms/ManageTracks";
 import AddExperience from "./components/profile-forms/AddExperience";
-import UploadAvatar from "./components/profile-forms/UploadAvatar";
-import UploadCover from "./components/profile-forms/UploadCover";
+import ManageImages from "./components/profile-forms/ManageImages";
 import Profiles from "./components/profiles/Profiles";
 import Profile from "./components/profile/Profile";
 import Posts from "./components/posts/Posts";
@@ -56,8 +55,7 @@ const App = () => {
                   <PrivateRoute exact path="/create-profile" component={CreateProfile} />
                   <PrivateRoute exact path="/edit-profile" component={EditProfile} />
                   <PrivateRoute exact path="/add-experience" component={AddExperience} />
-                  <PrivateRoute exact path="/upload-avatar" component={UploadAvatar} />
-                  <PrivateRoute exact path="/upload-cover" component={UploadCover} />
+                  <PrivateRoute exact path="/manage-images" component={ManageImages} />
                   <PrivateRoute exact path="/manage-tracks" component={ManageTracks} />
                   <PrivateRoute exact path="/posts" component={Posts} />
                   <PrivateRoute exact path="/posts/:id" component={Post} />

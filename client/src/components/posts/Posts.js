@@ -16,7 +16,7 @@ const Posts = ({ getPosts, post: { posts, loading } }) => {
   ) : (
     <Fragment>
       <div className="px-2">
-        <h1 className="large text-primary my-05"> Newsfeed </h1>
+        <h1 className="large page-title my-05"> Newsfeed </h1>
         <PostForm />
       </div>
 

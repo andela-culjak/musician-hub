@@ -5,8 +5,9 @@
     --primary-color: #2b587c;
     --primary-light: rgb(165, 221, 255);
     --secondary-color: rgb(177, 70, 64);
+    --dim-color: #163b5a;
     --dark-color: #102b41f5;
-    --light-color: #e5e6ec;
+    --light-color: #e5e6ecf6;
     --danger-color: #903146;
     --success-color: #4fc795;
     --white: #fff;
@@ -25,9 +26,11 @@
     --ultra-transparent-primary: rgba(43, 88, 124, 0.274);
     --ultra-transparent-primary-light: rgba(121, 187, 241, 0.233);
     --ultra-transparent-white: rgba(255, 255, 255, 0.137);
-    --landing-background: url("./img/bcg1.png") no-repeat center center/cover;
+    --landing-background: url("./img/trianglify5.png") no-repeat center center/cover;
     --subtle-shadow: #52738bc5;
 }
+
+/* General Utilities */
 
 #main-background {
     margin: 0;
@@ -83,8 +86,6 @@ input::placeholder, textarea::placeholder, input, textarea {
     visibility: hidden!important;
 }
 
-/* Utilities */
-
 .root-overlay {
     background-color: var(--ultra-transparent-white);
 }
@@ -105,6 +106,12 @@ input::placeholder, textarea::placeholder, input, textarea {
 
 .container:empty {
     display: none;
+}
+
+.page-title {
+    margin: 0.5rem 0;
+    color: var(--dim-color);
+    text-shadow: 1px 1px 2px var(--transparent-black);
 }
 
 .speech-bubble {
@@ -214,7 +221,7 @@ input::placeholder, textarea::placeholder, input, textarea {
 
 .medium {
     font-size: 1.2rem;
-    font-weight: 300;
+    font-weight: 400;
 }
 
 .medium-small {
@@ -262,7 +269,7 @@ small {
 }
 
 .txt-shadow-primary {
-    text-shadow: 3px 2px 4px var(--transparent-primary);
+    text-shadow: 3px 2px 3px var(--transparent-primary);
 }
 
 .txt-shadow-dark-lg {
@@ -420,6 +427,7 @@ small {
 
 input::placeholder, textarea::placeholder {
     color: var(--white);
+    font-weight: 500;
 }
 
 input[type="text"], input[type="email"], input[type="password"], input[type="date"], select, textarea {
@@ -431,6 +439,10 @@ input[type="text"], input[type="email"], input[type="password"], input[type="dat
     background: var(--transparent-primary);
     color: var(--white);
     outline: none;
+}
+
+input:disabled::placeholder {
+    color: var(--light-gray);
 }
 
 input[type="file"] {
@@ -445,19 +457,16 @@ input[type="file"] {
 }
 
 input[type="file"]+label {
-    padding: 0.5rem;
     font-size: 1rem;
-    background: var(--dark-color);
     color: var(--white);
     display: inline-block;
     cursor: pointer;
     outline: none;
+    z-index: 20;
 }
 
 input[type="file"]:focus+label, input[type="file"]+label:hover {
     opacity: 0.8;
-    outline: 1px dotted #000;
-    outline: -webkit-focus-ring-color auto 5px;
 }
 
 input[type="submit"], button {
@@ -491,7 +500,12 @@ input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:foc
 }
 
 .table th {
-    background: var(--light-color);
+    background: var(--transparent-dim);
+    color: var(--white);
+}
+
+.table td {
+    background: var(--transparent-primary-light);
 }
 
 @media (max-width: 700px) {
@@ -520,6 +534,10 @@ input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:foc
 
 .p-05 {
     padding: 0.5rem;
+}
+
+.p-075 {
+    padding: 0.75rem;
 }
 
 .p-1 {
@@ -676,6 +694,10 @@ input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:foc
 
 .m-05 {
     margin: 0.5rem;
+}
+
+.m-075 {
+    margin: 0.75rem;
 }
 
 .m-1 {
@@ -1304,4 +1326,24 @@ input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:foc
     .mr-md-3 {
         padding-right: 3rem;
     }
+}
+
+/* Webkits & other */
+
+::-webkit-scrollbar {
+    width: 15px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--transparent-primary);
+    border-radius: inherit;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.568);
+    border-radius: 1rem;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--transparent-primary-light);
 }

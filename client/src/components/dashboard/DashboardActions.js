@@ -14,11 +14,9 @@ const DashboardActions = (user) => {
       <Link to="add-experience" className="btn btn-tr-dim">
         <i className="far fa-lightbulb text-primary" /> Add Experience
       </Link>
-      <Link to="upload-avatar" className="btn btn-tr-dim">
-        <i className="fas fa-user text-primary" /> Profile picture
-      </Link>
-      <Link to="upload-cover" className="btn btn-tr-dim">
-        <i className="fas fa-camera-retro text-primary" /> Cover photo
+
+      <Link to="manage-images" className="btn btn-tr-dim">
+        <i className="fas fa-camera-retro text-primary" /> Profile Images
       </Link>
       <Link to="manage-tracks" className="btn btn-tr-dim">
         <i className="fas fa-music text-primary" /> My music

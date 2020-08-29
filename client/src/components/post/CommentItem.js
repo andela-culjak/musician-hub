@@ -28,7 +28,7 @@ const CommentItem = ({
     </div>
 
     <div>
-      <div className="comment-text speech-bubble px-1 py-05">
+      <div className="comment-text speech-bubble txt-shadow-dark px-1 py-05">
         <p className="medium-small">{text}</p>
 
         {!auth.loading && user._id === auth.user._id && (

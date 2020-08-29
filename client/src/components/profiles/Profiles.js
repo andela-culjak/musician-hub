@@ -29,7 +29,7 @@ const Profiles = ({ getProfiles, profile: { profiles, loading } }) => {
       {!loading && profiles.length > 0 ? (
         <Fragment>
           <div className="p-1">
-            <h1 className="large text-dark">Members</h1>
+            <h1 className="large text-dim page-title">Members</h1>
             <p className="medium fw-400">Browse and connect with fellow musicians</p>
 
             <div className="search-bar-container box-sh-subtle bg-tr-primary radius-2 px-1 my-1">

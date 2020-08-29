@@ -8,8 +8,8 @@ const CommentForm = ({ postId, addComment }) => {
 
   return (
     <div className="comment-form">
-      <div className="bg-tr-dim box-sh-subtle radius-05 p-05 ">
-        <h3>Leave a comment</h3>
+      <div className="bg-tr-dark box-sh-subtle radius-05 py-05 px-1">
+        <h3 className="fw-500">Leave a comment</h3>
       </div>
       <form
         className="form my-1 post-form"
@@ -19,7 +19,7 @@ const CommentForm = ({ postId, addComment }) => {
           setText("");
         }}>
         <textarea
-          className="post-input radius-1 p-1"
+          className="post-input radius-1 p-1 bg-tr-white"
           name="text"
           cols="30"
           rows="5"
@@ -30,7 +30,7 @@ const CommentForm = ({ postId, addComment }) => {
         />
         <input
           type="submit"
-          className="btn btn-dark radius-05 submit-post m-0"
+          className="btn btn-tr-dark radius-05 submit-post m-0"
           value="Comment"
         />
       </form>

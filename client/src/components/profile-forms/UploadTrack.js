@@ -9,13 +9,16 @@ const UploadTrack = ({ uploadTrack, auth }) => {
   const [title, setTitle] = useState("");
   const [caption, setCaption] = useState("");
   const [duration, setDuration] = useState("");
-  const [label, setLabel] = useState("Choose a file");
-  const [postToNewsfeed, setPostToNewsfeed] = useState(false);
+  const [label, setLabel] = useState("Choose or drop a file");
+  const [postToNewsfeed, setPostToNewsfeed] = useState(true);
 
   const formData = new FormData();
 
-  const onChangeFile = (e) => {
-    var file = e.target.files[0];
+  const preventDefault = (e) => {
+    e.preventDefault();
+  };
+
+  const readFile = (file) => {
     var reader = new FileReader();
     reader.onload = function () {
       var aud = new Audio(reader.result);
@@ -27,6 +30,17 @@ const UploadTrack = ({ uploadTrack, auth }) => {
       };
     };
     reader.readAsDataURL(file);
+  };
+
+  const onDropFile = (e) => {
+    e.preventDefault();
+    var file = e.dataTransfer.files[0];
+    file.type === "audio/mpeg" ? readFile(file) : setLabel("Audio files only");
+  };
+
+  const onChangeFile = (e) => {
+    var file = e.target.files[0];
+    readFile(file);
   };
 
   const onChangeTitle = (e) => {
@@ -52,57 +66,76 @@ const UploadTrack = ({ uploadTrack, auth }) => {
     setTitle("");
     setCaption("");
     setFile(null);
-    setLabel("Choose a file");
+    setLabel("Choose or drop a file");
   };
 
   return (
-    <div className="my-3">
-      <h2>Upload an audio file</h2>
-      <form className="form" onSubmit={onSubmit}>
-        <input
-          className="my-05"
-          type="file"
-          id="aud-file"
-          accept="audio/*"
-          onChange={onChangeFile}
-        />
-        <input
-          className="my-05"
-          type="text"
-          placeholder="Song title"
-          id="track-title"
-          value={title}
-          onChange={onChangeTitle}
-        />
-        <label htmlFor="aud-file"> {label} </label>
-        <br />
-        <input
-          type="checkbox"
-          className="my-05"
-          id="newsfeed"
-          name="newsfeed"
-          checked={postToNewsfeed}
-          value={postToNewsfeed}
-          onChange={() => {
-            setPostToNewsfeed(!postToNewsfeed);
-          }}
-        />{" "}
-        <label htmlFor="newsfeed">Post to Newsfeed</label>
-        <input
-          disabled={!postToNewsfeed}
-          className="my-05"
-          placeholder="Post caption"
-          type="text"
-          id="caption"
-          value={caption}
-          onChange={onChangeCaption}
-        />
-        <input type="submit" className="btn btn-primary" />
-      </form>
+    <div className="my-3 bg-tr-white p-2">
+      <h2 className="fw-500">Upload an audio file</h2>
+      <form className="form mt-2" onSubmit={onSubmit}>
+        <div className="track-upload">
+          <div>
+            <input
+              className="mb-1"
+              type="text"
+              placeholder="Song title"
+              id="track-title"
+              value={title}
+              onChange={onChangeTitle}
+            />
+            <input className="mb-1" type="text" placeholder="Genre" id="track-genre" />
+            <input
+              disabled={!postToNewsfeed}
+              className="mb-1"
+              placeholder="Post caption"
+              type="text"
+              id="caption"
+              value={caption}
+              onChange={onChangeCaption}
+            />
+            <input
+              type="checkbox"
+              className="mb-1"
+              id="newsfeed"
+              name="newsfeed"
+              checked={postToNewsfeed}
+              value={postToNewsfeed}
+              onChange={() => {
+                setPostToNewsfeed(!postToNewsfeed);
+              }}
+            />
+            <label className="text-primary mx-025" htmlFor="newsfeed">
+              Post to Newsfeed
+            </label>
+          </div>
 
-      <Link className="btn btn-light my-1" to="/dashboard">
-        Go Back
-      </Link>
+          <div
+            onDrop={onDropFile}
+            onDragEnter={preventDefault}
+            onDragLeave={preventDefault}
+            onDragOver={preventDefault}
+            className="text-center drop-zone">
+            <i className="far fa-arrow-alt-circle-up fa-3x"></i>
+            <input
+              className="mb-1 "
+              type="file"
+              id="aud-file"
+              accept="audio/*"
+              onChange={onChangeFile}
+            />
+            <label className="mt-05 text-dark" htmlFor="aud-file">
+              {label}
+            </label>
+          </div>
+        </div>
+
+        <div className="my-2">
+          <input type="submit" className="btn btn-primary" />
+          <Link className="btn btn-light" to="/dashboard">
+            Go Back
+          </Link>
+        </div>
+      </form>
     </div>
   );
 };

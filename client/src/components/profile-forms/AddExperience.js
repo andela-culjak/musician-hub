@@ -23,7 +23,7 @@ const AddExperience = ({ addExperience, history }) => {
 
   return (
     <Fragment>
-      <h1 className="large text-primary">Add An Experience</h1>
+      <h1 className="large page-title">Add An Experience</h1>
       <p className="medium">
         <i className="far fa-lightbulb" /> Add any musical experience that you have had
       </p>
