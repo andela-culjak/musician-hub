@@ -14,7 +14,7 @@ const ProfileTop = ({
 }) => {
   return (
     <div
-      className="profile-top bg-primary p-3"
+      className="profile-top box-sh-subtle bg-primary p-3"
       style={{ backgroundImage: `url(${cover})` }}>
       <div className="cover-photo-overlay"></div>
 
@@ -23,12 +23,12 @@ const ProfileTop = ({
       </div>
 
       <div className="heading-items py-3 pl-2 pl-sm-1">
-        <h1 className="large">{name}</h1>
+        <h1 className="large txt-shadow-dark-lg">{name}</h1>
 
-        <p className="lead">
-          {position} {band && <span> {band && "at " + band} </span>}
+        <p className="lead txt-shadow-dark">
+          {position} {band && <span> {"at " + band} </span>}
         </p>
-        <p>{location && <span> {location} </span>}</p>
+        <p className="txt-shadow-dark medium">{location && <span> {location} </span>}</p>
         <div className="icons mt-05">
           {website && (
             <a href={website} target="_blank" rel="noopener noreferrer">

@@ -28,21 +28,23 @@ const Profiles = ({ getProfiles, profile: { profiles, loading } }) => {
     <Fragment>
       {!loading && profiles.length > 0 ? (
         <Fragment>
-          <h1 className="large text-primary">Members</h1>
-          <p className="lead">Browse and connect with fellow musicians</p>
+          <div className="p-1">
+            <h1 className="large text-dark">Members</h1>
+            <p className="medium fw-400">Browse and connect with fellow musicians</p>
 
-          <div className="search-bar-container radius-2 px-1 my-1">
-            <input
-              type="text"
-              className="search-bar"
-              placeholder="Search"
-              name="query"
-              onChange={(e) => onChange(e)}
-            />
-            <i className="fas fa-search search-icon"></i>
+            <div className="search-bar-container box-sh-subtle bg-tr-primary radius-2 px-1 my-1">
+              <input
+                type="text"
+                className="search-bar"
+                placeholder="Search"
+                name="query"
+                onChange={(e) => onChange(e)}
+              />
+              <i className="fas fa-search search-icon"></i>
+            </div>
           </div>
 
-          <div className="profiles my-3">
+          <div className="profiles">
             {filteredData.query.length > 0
               ? filteredData.filteredProfiles.map((profile) => (
                   <ProfileItem key={profile._id} profile={profile} />

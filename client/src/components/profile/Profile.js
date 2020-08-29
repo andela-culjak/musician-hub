@@ -24,8 +24,12 @@ const Profile = ({
     getMusicById(match.params.id);
   }, [getProfileById, getMusicById, match.params.id, history]);
 
+  useEffect(() => {
+    music && music.tracks.length > 0 ? setCategory("music") : setCategory("about");
+  }, [music]);
+
   const categories = ["music", "videos", "about"];
-  const [category, setCategory] = useState("music");
+  const [category, setCategory] = useState("");
 
   return (
     <Fragment>
@@ -36,7 +40,7 @@ const Profile = ({
           <div className="profile-grid">
             <ProfileTop profile={profile} />
 
-            <div className="profile-nav bg-white p-1 p-sm-05">
+            <div className="profile-nav box-sh-subtle bg-tr-dim p-1 p-sm-05">
               {categories.map((cat) => (
                 <button
                   key={cat}
@@ -65,14 +69,14 @@ const Profile = ({
               (music && music.tracks.length > 0 ? (
                 <AudioTracks music={music} />
               ) : (
-                <div className="audio-tracks bg-white p-1">
+                <div className="audio-tracks bg-tr-primary  p-1">
                   <h3>This user has not added any music tracks yet.</h3>
                 </div>
               ))}
 
             {category === "about" && <About profile={profile} />}
 
-            {category === "videos" && <ProfileVideos name={profile.user.name} />}
+            {category === "videos" && <ProfileVideos />}
 
             {category === "dashboard" && (
               <div>

@@ -53,7 +53,7 @@ const PostItem = ({
         </div>
 
         {showActions && (
-          <div className="mt-05">
+          <div className="m-05">
             <button
               type="button"
               className="action-button mr-1"

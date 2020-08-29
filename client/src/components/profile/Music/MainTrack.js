@@ -54,9 +54,9 @@ const MainTrack = ({
       container: "#waveform",
       backend: "MediaElement",
       fillParent: true,
-      progressColor: "#4a74a5",
+      progressColor: "#2b587c",
       responsive: true,
-      waveColor: "#ccc",
+      waveColor: "#fff",
       cursorColor: "rgba(255,255,255,0)",
       autoCenter: true,
       barGap: 2,
@@ -87,7 +87,7 @@ const MainTrack = ({
     
                 <div class="track-comment-text" style="${side}: ${position}; "> 
                   <span class="user">${comment.user.name}</span>
-                  at ${formatTime(comment.time)} -
+                  <span class="user"> ${formatTime(comment.time)} - </span>
                   ${comment.text}
                 </div>`);
       });
@@ -148,12 +148,12 @@ const MainTrack = ({
         {/* <audio id="song" src="" /> */}
       </div>
       <div className="times">
-        <div className="current-time bg-light">{formatTime(currentTime)}</div>
-        <div className="total-time bg-light">{formatTime(track.duration)}</div>
+        <div className="current-time bg-tr-dark">{formatTime(currentTime)}</div>
+        <div className="total-time bg-tr-dark">{formatTime(track.duration)}</div>
       </div>
       <div id="timeline"></div>
 
-      <div className="track-actions radius-bottom-1">
+      <div className="track-actions bg-tr-dark box-sh-dark">
         <button
           type="button"
           className="heart-button mx-05"
@@ -171,7 +171,8 @@ const MainTrack = ({
         <form id="myForm" className="track-comment-form">
           <input
             type="text"
-            className="track-comment-input p-05"
+            id="track-comment-input"
+            className=" p-05"
             onClick={freezeCommentTime}
             onChange={(e) => addCommentText(e)}
             placeholder="Add a comment"

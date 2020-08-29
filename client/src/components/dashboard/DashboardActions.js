@@ -8,23 +8,23 @@ const DashboardActions = (user) => {
   }*/
   return (
     <div className="dash-buttons">
-      <Link to="edit-profile" className="btn btn-light">
-        <i className="fas fa-user-circle text-primary" /> Edit Profile
+      <Link to="edit-profile" className="btn btn-tr-dim">
+        <i className="fas fa-edit text-primary" /> Edit Profile
       </Link>
-      <Link to="add-experience" className="btn btn-light">
-        <i className="fab fa-black-tie text-primary" /> Add Experience
+      <Link to="add-experience" className="btn btn-tr-dim">
+        <i className="far fa-lightbulb text-primary" /> Add Experience
       </Link>
-      <Link to="upload-avatar" className="btn btn-light">
+      <Link to="upload-avatar" className="btn btn-tr-dim">
         <i className="fas fa-user text-primary" /> Profile picture
       </Link>
-      <Link to="upload-cover" className="btn btn-light">
+      <Link to="upload-cover" className="btn btn-tr-dim">
         <i className="fas fa-camera-retro text-primary" /> Cover photo
       </Link>
-      <Link to="manage-tracks" className="btn btn-light">
+      <Link to="manage-tracks" className="btn btn-tr-dim">
         <i className="fas fa-music text-primary" /> My music
       </Link>
       {user && (
-        <Link to={`/profile/user/${user.user._id}`} className="btn btn-light">
+        <Link to={`/profile/user/${user.user._id}`} className="btn btn-tr-dim">
           <i className="fas fa-user text-primary" /> View Profile
         </Link>
       )}

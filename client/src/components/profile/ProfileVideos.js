@@ -3,15 +3,15 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import ReactPlayer from "react-player";
 
-const ProfileVideos = ({ videos, name }) => {
+const ProfileVideos = ({ videos }) => {
   return (
-    <div className="profile-videos bg-light p-2 p-sm-1">
-      <h2>{name.split(" ")[0]}'s Videos</h2>
+    <div className="profile-videos bg-tr-primary  p-1 ">
       {videos.length > 0 ? (
-        <div className="videos-container">
+        <div className="videos-container ">
           {videos.map((video, index) => (
-            <div className="player-wrapper" key={index}>
+            <div className="player-wrapper my-2" key={index}>
               <ReactPlayer
+                light={true}
                 className="react-player"
                 url={video}
                 controls={true}

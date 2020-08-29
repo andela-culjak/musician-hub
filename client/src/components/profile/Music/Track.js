@@ -11,10 +11,10 @@ const Track = ({ track, currentTrackId, trackSelected }) => {
   return (
     <div
       className={`${
-        currentTrackId === track._id ? "bg-light" : "bg-white"
-      } playlist-item my-1 p-1 p-sm-05`}
+        currentTrackId === track._id ? "bg-tr-dark" : "bg-tr-white "
+      } playlist-item box-sh-dark my-1 p-1 p-sm-05`}
       onClick={() => trackSelected(track._id)}>
-      <h4>{track.title}</h4>
+      <h4 className="medium fw-400">{track.title}</h4>
       <div>
         {track.likes.length > 0 && (
           <span className="likes-number mx-025">

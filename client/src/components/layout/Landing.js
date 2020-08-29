@@ -12,13 +12,13 @@ const Landing = ({ isAuthenticated }) => {
     <section className="landing">
       <div className="dark-overlay">
         <div className="landing-inner">
-          <h1 className="x-large logo">Musician Hub</h1>
+          <h1 className="x-large logo landing-logo">MusicianHub</h1>
           <p className="lead py-1">Music is created by getting together.</p>
           <div className="buttons">
             <Link to="register" className="btn btn-primary">
               Sign Up
             </Link>
-            <Link to="login" className="btn btn-secondary">
+            <Link to="login" className="btn btn-tr-primary">
               Login
             </Link>
           </div>

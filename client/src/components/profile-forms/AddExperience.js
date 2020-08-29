@@ -12,38 +12,35 @@ const AddExperience = ({ addExperience, history }) => {
     from: "",
     to: "",
     current: false,
-    description: ""
+    description: "",
   });
 
   const [toDateDisabled, toggleDisabled] = useState(false);
 
   const { band, position, location, from, to, current, description } = formData;
 
-  const onChange = e =>
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+  const onChange = (e) => setFormData({ ...formData, [e.target.name]: e.target.value });
 
   return (
     <Fragment>
       <h1 className="large text-primary">Add An Experience</h1>
-      <p className="lead">
-        <i className="fas fa-code-branch" /> Add any musical experience that you
-        have had
+      <p className="medium">
+        <i className="far fa-lightbulb" /> Add any musical experience that you have had
       </p>
       <small>* = required field</small>
       <form
         className="form"
-        onSubmit={e => {
+        onSubmit={(e) => {
           e.preventDefault();
           addExperience(formData, history);
-        }}
-      >
+        }}>
         <div className="form-group">
           <input
             type="text"
             placeholder="* Position"
             name="position"
             value={position}
-            onChange={e => onChange(e)}
+            onChange={(e) => onChange(e)}
             required
           />
         </div>
@@ -53,7 +50,7 @@ const AddExperience = ({ addExperience, history }) => {
             placeholder="* Band"
             name="band"
             value={band}
-            onChange={e => onChange(e)}
+            onChange={(e) => onChange(e)}
             required
           />
         </div>
@@ -63,17 +60,12 @@ const AddExperience = ({ addExperience, history }) => {
             placeholder="Location"
             name="location"
             value={location}
-            onChange={e => onChange(e)}
+            onChange={(e) => onChange(e)}
           />
         </div>
         <div className="form-group">
           <h4>From Date</h4>
-          <input
-            type="date"
-            name="from"
-            value={from}
-            onChange={e => onChange(e)}
-          />
+          <input type="date" name="from" value={from} onChange={(e) => onChange(e)} />
         </div>
         <div className="form-group">
           <p>
@@ -82,7 +74,7 @@ const AddExperience = ({ addExperience, history }) => {
               name="current"
               checked={current}
               value={current}
-              onChange={e => {
+              onChange={(e) => {
                 setFormData({ ...formData, current: !current });
                 toggleDisabled(!toDateDisabled);
               }}
@@ -96,7 +88,7 @@ const AddExperience = ({ addExperience, history }) => {
             type="date"
             name="to"
             value={to}
-            onChange={e => onChange(e)}
+            onChange={(e) => onChange(e)}
             disabled={toDateDisabled ? "disabled" : ""}
           />
         </div>
@@ -107,7 +99,7 @@ const AddExperience = ({ addExperience, history }) => {
             rows="5"
             placeholder="Description"
             value={description}
-            onChange={e => onChange(e)}
+            onChange={(e) => onChange(e)}
           />
         </div>
         <input type="submit" className="btn btn-primary my-1" />
@@ -120,10 +112,7 @@ const AddExperience = ({ addExperience, history }) => {
 };
 
 AddExperience.propTypes = {
-  addExperience: PropTypes.func.isRequired
+  addExperience: PropTypes.func.isRequired,
 };
 
-export default connect(
-  null,
-  { addExperience }
-)(withRouter(AddExperience));
+export default connect(null, { addExperience })(withRouter(AddExperience));

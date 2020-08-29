@@ -17,12 +17,12 @@ const Post = ({ getPost, post: { post, loading }, match }) => {
     <Spinner />
   ) : (
     <Fragment>
-      <Link to="/posts" className="btn">
-        All posts
+      <Link to="/posts" className="btn btn-light">
+        Back to posts
       </Link>
 
       <div className="single-post-page">
-        <div className="main-post">
+        <div className="main-post ">
           <PostItem post={post} showActions={true} />
         </div>
 

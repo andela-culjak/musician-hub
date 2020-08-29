@@ -36,7 +36,7 @@ const ManageTracks = ({ music, auth, getMusicById, deleteTrack }) => {
               {music.tracks.map((track) => (
                 <div
                   key={track._id}
-                  className="manage-tracks-list-item bg-light my-1 p-1">
+                  className="manage-tracks-list-item bg-tr-primary my-1 p-1">
                   {track.title}
                   <button
                     onClick={(e) => setDeleteModal({ show: true, track: track })}

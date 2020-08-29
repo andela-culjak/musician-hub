@@ -33,20 +33,22 @@ const EditProfile = ({
     getCurrentProfile();
 
     setFormData({
-      band: loading || !profile.band ? "" : profile.band,
-      website: loading || !profile.website ? "" : profile.website,
-      location: loading || !profile.location ? "" : profile.location,
-      position: loading || !profile.position ? "" : profile.position,
-      instruments: loading || !profile.instruments ? "" : profile.instruments.join(", "),
-      genres: loading || !profile.genres ? "" : profile.genres.join(", "),
-      influences: loading || !profile.influences ? "" : profile.influences.join(", "),
-      videos: loading || !profile.videos ? "" : profile.videos.join(", "),
-      bio: loading || !profile.bio ? "" : profile.bio,
-      twitter: loading || !profile.social ? "" : profile.social.twitter,
-      facebook: loading || !profile.social ? "" : profile.social.facebook,
-      linkedin: loading || !profile.social ? "" : profile.social.linkedin,
-      youtube: loading || !profile.social ? "" : profile.social.youtube,
-      instagram: loading || !profile.social ? "" : profile.social.instagram,
+      band: !loading && profile && profile.band ? profile.band : "",
+      website: !loading && profile && profile.website ? profile.website : "",
+      location: !loading && profile && profile.location ? profile.location : "",
+      position: !loading && profile && profile.position ? profile.position : "",
+      instruments:
+        !loading && profile && profile.instruments ? profile.instruments.join(", ") : "",
+      genres: !loading && profile && profile.genres ? profile.genres.join(", ") : "",
+      influences:
+        !loading && profile && profile.influences ? profile.influences.join(", ") : "",
+      videos: !loading && profile && profile.videos ? profile.videos.join(", ") : "",
+      bio: !loading && profile && profile.bio ? profile.bio : "",
+      twitter: !loading && profile && profile.social ? profile.social.twitter : "",
+      facebook: !loading && profile && profile.social ? profile.social.facebook : "",
+      linkedin: !loading && profile && profile.social ? profile.social.linkedin : "",
+      youtube: !loading && profile && profile.social ? profile.social.youtube : "",
+      instagram: !loading && profile && profile.social ? profile.social.instagram : "",
     });
     // eslint-disable-next-line
   }, [loading, getCurrentProfile]);
@@ -78,7 +80,7 @@ const EditProfile = ({
   return (
     <Fragment>
       <h1 className="large text-primary">Create Your Profile</h1>
-      <p className="lead">
+      <p className="medium">
         <i className="fas fa-user" /> Let's get some information to make your profile
         stand out
       </p>

@@ -15,9 +15,10 @@ const Posts = ({ getPosts, post: { posts, loading } }) => {
     <Spinner />
   ) : (
     <Fragment>
-      <h1 className="large text-primary my-05"> Newsfeed </h1>
-
-      <PostForm />
+      <div className="px-2">
+        <h1 className="large text-primary my-05"> Newsfeed </h1>
+        <PostForm />
+      </div>
 
       <div className="posts mt-3">
         {posts.map((post) => (

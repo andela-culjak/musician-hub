@@ -15,7 +15,7 @@ const PostForm = ({ addPost }) => {
           setText("");
         }}>
         <textarea
-          className="post-input speech-bubble"
+          className="post-input radius-1 bg-tr-white fw-500 text-primary p-1"
           name="text"
           cols="30"
           rows="5"
@@ -29,7 +29,7 @@ const PostForm = ({ addPost }) => {
 
         <input
           type="submit"
-          className="btn btn-dark radius-05 submit-post m-0"
+          className="btn btn-primary radius-05 submit-post m-0"
           value="Post"
         />
       </form>

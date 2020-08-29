@@ -8,7 +8,7 @@ const CommentForm = ({ postId, addComment }) => {
 
   return (
     <div className="comment-form">
-      <div className="bg-primary radius-05 p-05 ">
+      <div className="bg-tr-dim box-sh-subtle radius-05 p-05 ">
         <h3>Leave a comment</h3>
       </div>
       <form
@@ -19,7 +19,7 @@ const CommentForm = ({ postId, addComment }) => {
           setText("");
         }}>
         <textarea
-          className="post-input speech-bubble"
+          className="post-input radius-1 p-1"
           name="text"
           cols="30"
           rows="5"

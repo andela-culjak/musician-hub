@@ -44,10 +44,10 @@ const Navbar = ({ auth: { user, isAuthenticated, loading }, logout }) => {
   );
 
   return (
-    <nav className="navbar bg-dark px-2 px-sm-1">
+    <nav className="navbar px-2 px-sm-1">
       <h1>
         <Link to="/" className="logo">
-          <i className="fas fa-headphones-alt" />
+          <i className="fas fa-headphones-alt logo-icon" />
           <span className="logo-text"> MusicianHub </span>
         </Link>
       </h1>

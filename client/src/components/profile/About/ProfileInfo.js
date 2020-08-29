@@ -10,7 +10,7 @@ const ProfileInfo = ({
     user: { name },
   },
 }) => (
-  <div className="profile-info bg-light p-2 p-sm-1">
+  <div className="profile-info bg-tr-primary box-sh-subtle p-2 p-sm-1">
     {bio && (
       <Fragment>
         <h4 className="text-primary my-05">{name.split(" ")[0]}'s Bio</h4>

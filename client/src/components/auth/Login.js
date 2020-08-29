@@ -27,7 +27,7 @@ const Login = ({ login, isAuthenticated }) => {
   return (
     <div className="login-page mt-3">
       <h1 className="large text-primary">Sign In</h1>
-      <p className="lead">
+      <p className="medium">
         <i className="fas fa-user" /> Sign Into Your Account
       </p>
       <form className="form" onSubmit={(e) => onSubmit(e)}>
