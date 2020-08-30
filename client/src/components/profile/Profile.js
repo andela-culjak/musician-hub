@@ -1,5 +1,5 @@
 import React, { Fragment, useEffect, useState } from "react";
-import { Link, withRouter } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import Spinner from "../layout/Spinner";
@@ -9,6 +9,7 @@ import ProfileVideos from "./ProfileVideos";
 import AudioTracks from "./Music/AudioTracks";
 import { getProfileById } from "../../actions/profile";
 import { getMusicById } from "../../actions/music";
+import Dashboard from "../dashboard/Dashboard";
 
 const Profile = ({
   getProfileById,
@@ -19,17 +20,26 @@ const Profile = ({
   match,
   history,
 }) => {
+  const categories = ["music", "videos", "about"];
+  const [category, setCategory] = useState("");
+
   useEffect(() => {
     getProfileById(match.params.id, history);
     getMusicById(match.params.id);
   }, [getProfileById, getMusicById, match.params.id, history]);
 
   useEffect(() => {
-    music && music.tracks.length > 0 ? setCategory("music") : setCategory("about");
-  }, [music]);
-
-  const categories = ["music", "videos", "about"];
-  const [category, setCategory] = useState("");
+    switch (true) {
+      case auth && profile && auth.isAuthenticated && auth.user._id === profile.user._id:
+        setCategory("dashboard");
+        break;
+      case music && music.tracks.length > 0:
+        setCategory("music");
+        break;
+      default:
+        setCategory("about");
+    }
+  }, [music, auth, profile]);
 
   return (
     <Fragment>
@@ -52,7 +62,8 @@ const Profile = ({
                 </button>
               ))}
 
-              {auth.isAuthenticated &&
+              {auth &&
+                auth.isAuthenticated &&
                 auth.loading === false &&
                 auth.user._id === profile.user._id && (
                   <button
@@ -78,13 +89,7 @@ const Profile = ({
 
             {category === "videos" && <ProfileVideos />}
 
-            {category === "dashboard" && (
-              <div>
-                <Link to="/dashboard" className="btn btn-dark my-1">
-                  Manage My Profile
-                </Link>
-              </div>
-            )}
+            {category === "dashboard" && <Dashboard />}
           </div>
         </Fragment>
       )}

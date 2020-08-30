@@ -16,15 +16,15 @@ const ProfileTop = ({
 
   return (
     <div
-      className="profile-top box-sh-subtle bg-primary p-3"
+      className="profile-top box-sh-subtle bg-primary p-3 p-sm-1"
       style={{ backgroundImage: `url(${cover || backup})` }}>
       <div className="cover-photo-overlay"></div>
 
-      <div className="avatar-container py-2">
+      <div className="avatar-container py-2 py-sm-05">
         <img className="round-img main-avatar" src={avatar} alt="" />
       </div>
 
-      <div className="heading-items py-3 pl-2 pl-sm-1">
+      <div className="heading-items py-3 pl-2 p-sm-05">
         <h1 className="large txt-shadow-dark-lg">{name}</h1>
 
         <p className="lead txt-shadow-dark">

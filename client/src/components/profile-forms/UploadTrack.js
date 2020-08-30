@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import { Link, withRouter } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { uploadTrack } from "../../actions/music";
 
-const UploadTrack = ({ uploadTrack, auth }) => {
+const UploadTrack = ({ uploadTrack, auth, history }) => {
   const [file, setFile] = useState(null);
   const [title, setTitle] = useState("");
   const [caption, setCaption] = useState("");
@@ -131,9 +131,13 @@ const UploadTrack = ({ uploadTrack, auth }) => {
 
         <div className="my-2">
           <input type="submit" className="btn btn-primary" />
-          <Link className="btn btn-light" to="/dashboard">
+          <button
+            className="btn btn-light my-1"
+            onClick={() => {
+              history.goBack();
+            }}>
             Go Back
-          </Link>
+          </button>
         </div>
       </form>
     </div>

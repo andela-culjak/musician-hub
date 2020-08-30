@@ -220,7 +220,7 @@ input::placeholder, textarea::placeholder, input, textarea {
 }
 
 .medium {
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     font-weight: 400;
 }
 
@@ -281,16 +281,16 @@ small {
         font-size: 4rem;
     }
     .large {
-        font-size: 1.5rem;
+        font-size: 1.6rem;
     }
     .medium-large {
-        font-size: 1.2rem;
-    }
-    .lead {
         font-size: 1.4rem;
     }
+    .lead {
+        font-size: 1.3rem;
+    }
     .medium {
-        font-size: 1rem;
+        font-size: 0.9rem;
     }
     .medium-small {
         font-size: 0.8rem;
@@ -516,7 +516,7 @@ input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:foc
         margin-top: 0.2rem;
     }
     input[type="text"], .form input[type="email"], .form input[type="password"], .form input[type="date"], .form select, .form textarea {
-        padding: 0.2rem;
+        padding: 0.5rem;
         font-size: 1rem;
         resize: none;
     }

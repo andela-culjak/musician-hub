@@ -81,7 +81,10 @@ router.post(
     profileFields.social = { youtube, facebook, twitter, instagram, linkedin };
 
     try {
-      let profile = await Profile.findOne({ user: req.user.id });
+      let profile = await Profile.findOne({ user: req.user.id }).populate("user", [
+        "name",
+        "avatar",
+      ]);
 
       if (profile) {
         //Update
@@ -96,7 +99,7 @@ router.post(
 
       //Create
       profile = new Profile(profileFields);
-
+      profile.populate("user", ["name", "avatar"]);
       await profile.save();
       res.json(profile);
     } catch (err) {
@@ -195,7 +198,10 @@ router.put(
     };
 
     try {
-      const profile = await Profile.findOne({ user: req.user.id });
+      const profile = await Profile.findOne({ user: req.user.id }).populate("user", [
+        "name",
+        "avatar",
+      ]);
 
       profile.experience.unshift(newExp); //why no await?
 
@@ -214,7 +220,10 @@ router.put(
 //@access   Private
 router.delete("/experience/:exp_id", auth, async (req, res) => {
   try {
-    const profile = await Profile.findOne({ user: req.user.id });
+    const profile = await Profile.findOne({ user: req.user.id }).populate("user", [
+      "name",
+      "avatar",
+    ]);
 
     //Get the remove index
     const removeIndex = profile.experience
@@ -287,7 +296,10 @@ router.post("/upload-cover", auth, async (req, res) => {
       ],
     });
 
-    const profile = await Profile.findOne({ user: req.user.id });
+    const profile = await Profile.findOne({ user: req.user.id }).populate("user", [
+      "name",
+      "avatar",
+    ]);
 
     //Change the avatar path
     profile.cover = `/uploads/covers/${req.user.id}/${file.name}`;

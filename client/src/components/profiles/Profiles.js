@@ -28,7 +28,7 @@ const Profiles = ({ getProfiles, profile: { profiles, loading } }) => {
     <Fragment>
       {!loading && profiles.length > 0 ? (
         <Fragment>
-          <div className="p-1">
+          <div className="p-1 p-sm-025">
             <h1 className="large text-dim page-title">Members</h1>
             <p className="medium fw-400">Browse and connect with fellow musicians</p>
 

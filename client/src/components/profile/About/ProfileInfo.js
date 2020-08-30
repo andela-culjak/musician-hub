@@ -13,7 +13,8 @@ const ProfileInfo = ({
   <div className="profile-info bg-tr-primary box-sh-subtle p-2 p-sm-1">
     {bio && (
       <Fragment>
-        <h4 className="text-primary my-05">{name.split(" ")[0]}'s Bio</h4>
+        {name && <h4 className="text-primary my-05">{name.split(" ")[0]}'s Bio</h4>}
+
         <p>{bio}</p>
         <div className="line" />
       </Fragment>

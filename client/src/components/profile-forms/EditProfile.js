@@ -1,5 +1,5 @@
 import React, { Fragment, useState, useEffect } from "react";
-import { Link, withRouter } from "react-router-dom"; //so we can redirect from within action using history
+import { withRouter } from "react-router-dom"; //so we can redirect from within action using history
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { createProfile, getCurrentProfile } from "../../actions/profile";
@@ -44,11 +44,26 @@ const EditProfile = ({
         !loading && profile && profile.influences ? profile.influences.join(", ") : "",
       videos: !loading && profile && profile.videos ? profile.videos.join(", ") : "",
       bio: !loading && profile && profile.bio ? profile.bio : "",
-      twitter: !loading && profile && profile.social ? profile.social.twitter : "",
-      facebook: !loading && profile && profile.social ? profile.social.facebook : "",
-      linkedin: !loading && profile && profile.social ? profile.social.linkedin : "",
-      youtube: !loading && profile && profile.social ? profile.social.youtube : "",
-      instagram: !loading && profile && profile.social ? profile.social.instagram : "",
+      twitter:
+        !loading && profile && profile.social && profile.social.twitter
+          ? profile.social.twitter
+          : "",
+      facebook:
+        !loading && profile && profile.social && profile.social.facebook
+          ? profile.social.facebook
+          : "",
+      linkedin:
+        !loading && profile && profile.social && profile.social.linkedin
+          ? profile.social.linkedin
+          : "",
+      youtube:
+        !loading && profile && profile.social && profile.social.youtube
+          ? profile.social.youtube
+          : "",
+      instagram:
+        !loading && profile && profile.social && profile.social.instagram
+          ? profile.social.instagram
+          : "",
     });
     // eslint-disable-next-line
   }, [loading, getCurrentProfile]);
@@ -257,9 +272,13 @@ const EditProfile = ({
         )}
 
         <input type="submit" className="btn btn-primary my-1" />
-        <Link className="btn btn-light my-1" to="/dashboard">
+        <button
+          className="btn btn-light my-1"
+          onClick={() => {
+            history.goBack();
+          }}>
           Go Back
-        </Link>
+        </button>
       </form>
     </Fragment>
   );

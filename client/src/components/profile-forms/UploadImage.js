@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, withRouter } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { uploadCover } from "../../actions/profile";
@@ -83,9 +83,13 @@ const UploadImage = ({ uploadCover, uploadAvatar, history, type }) => {
         </div>
 
         <input disabled={!file} type="submit" className="btn btn-primary" />
-        <Link className="btn btn-light my-1" to="/dashboard">
+        <button
+          className="btn btn-light my-1"
+          onClick={() => {
+            history.goBack();
+          }}>
           Go Back
-        </Link>
+        </button>
       </form>
     </div>
   );

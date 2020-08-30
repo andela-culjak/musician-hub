@@ -14,7 +14,6 @@ import {
 
 //Get current user's profile
 export const getCurrentProfile = () => async (dispatch) => {
-  dispatch({ type: CLEAR_PROFILE });
   dispatch({ type: CLEAR_MUSIC });
   try {
     const res = await axios.get("/api/profile/me");
@@ -55,7 +54,6 @@ export const getProfiles = () => async (dispatch) => {
 
 //Get profile by id
 export const getProfileById = (user_id, history) => async (dispatch) => {
-  dispatch({ type: CLEAR_PROFILE });
   dispatch({ type: CLEAR_MUSIC });
   try {
     const res = await axios.get(`/api/profile/user/${user_id}`);
@@ -90,7 +88,7 @@ export const createProfile = (formData, history, edit) => async (dispatch) => {
     });
 
     dispatch(setAlert(edit ? "Profile updated" : "Profile created", "success"));
-    history.push("/dashboard");
+    edit && history.goBack();
   } catch (err) {
     const errors = err.response.data.errors;
 
@@ -122,7 +120,7 @@ export const addExperience = (formData, history) => async (dispatch) => {
     });
 
     dispatch(setAlert("Experience added", "success"));
-    history.push("/dashboard");
+    history.goBack();
   } catch (err) {
     const errors = err.response.data.errors;
 
@@ -154,7 +152,7 @@ export const uploadAvatar = (formData, history) => async (dispatch) => {
     });
 
     dispatch(setAlert("Avatar updated", "success"));
-    history.push("/dashboard");
+    history.goBack();
   } catch (err) {
     dispatch({
       type: PROFILE_ERROR,
@@ -180,7 +178,7 @@ export const uploadCover = (formData, history) => async (dispatch) => {
     });
 
     dispatch(setAlert("Cover photo updated", "success"));
-    history.push("/dashboard");
+    history.goBack();
   } catch (err) {
     console.log(err);
 

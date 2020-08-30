@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect } from "react";
+import React, { Fragment } from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
@@ -7,25 +7,15 @@ import DashboardActions from "./DashboardActions";
 import Experience from "./Experience";
 import { getCurrentProfile, deleteAccount } from "../../actions/profile";
 
-const Dashboard = ({
-  getCurrentProfile,
-  deleteAccount,
-  auth: { user },
-  profile: { profile, loading },
-}) => {
-  useEffect(() => {
-    getCurrentProfile();
-  }, [getCurrentProfile]);
-
+const Dashboard = ({ deleteAccount, auth: { user }, profile: { profile, loading } }) => {
   return loading && profile === null ? (
     <Spinner />
   ) : (
-    <Fragment>
-      <h1 className="large page-title my-md-05">Dashboard</h1>
+    <div className="bg-tr-secondary p-2 p-sm-1">
       <p className="medium my-1">
         <i className="fas fa-user" /> Welcome {user && user.name}
       </p>
-      {profile !== null ? (
+      {profile ? (
         <Fragment>
           <DashboardActions user={user} />
           <Experience experience={profile.experience} />
@@ -40,12 +30,11 @@ const Dashboard = ({
         <Fragment>
           <p> You have not yet setup a profile. You can start here. </p>
           <Link to="/create-profile" className="btn btn-primary my-1">
-            {" "}
-            Create Profile{" "}
+            Create Profile
           </Link>
         </Fragment>
       )}
-    </Fragment>
+    </div>
   );
 };
 
