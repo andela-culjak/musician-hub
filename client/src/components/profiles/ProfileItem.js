@@ -12,7 +12,7 @@ const ProfileItem = ({
     thumbnail,
   },
 }) => {
-  const backup = "/misc/bcg1.png";
+  const backup = "img/misc/bcg1.png";
 
   return (
     <div className="box-sh-subtle">

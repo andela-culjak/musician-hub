@@ -4,7 +4,7 @@
     --main-font: "Quicksand", sans-serif;
     --primary-color: #2b587c;
     --primary-light: rgb(165, 221, 255);
-    --secondary-color: rgb(177, 70, 64);
+    --secondary-color: rgb(123, 93, 99);
     --dim-color: #163b5a;
     --dark-color: #102b41f5;
     --light-color: #e5e6ecf6;
@@ -15,18 +15,18 @@
     --dark-gray: #505050;
     --almost-black: #303030;
     --black: #000;
+    --clear-white: rgba(255, 255, 255, 0.7);
     --transparent-black: rgba(0, 0, 0, 0.7);
-    --transparent-white: rgba(255, 255, 255, 0.287);
+    --transparent-white: rgba(255, 255, 255, 0.267);
     --transparent-dark: rgba(0, 34, 58, 0.808);
     --transparent-dim: rgba(0, 52, 88, 0.67);
     --transparent-primary: rgba(43, 88, 124, 0.39);
     --transparent-primary-light: rgba(157, 195, 226, 0.459);
-    --transparent-secondary: rgba(177, 87, 64, 0.513);
+    --transparent-secondary: rgb(162, 72, 37, 28%);
     --ultra-transparent-black: rgba(0, 0, 0, 0.3);
     --ultra-transparent-primary: rgba(43, 88, 124, 0.274);
     --ultra-transparent-primary-light: rgba(121, 187, 241, 0.233);
-    --ultra-transparent-white: rgba(255, 255, 255, 0.137);
-    --landing-background: url("./img/trianglify5.png") no-repeat center center/cover;
+    --ultra-transparent-white: rgba(231, 251, 245, 0.226);
     --subtle-shadow: #52738bc5;
 }
 
@@ -34,8 +34,11 @@
 
 #main-background {
     margin: 0;
-    background-color: var(--transparent-dark);
-    background: url("./img/trianglify5.png") no-repeat fixed center/cover;
+    background: url("/img/trianglify6.png") no-repeat fixed center/cover;
+}
+
+.root-overlay {
+    background-color: var(--ultra-transparent-white);
 }
 
 * {
@@ -86,12 +89,9 @@ input::placeholder, textarea::placeholder, input, textarea {
     visibility: hidden!important;
 }
 
-.root-overlay {
-    background-color: var(--ultra-transparent-white);
-}
-
 .minh-4 {
     height: 4rem;
+    visibility: hidden;
 }
 
 .container {
@@ -360,6 +360,12 @@ small {
     border: var(--dark-color) solid 1px;
 }
 
+.btn-clear-white, .bg-clear-white, .badge-clear-white, .alert-clear-white {
+    background: var(--clear-white);
+    color: var(--dark-color);
+    border: var(--white) solid 1px;
+}
+
 .btn-tr-white, .bg-tr-white, .badge-tr-white, .alert-tr-white {
     background: var(--transparent-white);
     color: var(--dark-color);
@@ -369,7 +375,7 @@ small {
 .btn-tr-secondary, .bg-tr-secondary, .badge-tr-secondary, .alert-tr-secondary {
     background: var(--transparent-secondary);
     color: var(--white);
-    border: var(--transparent-secondary) solid 1px;
+    border: var(--secondary-color) solid 1px;
 }
 
 .btn-tr-primary-light, .bg-tr-primary-light, .badge-tr-primary-light, .alert-tr-primary-light {
@@ -469,7 +475,7 @@ input[type="file"]:focus+label, input[type="file"]+label:hover {
     opacity: 0.8;
 }
 
-input[type="submit"], button {
+input[type="submit"], button.btn {
     font: inherit;
 }
 

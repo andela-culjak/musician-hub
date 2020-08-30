@@ -11,10 +11,12 @@ import {
   REMOVE_COMMENT,
   CLEAR_MUSIC,
   CLEAR_PROFILE,
+  CLEAR_POST,
 } from "./types";
 
 //Get Posts
 export const getPosts = () => async (dispatch) => {
+  dispatch({ type: CLEAR_POST });
   dispatch({ type: CLEAR_PROFILE });
   dispatch({ type: CLEAR_MUSIC });
   try {

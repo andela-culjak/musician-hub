@@ -133,7 +133,8 @@ const UploadTrack = ({ uploadTrack, auth, history }) => {
           <input type="submit" className="btn btn-primary" />
           <button
             className="btn btn-light my-1"
-            onClick={() => {
+            onClick={(e) => {
+              e.preventDefault();
               history.goBack();
             }}>
             Go Back

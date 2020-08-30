@@ -12,7 +12,7 @@ const ProfileTop = ({
     user: { name, avatar, _id },
   },
 }) => {
-  const backup = "/misc/bcg1.png";
+  const backup = "/img/misc/bcg1.png";
 
   return (
     <div
