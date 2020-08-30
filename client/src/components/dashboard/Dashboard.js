@@ -11,7 +11,7 @@ const Dashboard = ({ deleteAccount, auth: { user }, profile: { profile, loading 
   return loading && profile === null ? (
     <Spinner />
   ) : (
-    <div className="bg-tr-secondary p-2 p-sm-1">
+    <div className="bg-tr-primary p-2 p-sm-1">
       <p className="medium my-1">
         <i className="fas fa-user" /> Welcome {user && user.name}
       </p>
