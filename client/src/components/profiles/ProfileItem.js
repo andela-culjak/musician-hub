@@ -36,7 +36,7 @@ const ProfileItem = ({
           </div>
         </Link>
       </div>
-      <div className=" bg-tr-dim card-genres p-05">
+      <div className=" bg-tr-primary card-genres p-05">
         <ul>
           {genres.slice(0, 4).map((genre, index) => (
             <li key={index} className="text-primary fw-500">

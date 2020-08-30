@@ -26,7 +26,7 @@
     --ultra-transparent-black: rgba(0, 0, 0, 0.3);
     --ultra-transparent-primary: rgba(43, 88, 124, 0.274);
     --ultra-transparent-primary-light: rgba(121, 187, 241, 0.233);
-    --ultra-transparent-white: rgba(231, 251, 245, 0.226);
+    --ultra-transparent-white: rgba(231, 251, 245, 0.342);
     --subtle-shadow: #52738bc5;
 }
 
@@ -73,7 +73,7 @@ input::placeholder, textarea::placeholder, input, textarea {
 }
 
 .logo {
-    font-size: 1.8rem;
+    font-size: 1.9rem;
     font-family: "Dawning of a New Day", cursive;
 }
 
@@ -100,7 +100,7 @@ input::placeholder, textarea::placeholder, input, textarea {
     margin-right: auto;
     overflow: hidden;
     padding: 2rem 1rem 3rem 1rem;
-    background-color: var(--transparent-white);
+    /* background-color: var(--transparent-white); */
     min-height: calc(100vh - 4rem);
 }
 
@@ -225,7 +225,7 @@ input::placeholder, textarea::placeholder, input, textarea {
 }
 
 .medium-small {
-    font-size: 0.9rem;
+    font-size: 1.1rem;
 }
 
 small {

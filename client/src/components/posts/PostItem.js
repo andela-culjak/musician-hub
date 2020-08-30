@@ -42,7 +42,7 @@ const PostItem = ({
             <small className="post-heading">
               {heading && <strong className="mb-1"> {heading}</strong>}
             </small>
-            <p className="medium-small">{text}</p>
+            <p className="">{text}</p>
 
             {!auth.loading && user._id === auth.user._id && (
               <button onClick={() => deletePost(_id)} className="delete-post-btn">

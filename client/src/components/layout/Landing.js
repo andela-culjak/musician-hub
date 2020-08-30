@@ -1,9 +1,14 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
+import { getProfiles } from "../../actions/profile";
 
-const Landing = ({ isAuthenticated }) => {
+const Landing = ({ isAuthenticated, getProfiles, profiles }) => {
+  useEffect(() => {
+    getProfiles();
+  }, [getProfiles]);
+
   if (isAuthenticated) {
     return <Redirect to="/posts" />;
   }
@@ -19,7 +24,7 @@ const Landing = ({ isAuthenticated }) => {
       icon: "/img/svg/ipod.png",
       title: "Promote your stuff",
       description:
-        "Music is made to be enjoyed and recognized. Share your band's or solo material with the whole community and get some feedback. ",
+        "Music is made to be enjoyed and recognized. Share your material with the whole community and get some feedback. ",
     },
     {
       icon: "/img/svg/quaver.png",
@@ -31,6 +36,7 @@ const Landing = ({ isAuthenticated }) => {
 
   return (
     <section id="main-background">
+      <div className="dark-overlay"> </div>
       <div className="landing-top">
         <h1 className="x-large logo landing-logo">MusicianHub</h1>
         <h3 className="lead py-1 text-center text-white txt-shadow-dark">
@@ -46,10 +52,9 @@ const Landing = ({ isAuthenticated }) => {
         </div>
       </div>
 
-      <div className="landing-intro bg-tr-dim text-center p-3 p-sm-2">
-        <h2 className="large fw-400 txt-sh-primary my-3 my-sm-1">
-          {" "}
-          QUICK TOUR OR MUSICIAN HUB
+      <div className="landing-intro bg-tr-dim text-center p-3 p-sm-2 txt-shadow-dark">
+        <h2 className="large fw-400 txt-shadow-primary my-3 my-sm-1">
+          QUICK TOUR OF MUSICIAN HUB
         </h2>
         {tourPoints.map((point) => (
           <div key={point.title} className="tour-point my-2 my-sm-1">
@@ -62,18 +67,41 @@ const Landing = ({ isAuthenticated }) => {
           </div>
         ))}
       </div>
-
-      <div className="landing-members bg-tr-secondary"></div>
+      {profiles.length > 0 && (
+        <div className="bg-tr-secondary text-center p-2 txt-shadow-dark">
+          <h2 className="large fw-500 my-1">COMMUNITY</h2>
+          <p className="text-center medium-small fw-500 community-description">
+            Sign up and take part in building a large community. Discover and stream their
+            work.
+          </p>
+          <div className="landing-members py-2">
+            {profiles
+              .sort(() => 0.5 - Math.random())
+              .slice(0, 5)
+              .map((p) => (
+                <div>
+                  <img
+                    src={p.user.avatar}
+                    className="my-1 member-icon round-img box-sh-dark"
+                    alt="icon"
+                  />
+                </div>
+              ))}
+          </div>
+        </div>
+      )}
     </section>
   );
 };
 
 Landing.protoTypes = {
+  getProfiles: PropTypes.func.isRequired,
   isAuthenticated: PropTypes.bool,
 };
 
 const mapStateToProps = (state) => ({
+  profiles: state.profile.profiles,
   isAuthenticated: state.auth.isAuthenticated,
 });
 
-export default connect(mapStateToProps)(Landing);
+export default connect(mapStateToProps, { getProfiles })(Landing);

@@ -33,7 +33,7 @@ const Post = ({ getPost, getMusicById, music, post: { post, loading }, match }) 
         </div>
 
         {post && post.trackId && music && music.tracks.length && (
-          <div className="post-track">
+          <div className="post-track mt-3">
             <MainTrack
               currentTrackIndex={music.tracks.findIndex((x) => x._id === post.trackId)}
               music={music}
