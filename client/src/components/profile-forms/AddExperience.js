@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from "react";
+import React, { useState } from "react";
 import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
@@ -22,7 +22,7 @@ const AddExperience = ({ addExperience, history }) => {
   const onChange = (e) => setFormData({ ...formData, [e.target.name]: e.target.value });
 
   return (
-    <Fragment>
+    <div className="add-experience">
       <h1 className="large page-title">Add An Experience</h1>
       <p className="medium">
         <i className="far fa-lightbulb" /> Add any musical experience that you have had
@@ -112,7 +112,7 @@ const AddExperience = ({ addExperience, history }) => {
           Go Back
         </button>
       </form>
-    </Fragment>
+    </div>
   );
 };
 

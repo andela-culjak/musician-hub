@@ -30,7 +30,11 @@ const Profile = ({
 
   useEffect(() => {
     switch (true) {
-      case auth && profile && auth.isAuthenticated && auth.user._id === profile.user._id:
+      case category !== "music" &&
+        auth &&
+        profile &&
+        auth.isAuthenticated &&
+        auth.user._id === profile.user._id:
         setCategory("dashboard");
         break;
       case music && music.tracks.length > 0:

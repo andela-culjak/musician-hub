@@ -149,6 +149,11 @@
   margin-bottom: 0.5rem;
 }
 
+.add-experience, .edit-profile {
+  max-width: 700px;
+  margin: auto;
+}
+
 .manage-tracks-list-item {
   display: flex;
   position: relative;
@@ -754,12 +759,12 @@
   .profile-about {
     grid-template-areas: "info" "experience";
   }
+  /* Dashboard */
   .dash-buttons a {
     flex-direction: column;
     min-width: 170px;
     margin-bottom: 0.2rem;
   }
-  /* Dashboard */
   .track-upload {
     grid-template-columns: 1fr;
     grid-template-rows: auto auto auto;

@@ -49,7 +49,7 @@ const CreateProfile = ({ createProfile, history }) => {
   };
 
   return (
-    <Fragment>
+    <div className="edit-profile">
       <h1 className="large page-title">Create Your Profile</h1>
       <p className="medium">
         <i className="fas fa-user" /> Let's get some information to make your profile
@@ -229,7 +229,7 @@ const CreateProfile = ({ createProfile, history }) => {
 
         <input type="submit" className="btn btn-primary my-1" />
       </form>
-    </Fragment>
+    </div>
   );
 };
 

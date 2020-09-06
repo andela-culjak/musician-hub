@@ -93,7 +93,7 @@ const EditProfile = ({
   };
 
   return (
-    <Fragment>
+    <div className="edit-profile">
       <h1 className="large page-title">Edit Your Profile</h1>
       <p className="medium">
         <i className="fas fa-user" /> Make sure your profile stands out
@@ -109,7 +109,8 @@ const EditProfile = ({
             onChange={(e) => onChange(e)}
           />
           <small className="form-text">
-            Give us an idea of what you do at the moment
+            What role do you have in your band or how would you describe yourself as
+            musician?
           </small>
         </div>
         <div className="form-group">
@@ -120,7 +121,7 @@ const EditProfile = ({
             value={band}
             onChange={(e) => onChange(e)}
           />
-          <small className="form-text">Could be your own band or one you work for</small>
+          <small className="form-text">A band or any type musical organization</small>
         </div>
         <div className="form-group">
           <input
@@ -130,7 +131,7 @@ const EditProfile = ({
             value={website}
             onChange={(e) => onChange(e)}
           />
-          <small className="form-text">Could be your own or a band website</small>
+          <small className="form-text">Could be your own or band's website</small>
         </div>
         <div className="form-group">
           <input
@@ -140,7 +141,7 @@ const EditProfile = ({
             value={location}
             onChange={(e) => onChange(e)}
           />
-          <small className="form-text">City and state suggested (eg. Boston, MA)</small>
+          <small className="form-text">City or country</small>
         </div>
         <div className="form-group">
           <input
@@ -209,7 +210,6 @@ const EditProfile = ({
             className="btn btn-light">
             Add Social Network Links
           </button>
-          <span>Optional</span>
         </div>
 
         {displaySocialInputs && (
@@ -281,7 +281,7 @@ const EditProfile = ({
           Go Back
         </button>
       </form>
-    </Fragment>
+    </div>
   );
 };
 
