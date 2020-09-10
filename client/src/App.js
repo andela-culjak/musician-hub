@@ -32,7 +32,7 @@ if (localStorage.token) {
 const App = () => {
   useEffect(() => {
     store.dispatch(loadUser());
-  }, []); //empty brackets mean that this hook only runs once (like componentDidMount)
+  }, []);
 
   return (
     <Provider store={store}>

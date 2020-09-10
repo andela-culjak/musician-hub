@@ -44,7 +44,7 @@ const UploadImage = ({ uploadCover, uploadAvatar, history, type }) => {
         uploadAvatar(formData, history);
         break;
       default:
-        console.log("Error?");
+        console.log("Error");
     }
     setLabel("Choose or drop a file");
   };

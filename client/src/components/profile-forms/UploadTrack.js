@@ -23,7 +23,6 @@ const UploadTrack = ({ uploadTrack, auth, history }) => {
     reader.onload = function () {
       var aud = new Audio(reader.result);
       aud.onloadedmetadata = function () {
-        console.log(aud.duration);
         setFile(file);
         setLabel("Audio file chosen");
         setDuration(aud.duration);

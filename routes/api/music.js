@@ -201,7 +201,6 @@ router.put("/unlike/:music_id/:track_id", auth, async (req, res) => {
       return res.status(400).json({ msg: "Track has not yet been liked" });
     }
 
-    //TODO check if this works correctly
     //Get the remove index
     const removeIndex = music.tracks[trackIndex].likes
       .map((like) => like.user.toString())

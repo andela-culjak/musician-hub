@@ -64,7 +64,6 @@ const MainTrack = ({
     wavesurfer.load(track.url);
 
     setSurfer(wavesurfer);
-    //console.log("Kreirani wavesurfer", wavesurfer.backend.media);
   };
 
   const displayComments = () => {

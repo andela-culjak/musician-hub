@@ -203,11 +203,11 @@ router.put(
         "avatar",
       ]);
 
-      profile.experience.unshift(newExp); //why no await?
+      profile.experience.unshift(newExp);
 
       await profile.save();
 
-      res.json(profile); //Whole profile
+      res.json(profile);
     } catch (err) {
       console.error(err.message);
       res.status(500).send("Server error");
