@@ -242,6 +242,10 @@
   padding: 1rem;
 }
 
+.card-genres {
+  border-top: 2px solid var(--transparent-primary);
+}
+
 .card-genres ul {
   display: flex;
   flex-direction: row;
@@ -512,8 +516,8 @@
   width: 100%;
 }
 
-.track-comment-input::placeholder {
-  color: var(--light-color);
+#track-comment-input::placeholder {
+  color: var(--clear-white);
 }
 
 .play-btn:focus, .heart-button:focus, .track-comment-input:focus {

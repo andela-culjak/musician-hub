@@ -24,6 +24,7 @@
     --transparent-primary-light: rgba(157, 195, 226, 0.459);
     --transparent-secondary: rgb(162, 72, 37, 28%);
     --ultra-transparent-black: rgba(0, 0, 0, 0.3);
+    --ultra-transparent-dark: rgba(10, 37, 59, 0.356);
     --ultra-transparent-primary: rgba(43, 88, 124, 0.274);
     --ultra-transparent-primary-light: rgba(121, 187, 241, 0.233);
     --ultra-transparent-white: rgba(231, 251, 245, 0.342);
@@ -448,7 +449,7 @@ input[type="text"], input[type="email"], input[type="password"], input[type="dat
     padding: 0.4rem;
     font-size: 1rem;
     border: 1px solid var(--light-gray);
-    background: var(--transparent-primary);
+    background: var(--ultra-transparent-dark);
     color: var(--white);
     outline: none;
 }
